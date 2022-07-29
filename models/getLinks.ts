@@ -1,4 +1,4 @@
-import { DB, Row } from "https://deno.land/x/sqlite/mod.ts";
+import { DB, Row } from "sqlite/mod.ts";
 
 export default function getLinks(): string[] {
   const db = new DB("main.db");

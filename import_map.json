@@ -1,6 +1,7 @@
 {
   "imports": {
     "http/": "https://deno.land/std@0.147.0/http/",
-    "preact": "https://esm.sh/preact-render-to-string@5.1.19?deps=preact@10.5.15"
+    "preact": "https://esm.sh/preact-render-to-string@5.1.19?deps=preact@10.5.15",
+    "sqlite/": "https://deno.land/x/sqlite@v3.4.0/"
   }
 }
