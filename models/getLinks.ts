@@ -1,8 +1,8 @@
-import { DB, Row } from "https://deno.land/x/sqlite/mod.ts";
+import { DB, Row } from 'sqlite/mod.ts';
 
 export default function getLinks(): string[] {
-  const db = new DB("main.db");
-  db.query(`
+	const db = new DB('main.db');
+	db.query(`
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       username TEXT UNIQUE,
@@ -10,11 +10,11 @@ export default function getLinks(): string[] {
     )
   `);
 
-  const links: Row[] = db.query("SELECT links FROM users WHERE id = 1");
-  const linksToString: string = links[0][0] as string;
+	const links: Row[] = db.query('SELECT links FROM users WHERE id = 1');
+	const linksToString: string = links[0][0] as string;
 
-  db.close();
-  return linksToString.split(",");
+	db.close();
+	return linksToString.split(',');
 }
 
 /*
