@@ -1,6 +1,5 @@
 import { serve } from 'http/server.ts';
 import { renderToString } from 'preact';
-import { serveDir, serveFile } from 'http/file_server.ts';
 
 import { app } from './views/app.tsx';
 
@@ -11,6 +10,7 @@ type ResponseData = {
 };
 
 const port = 8000;
+const stylesDir = './public/styles/';
 
 await serve(handler, { port });
 
@@ -37,8 +37,21 @@ function handler(req: Request): Response {
 			break;
 	}
 
-	// TODO:  This doesn't work properly
-	serveDir(req, { fsRoot: './public/styles/' });
+	// This serves the static files
+	// TODO: Currently does not work with multiple css files.
+	if (reqUrl.pathname.startsWith('/public/')) {
+		const styleFiles = Deno.readDirSync(stylesDir);
+
+		for (const file of styleFiles) {
+			Deno.readFileSync(stylesDir + file.name);
+			return new Response(Deno.readFileSync(stylesDir + file.name), {
+				headers: {
+					'content-type': 'text/css',
+				},
+			});
+		}
+	}
+
 	return new Response(resData.body, {
 		status: resData.status,
 		headers: {

@@ -1,6 +1,6 @@
 {
 	"tasks": {
-		"dev": "denon run --allow-read --allow-write --allow-net index.ts",
+		"dev": "deno run --allow-read --allow-write --allow-net index.ts",
 		"release": "deno run --allow-read --allow-write --allow-net index.ts"
 	},
 	"compilerOptions": {

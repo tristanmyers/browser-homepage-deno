@@ -11,7 +11,7 @@ export function app() {
 			<link
 				rel='stylesheet'
 				type='text/css'
-				href='../public/styles/index.css'
+				href='./public/styles/index.css'
 			/>
 			<body>
 				{links(userLinks)}
