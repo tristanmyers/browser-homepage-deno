@@ -1,3 +1,28 @@
+/* Color pallets
+  https://coolors.co/palette/f4f1de-e07a5f-3d405b-81b29a-f2cc8f <- Using right now
+  https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557
+  https://coolors.co/palette/ffede1-f9fbf2-d7f9ff-afcbff-0e1c36
+*/
+
+:root {
+  --main-bg-color: hsl(234, 20%, 30%);
+  --main-link-color: hsl(13, 68%, 63% );
+}
+
 body {
-  background-color: white;
+  background-color: var(--main-bg-color);
+}
+
+a {
+  color: var(--main-link-color);
+}
+
+.fave-links {
+  background-color: hsl(52, 50%, 91%);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: fit-content;
+  padding: 12px;
+  border-radius: 8%;
 }

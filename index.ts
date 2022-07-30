@@ -13,6 +13,7 @@ const stylesDir = './public/styles/';
 await serve(handler, { port });
 
 async function handler(req: Request): Promise<Response> {
+	// Have to always set body and status or else a 500 happens.
 	const resData: ResponseData = {
 		body: 'Internal server error',
 		status: 500,
@@ -22,7 +23,12 @@ async function handler(req: Request): Promise<Response> {
 	const reqUrl = new URL(req.url);
 
 	switch (reqUrl.pathname) {
-		case '/': {
+		case '/':
+			resData.body = 'TODO: Add content to this page';
+			resData.status = 200;
+			break;
+
+		case '/homepage': {
 			const data = rootHandler(req);
 			if (data) {
 				resData.body = data;
