@@ -1,7 +1,5 @@
 import { serve } from 'http/server.ts';
-import { renderToString } from 'preact';
-
-import { app } from './views/app.tsx';
+import { rootHandler } from './controllers/rootHandler.ts';
 
 type ResponseData = {
 	body: BodyInit;
@@ -14,7 +12,7 @@ const stylesDir = './public/styles/';
 
 await serve(handler, { port });
 
-function handler(req: Request): Response {
+async function handler(req: Request): Promise<Response> {
 	const resData: ResponseData = {
 		body: 'Internal server error',
 		status: 500,
@@ -24,12 +22,14 @@ function handler(req: Request): Response {
 	const reqUrl = new URL(req.url);
 
 	switch (reqUrl.pathname) {
-		case '/':
-			if (req.method === 'GET') {
-				resData.body = renderToString(app());
+		case '/': {
+			const data = rootHandler(req);
+			if (data) {
+				resData.body = data;
 				resData.status = 200;
 			}
 			break;
+		}
 
 		default:
 			resData.body = 'Page not found';
@@ -37,14 +37,13 @@ function handler(req: Request): Response {
 			break;
 	}
 
+	// BUG: Currently does not work with multiple css files.
 	// This serves the static files
-	// TODO: Currently does not work with multiple css files.
 	if (reqUrl.pathname.startsWith('/public/')) {
-		const styleFiles = Deno.readDirSync(stylesDir);
+		const styleFiles = Deno.readDir(stylesDir);
 
-		for (const file of styleFiles) {
-			Deno.readFileSync(stylesDir + file.name);
-			return new Response(Deno.readFileSync(stylesDir + file.name), {
+		for await (const file of styleFiles) {
+			return new Response(await Deno.readFile(stylesDir + file.name), {
 				headers: {
 					'content-type': 'text/css',
 				},
