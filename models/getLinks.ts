@@ -1,8 +1,7 @@
-import { sqlite } from '../deps.ts';
-import { Row } from 'https://deno.land/x/sqlite@v3.4.0/src/query.ts';
+import { DB, Row } from '../deps.ts';
 
 export default function getLinks(): string[] {
-	const db = new sqlite.DB('main.db');
+	const db = new DB('main.db');
 	db.query(`
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
