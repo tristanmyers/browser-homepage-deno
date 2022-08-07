@@ -1,14 +1,9 @@
 {
 	"tasks": {
 		"dev": "deno run --allow-read --allow-write --allow-net index.ts",
-		"release": "deno run --allow-read --allow-write --allow-net index.ts"
+		"release": "deno run --allow-read --allow-write --allow-net index.ts",
+		"compile": "deno compile --allow-read --allow-write --allow-net index.ts"
 	},
-	"compilerOptions": {
-		"jsx": "react-jsx",
-		"jsxImportSource": "https://esm.sh/preact",
-		"strict": true
-	},
-	"importMap": "import_map.json",
 	"fmt": {
 		"options": {
 			"useTabs": true,
