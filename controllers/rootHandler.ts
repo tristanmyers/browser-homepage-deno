@@ -1,11 +1,15 @@
-import { renderToString } from 'preact';
+import { linkedom } from '../deps.ts';
 import { app } from '../views/app.tsx';
 
 export function rootHandler(req: Request) {
-	let data: BodyInit | null = null;
+	let data = null;
 
 	if (req.method === 'GET') {
-		data = renderToString(app());
+		data = new linkedom.DOMParser().parseFromString(app(), 'text/html');
+	}
+
+	if (data) {
+		return data.toString();
 	}
 
 	return data;

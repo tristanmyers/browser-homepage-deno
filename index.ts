@@ -1,4 +1,4 @@
-import { serve } from 'http/server.ts';
+import { http } from './deps.ts';
 import { rootHandler } from './controllers/rootHandler.ts';
 
 type ResponseData = {
@@ -7,10 +7,10 @@ type ResponseData = {
 	contentType: string;
 };
 
-const port = 8000;
+const port = 8081;
 const stylesDir = './public/styles/';
 
-await serve(handler, { port });
+await http.serve(handler, { port });
 
 async function handler(req: Request): Promise<Response> {
 	// Have to always set body and status or else a 500 happens.
@@ -23,12 +23,7 @@ async function handler(req: Request): Promise<Response> {
 	const reqUrl = new URL(req.url);
 
 	switch (reqUrl.pathname) {
-		case '/':
-			resData.body = 'TODO: Add content to this page';
-			resData.status = 200;
-			break;
-
-		case '/homepage': {
+		case '/': {
 			const data = rootHandler(req);
 			if (data) {
 				resData.body = data;
