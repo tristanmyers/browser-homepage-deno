@@ -7,6 +7,7 @@
 :root {
   --main-bg-color: hsl(234, 20%, 30%);
   --main-link-color: hsl(13, 68%, 63% );
+  --fave-links-bg-color: hsl(52, 50%, 91%); 
 }
 
 body {
@@ -18,11 +19,12 @@ a {
 }
 
 .fave-links {
-  background-color: hsl(52, 50%, 91%);
+  background-color: var(--fave-links-bg-color);
   display: flex;
   flex-direction: column;
   gap: 2px;
   width: fit-content;
   padding: 12px;
   border-radius: 8%;
+  font-size: 1.5em;
 }
