@@ -16,36 +16,34 @@ export function getBlogs(blogUrls: string[]) {
       blogs.push(decoder.decode(xml));
     } catch (err) {
       console.error("Error reading blog file: ", err);
-      return null;
     }
   });
 
-  if (blogs.length < 1) {
-    return null;
+  // BUG: Feed is being updated.
+  if (blogs.length > 0) {
+    blogs.forEach(async (blog) => {
+      const blogData = await rss.parseFeed(
+        blog,
+      );
+      const post = blogData.entries[0];
+
+      currentBlog = {
+        title: blogData.title.value,
+        url: blogData.id,
+      };
+
+      recentPost = {
+        title: post.title ? post.title.value : "Post title not found.",
+        url: post.id,
+        description: post.description
+          ? post.description.value
+          : "Description not found.",
+        publishedAt: post.published,
+      };
+
+      feed.push({ blog: currentBlog, post: recentPost });
+    });
   }
-
-  blogs.forEach(async (blog) => {
-    const blogData = await rss.parseFeed(
-      blog,
-    );
-    const post = blogData.entries[0];
-
-    currentBlog = {
-      title: blogData.title.value,
-      url: blogData.id,
-    };
-
-    recentPost = {
-      title: post.title ? post.title.value : "Post title not found.",
-      url: post.id,
-      description: post.description
-        ? post.description.value
-        : "Description not found.",
-      publishedAt: post.published,
-    };
-
-    feed.push({ blog: currentBlog, post: recentPost });
-  });
 
   return feed;
 }
