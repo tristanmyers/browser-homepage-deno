@@ -1,8 +1,11 @@
+import { getBlogs } from '../models/getBlogs.ts';
 import getLinks from '../models/getLinks.ts';
+import { blogs } from './blogs.tsx';
 import { links } from './links.tsx';
 
 export function app() {
 	const userLinks: string[] = getLinks();
+	const userBlogs = getBlogs();
 
 	const page = `
 	<!DOCTYPE html>
