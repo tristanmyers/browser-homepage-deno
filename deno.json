@@ -11,5 +11,10 @@
       "indentWidth": 2,
       "singleQuote": true
     }
+  },
+  "test": {
+    "files": {
+      "include": ["tests/"]
+    }
   }
 }

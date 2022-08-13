@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Made of Bugs</title>
+    <link>https://blog.nelhage.com/post/</link>
+    <description>Recent content in Posts on Made of Bugs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 31 May 2021 16:05:17 -0700</lastBuildDate>
+    
+	<atom:link href="https://blog.nelhage.com/post/atom.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Distributed cloud builds for everyone</title>
+      <link>https://blog.nelhage.com/post/distributed-builds-for-everyone/</link>
+      <pubDate>Mon, 31 May 2021 16:05:17 -0700</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/distributed-builds-for-everyone/</guid>
+      <description>This is a description</description>
+    </item>
+    
+    <item>
+      <title>Building LLVM in 90 seconds using Amazon Lambda</title>
+      <link>https://blog.nelhage.com/post/building-llvm-in-90s/</link>
+      <pubDate>Thu, 20 May 2021 19:00:28 -0700</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/building-llvm-in-90s/</guid>
+      <description>Last week, Frederic Cambus wrote about building LLVM quickly on some very large machines, culminating in a 2m37s build on a 160-core ARM machine.
+I don&amp;rsquo;t have a giant ARM behemoth, but I have been working on a tool I call Llama, which lets you offload computational work &amp;ndash; including C and C++ builds &amp;ndash; onto Amazon Lambda. I decided to see how good it could do at a similar build.</description>
+    </item>
+    
+    <item>
+      <title>Some opinionated thoughts on SQL databases</title>
+      <link>https://blog.nelhage.com/post/some-opinionated-sql-takes/</link>
+      <pubDate>Tue, 30 Mar 2021 10:32:31 -0700</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/some-opinionated-sql-takes/</guid>
+      <description>People who work with me tend to realize that I have Opinions about databases, and SQL databases in particular. Last week, I wrote about a Postgres debugging story and tweeted about AWS’ policy ban on internal use of SQL databases, and had occasion to discuss and debate some of those feelings on Twitter; this article is an attempt to write up more of them into a single place I can refer to.</description>
+    </item>
+    
+    <item>
+      <title>Towards solving Ultimate Tic Tac Toe</title>
+      <link>https://blog.nelhage.com/post/solving-ultimate-ttt/</link>
+      <pubDate>Wed, 15 Jul 2020 10:15:21 -0700</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/solving-ultimate-ttt/</guid>
+      <description>Summary: Read about my efforts to solve the game of Ultimate Tic Tac Toe. It&amp;rsquo;s been a fun journey into interesting algorithms and high-performance parallel programming in Rust.
+Backstory Starting around the beginning of the COVID-19 lockdown, I&amp;rsquo;ve gotten myself deeply nerdsniped by an attempt to solve the game of Ultimate Tic Tac Toe, a two-level Tic Tac Toe variant which is (unlike Tic Tac Toe) nontrivial and contains some interesting strategic elements.</description>
+    </item>
+    
+    <item>
+      <title>Write testable code by writing generic code</title>
+      <link>https://blog.nelhage.com/post/write-testable-code-by-writing-generic-code/</link>
+      <pubDate>Wed, 11 Mar 2020 18:30:17 -0700</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/write-testable-code-by-writing-generic-code/</guid>
+      <description>Alex Gaynor recently asked this question in an IRC channel I hang out in (a channel which contains several software engineers nearly as obsessed with software testing as I am):
+ uhh, so I&amp;rsquo;m writing some code to handle an econnreset&amp;hellip; how do I test this?
+ This is a good question! Testing ECONNRESET is one of those fiddly problems that exists at the interface between systems — in his case, with S3, not even a system under his control — that can be infuriatingly tricky to reproduce and test.</description>
+    </item>
+    
+    <item>
+      <title>Test suites as classifiers</title>
+      <link>https://blog.nelhage.com/post/test-suites-as-classifiers/</link>
+      <pubDate>Sun, 01 Mar 2020 15:34:00 -0500</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/test-suites-as-classifiers/</guid>
+      <description>Suppose we have some codebase we’re considering applying some patch to, and which has a robust and maintained test suite.
+Considering the patch, we may ask, is this patch acceptable to apply and deploy. By this we mean to ask if the patch breaks any important functionality, violates any key properties or invariants of the codebase, or would otherwise cause some unacceptable risk or harm. In principle, we can divide all patches into “acceptable” or “unacceptable” relative to some project-specific notion of what we’re willing to allow.</description>
+    </item>
+    
+    <item>
+      <title>Systems that defy detailed understanding</title>
+      <link>https://blog.nelhage.com/post/systems-that-defy-understanding/</link>
+      <pubDate>Sat, 22 Feb 2020 12:00:00 -0800</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/systems-that-defy-understanding/</guid>
+      <description>Last week, I wrote about the mindset that computer systems can be understood, and behaviors can be explained, if we’re willing to dig deep enough into the stack of abstractions our software is built atop. Some of the ensuing discussion on Twitter and elsewhere lead me to write this followup, in which I want to run through a few classes of systems where I’ve found pursuing in-detail understanding of the system wasn’t the right answer.</description>
+    </item>
+    
+    <item>
+      <title>Computers can be understood</title>
+      <link>https://blog.nelhage.com/post/computers-can-be-understood/</link>
+      <pubDate>Sun, 16 Feb 2020 12:00:00 -0800</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/computers-can-be-understood/</guid>
+      <description>Introduction This post attempts to describe a mindset I’ve come to realize I bring to essentially all of my work with software. I attempt to articulate this mindset, some of its implications and strengths, and some of the ways in which it’s lead me astray.
+Software can be understood I approach software with a deep-seated belief that computers and software systems can be understood.
+This belief is, for me, not some abstruse theoretical assertion, but a deeply felt belief that essentially any question I might care to ask (about computers) has a comprehensible answer which is accessible with determined exploration and learning.</description>
+    </item>
+    
+    <item>
+      <title>Reflections on software performance</title>
+      <link>https://blog.nelhage.com/post/reflections-on-performance/</link>
+      <pubDate>Sun, 02 Feb 2020 17:00:00 -0800</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/reflections-on-performance/</guid>
+      <description>At this point in my career, I’ve worked on at least three projects where performance was a defining characteristic: Livegrep, Taktician, and Sorbet (I discussed sorbet in particular last time, and livegrep in an earlier post). I’ve also done a lot of other performance work on the tools I use, some of which ended up on my other blog, Accidentally Quadratic.
+In this post, I want to reflect on some of the lessons I’ve learned while writing performant software, and working with rather a lot more not-so-performant software.</description>
+    </item>
+    
+    <item>
+      <title>Why the Sorbet typechecker is fast</title>
+      <link>https://blog.nelhage.com/post/why-sorbet-is-fast/</link>
+      <pubDate>Thu, 23 Jan 2020 17:00:00 -0800</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/why-sorbet-is-fast/</guid>
+      <description>This is the second in an indefinite series of posts about things that I think went well in the Sorbet project. The previous one covered our testing approach.
+Sorbet is fast. Numerous of our early users commented specifically on how fast it was, and how much they appreciated this speed. Our informal benchmarks on Stripe’s codebase clocked it as typechecking around 100,000 lines of code per second per core, making it one of the fastest production typecheckers we are aware of.</description>
+    </item>
+    
+    <item>
+      <title>Testing and feedback loops</title>
+      <link>https://blog.nelhage.com/post/testing-and-feedback-loops/</link>
+      <pubDate>Sun, 19 Jan 2020 12:00:00 -0800</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/testing-and-feedback-loops/</guid>
+      <description>Testing and feedback loops This post tries to set out one mental model I have for thinking about testing and the purpose testing serves in software engineering, and to explore some of the suggestions of this model.
+As mentioned in an earlier post, I think a lot about working in long-lived software projects that are undergoing a lot of development and change. The goal when working on these projects is not just to produce a useful artifact at one time, but to maintain and evolve the project over time, optimizing for some combination of the present usefulness of the software, and our ability to continue to evolve and improve it into the future.</description>
+    </item>
+    
+    <item>
+      <title>Record/Replay testing in Sorbet</title>
+      <link>https://blog.nelhage.com/post/record-replay-in-sorbet/</link>
+      <pubDate>Mon, 13 Jan 2020 10:00:00 -0800</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/record-replay-in-sorbet/</guid>
+      <description>In 2017 and 2018, I (along with Paul Tarjan and Dmitry Petrashko) was a founding member of the Sorbet project at Stripe to build a gradual static typechecking system for Ruby, with the aim of enhancing productivity on Stripe’s millions of lines of Ruby, and eventually producing a useful open-source tool. I’m very proud of the work we did (and that others continue to do!) on Sorbet; I think we were very successful, and it was one of the best teams I’ve worked on in a number of ways.</description>
+    </item>
+    
+    <item>
+      <title>Two kinds of testing</title>
+      <link>https://blog.nelhage.com/post/two-kinds-of-testing/</link>
+      <pubDate>Tue, 24 Dec 2019 17:09:55 -0400</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/two-kinds-of-testing/</guid>
+      <description>While talking about thinking about tests and testing in software engineering recently, I’ve come to the conclusion that there are (at least) two major ideas and goals that people have when they test or talk about testing. This post aims to outline what I see as these two schools, and explore some reasons engineers coming from these different perspectives can risk talking past each other.
+Two reasons to test Testing for correctness The first school of testing comprises those who see testing as a tool for validating a software artifact against some externally-defined standard of correctness.</description>
+    </item>
+    
+    <item>
+      <title>The architecture of declarative configuration management</title>
+      <link>https://blog.nelhage.com/post/declarative-configuration-management/</link>
+      <pubDate>Tue, 12 Nov 2019 14:00:00 -0800</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/declarative-configuration-management/</guid>
+      <description>With the ongoing move towards “infrastructure-as-code” and similar notions, there’s been an ongoing increase in the number and popularity of declarative configuration management tools. This post attempts to lay out my mental model of the conceptual architecture and internal layering of such tools, and some wishes I have for how they might work differently, based on this model.
+Background: declarative configuration management Declarative configuration management refers to the class of tools that allow operators to declare a desired state of some system (be it a physical machine, an EC2 VPC, an entire Google Cloud account, or anything else), and then allow the system to automatically compare that desired state to the present state, and then automatically update the managed system to match the declared state.</description>
+    </item>
+    
+    <item>
+      <title>A Go/C Polyglot</title>
+      <link>https://blog.nelhage.com/post/a-go-c-polyglot/</link>
+      <pubDate>Thu, 05 Sep 2019 16:42:28 -0700</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/a-go-c-polyglot/</guid>
+      <description>Writing a Go/C polyglot Someone on a Slack I’m on recently raised the question of how you might write a source file that’s both valid C and Go, commenting that it wasn’t immediately obvious if this was even possible. I got nerdsniped, and succeeded in producing one, which you can find here.
+I’ve been asked how I found that construction, so I thought it might be interesting to document the thought / discovery / exploration process that got me there.</description>
+    </item>
+    
+    <item>
+      <title>Reader/Reader blocking in reader/writer locks</title>
+      <link>https://blog.nelhage.com/post/rwlock-contention/</link>
+      <pubDate>Tue, 07 May 2019 08:00:00 -0700</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/rwlock-contention/</guid>
+      <description>tl;dr In writer-priority reader/writer locks, as soon as a single writer enters the acquisition queue, all future accesses block behind any in-flight reads. If any readers hold the lock for extended periods of time, this can lead to extreme pauses and loss of throughput given even a very small number of writers.
+Abstract This post describes a phenomenon that can occur in systems built on reader/writer locks, where slow readers and a small number of writers (e.</description>
+    </item>
+    
+    <item>
+      <title>My Apollo Bibliography</title>
+      <link>https://blog.nelhage.com/post/apollo-bibliography/</link>
+      <pubDate>Mon, 08 Apr 2019 20:00:00 -0700</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/apollo-bibliography/</guid>
+      <description>Over the last few years — perhaps not that unusually among the nerds I know — I’ve become increasingly fascinated by the Apollo program (and early space program more generally), and been reading my way through a growing number of books and documentaries written about it. At a party this weekend I got asked for my list of Apollo book recommendations, so I decided to write them in a form I can easily share and refer to, in case it’s of interest to anyone else.</description>
+    </item>
+    
+    <item>
+      <title>Three kinds of memory leaks</title>
+      <link>https://blog.nelhage.com/post/three-kinds-of-leaks/</link>
+      <pubDate>Sun, 29 Apr 2018 08:30:00 -0700</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/three-kinds-of-leaks/</guid>
+      <description>So, you&amp;rsquo;ve got a program that&amp;rsquo;s using more and more over time as it runs. Probably you can immediately identify this as a likely symptom of a memory leak.
+But when we say &amp;ldquo;memory leak&amp;rdquo;, what do we actually mean? In my experience, apparent memory leaks divide into three broad categories, each with somewhat different behavior, and requiring distinct tools and approaches to debug. This post aims to describe these classes, and provide tools and techniques for figuring out both which class you&amp;rsquo;re dealing with, and how to find the leak.</description>
+    </item>
+    
+    <item>
+      <title>Property Testing Like AFL</title>
+      <link>https://blog.nelhage.com/post/property-testing-like-afl/</link>
+      <pubDate>Tue, 24 Oct 2017 09:00:00 -0700</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/property-testing-like-afl/</guid>
+      <description>In my last last post, I argued that property-based testing and fuzzing are essentially the same practice, or at least share a lot of commonality. In this followup post, I want to explore that idea a bit more: I&amp;rsquo;ll first detour into some of my frustrations and hesitations around typical property-based testing tools, and then propose a hypothetical UX to resolve these concerns, which takes heavy inspiration from modern fuzzing tools, specifically the AFL and Google&amp;rsquo;s OSS-Fuzz.</description>
+    </item>
+    
+    <item>
+      <title>Property-Based Testing Is Fuzzing</title>
+      <link>https://blog.nelhage.com/post/property-testing-is-fuzzing/</link>
+      <pubDate>Tue, 03 Oct 2017 09:00:00 -0700</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/property-testing-is-fuzzing/</guid>
+      <description>&amp;ldquo;Property-based testing&amp;rdquo; refers to the idea of writing statements that should be true of your code (&amp;ldquo;properties&amp;rdquo;), and then using automated tooling to generate test inputs (typically, randomly-generated inputs of an appropriate type), and observe whether the properties hold for that input. If an input violates a property, you&amp;rsquo;ve demonstrated a bug, as well as a convenient example that demonstrates it.
+A classic example of property-based testing is testing a sort function:</description>
+    </item>
+    
+    <item>
+      <title>Disable Transparent Hugepages</title>
+      <link>https://blog.nelhage.com/post/transparent-hugepages/</link>
+      <pubDate>Mon, 10 Jul 2017 21:15:00 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/transparent-hugepages/</guid>
+      <description>tl;dr &amp;ldquo;Transparent Hugepages&amp;rdquo; is a Linux kernel feature intended to improve performance by making more efficient use of your processor&amp;rsquo;s memory-mapping hardware. It is enabled (&amp;ldquo;enabled=always&amp;rdquo;) by default in most Linux distributions.
+Transparent Hugepages gives some applications a small performance improvement (~ 10% at best, 0-3% more typically), but can cause significant performance problems, or even apparent memory leaks at worst.
+To avoid these problems, you should set enabled=madvise on your servers by running</description>
+    </item>
+    
+    <item>
+      <title>Two Perspectives on the End-to-End Principle</title>
+      <link>https://blog.nelhage.com/post/end-to-end-principle/</link>
+      <pubDate>Sun, 11 Jun 2017 13:42:01 -0700</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/end-to-end-principle/</guid>
+      <description>Back when I was an undergraduate, as part of a class called &amp;ldquo;Computer Systems Engineering&amp;rdquo;, we read numerous classic papers of systems design. I enjoyed and learned a great deal from many of these papers, but one that paper that has stuck with me in particular was Saltzer et al&amp;rsquo;s &amp;ldquo;End-to-End Arguments in Systems Design&amp;rdquo;. The paper is a very general tract on systems design &amp;ndash; it does explore several examples of concrete systems or applications, but it ultimately expounds upon the end-to-end principle as a perspective or design heuristic that can apply to virtually any system design.</description>
+    </item>
+    
+    <item>
+      <title>Running Tensorflow on AWS GPUs</title>
+      <link>https://blog.nelhage.com/post/tensorflow-on-aws/</link>
+      <pubDate>Sun, 26 Feb 2017 18:41:27 -0500</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/tensorflow-on-aws/</guid>
+      <description>I&amp;rsquo;ve been spending some time learning deep learning and tensorflow recently, and as part of that project I wanted to be able to train models using GPUs on EC2. This post contains some notes on what it took to get that working. As many people have commented, the environment setup is often the hardest part of getting a deep learning setup going, so hopefully this will be useful reference to someone.</description>
+    </item>
+    
+    <item>
+      <title>Thoughts On Kubernetes</title>
+      <link>https://blog.nelhage.com/post/kubernetes/</link>
+      <pubDate>Sun, 19 Feb 2017 12:48:34 -0800</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/kubernetes/</guid>
+      <description>I spent a while the last week porting livegrep.com from running directly AWS to running on Kubernetes on Google&amp;rsquo;s Cloud Platform (specifically, the google container engine, which provisions and manages the cluster for me).
+I left this experience profoundly enthusiastic about the future of Kubernetes. I think that if Google can execute properly, it&amp;rsquo;s clearly the future for how we build distributed applications. That said, it also feels like it has a ways to go yet.</description>
+    </item>
+    
+    <item>
+      <title>Measuring Capacity Through Utilization</title>
+      <link>https://blog.nelhage.com/post/utilization/</link>
+      <pubDate>Sun, 08 Jan 2017 15:09:09 -0500</pubDate>
+      
+      <guid>https://blog.nelhage.com/post/utilization/</guid>
+      <description>(This post is cross-posted from Honeycomb&amp;rsquo;s instrumentation series).
+One of my favorite concepts when thinking about instrumenting a system to understand its overall performance and capacity is what I call &amp;ldquo;time utilization&amp;rdquo;.
+By this I mean: If you look at the behavior of a thread over some window of time, what fraction of its time is spent in each &amp;ldquo;kind&amp;rdquo; of work that it does?
+Let&amp;rsquo;s make this notion concrete by examining a toy example.</description>
+    </item>
+    
+    <item>
+      <title>How I Write Tests</title>
+      <link>https://blog.nelhage.com/2016/12/how-i-test/</link>
+      <pubDate>Thu, 29 Dec 2016 19:00:00 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2016/12/how-i-test/</guid>
+      <description>The longer I spend as a software engineer, the more obsessive I get about testing. I fully subscribe to the definition of legacy code as &amp;ldquo;code without an automated test suite.&amp;rdquo; I&amp;rsquo;m convinced that the best thing you can do to encourage fast progress in a test suite is to design for testing and have a fast, reliable, comprehensive test suite.
+But for all that, I&amp;rsquo;ve never really subscribed to any of the test-driven-development manifestos or practices that I&amp;rsquo;ve encountered.</description>
+    </item>
+    
+    <item>
+      <title>Design for Testability</title>
+      <link>https://blog.nelhage.com/2016/03/design-for-testability/</link>
+      <pubDate>Sun, 06 Mar 2016 10:00:00 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2016/03/design-for-testability/</guid>
+      <description>When designing a new software project, one is often faced with a glut of choices about how to structure it. What should the core abstractions be? How should they interact with each other?
+In this post, I want to argue for a design heuristic that I&amp;rsquo;ve found to be a useful guide to answering or influencing many of these questions:
+ Optimize your code for testability
+ Specifically, this means that when you write new code, as you design it and design its relationships with the rest of the system, ask yourself this question: &amp;ldquo;How will I test this code?</description>
+    </item>
+    
+    <item>
+      <title>What MongoDB got Right</title>
+      <link>https://blog.nelhage.com/2015/11/what-mongodb-got-right/</link>
+      <pubDate>Sun, 01 Nov 2015 10:00:00 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2015/11/what-mongodb-got-right/</guid>
+      <description>MongoDB is perhaps the most-widely-mocked piece of software out there right now.
+While some of the mockery is out-of-date or rooted in misunderstandings, much of it is well-deserved, and it&amp;rsquo;s difficult to disagree that much of MongoDB&amp;rsquo;s engineering is incredibly simplistic, inefficient, and immature compared to more-established databases like PostgreSQL or MySQL.
+You can argue, and I would largely agree, that this is actually part of MongoDB&amp;rsquo;s brilliant marketing strategy, of sacrificing engineering quality in order to get to market faster and build a hype machine, with the idea that the engineering will follow later.</description>
+    </item>
+    
+    <item>
+      <title>Indices point between elements</title>
+      <link>https://blog.nelhage.com/2015/08/indices-point-between-elements/</link>
+      <pubDate>Fri, 17 Jul 2015 09:00:00 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2015/08/indices-point-between-elements/</guid>
+      <description>If you&amp;rsquo;re familiar with nearly any mainstream programming language, and I asked you to draw a diagram of an array, the array indices, and the array elements, odds are good you&amp;rsquo;d produce a diagram something like this:
+In this post, I want to persuade you to replace that image, or, at least, to augment it with an alternate view on the world.
+I want to argue that, rather than numbering elements of an array, it makes just as much sense, and in many cases more, to number the spaces between elements:</description>
+    </item>
+    
+    <item>
+      <title>Regular Expression Search with Suffix Arrays</title>
+      <link>https://blog.nelhage.com/2015/02/regular-expression-search-with-suffix-arrays/</link>
+      <pubDate>Sun, 01 Feb 2015 15:52:43 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2015/02/regular-expression-search-with-suffix-arrays/</guid>
+      <description>Back in January of 2012, Russ Cox posted an excellent blog post detailing how Google Code Search had worked, using a trigram index.
+By that point, I&amp;rsquo;d already implemented early versions of my own livegrep source-code search engine, using a different indexing approach that I developed independently, with input from a few friends. This post is my long-overdue writeup of how it works.
+Suffix Arrays A suffix array is a data structure used for full-text search and other applications, primarily these days in the field of bioinformatics.</description>
+    </item>
+    
+    <item>
+      <title>New reptyr feature: TTY-stealing</title>
+      <link>https://blog.nelhage.com/2014/08/new-reptyr-feature-tty-stealing/</link>
+      <pubDate>Wed, 20 Aug 2014 08:41:34 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2014/08/new-reptyr-feature-tty-stealing/</guid>
+      <description>Ever since I wrote reptyr, I&amp;rsquo;ve been frustrated by a number of issues in reptyr that I fundamentally didn&amp;rsquo;t know how to solve within the reptyr model. Most annoyingly, reptyr fundamentally only worked on single processes, and could not attach processes with children, making it useless in a large class of real-world situations.
+TTY stealing Recently, I merged an experimental reptyr feature that I call &amp;ldquo;tty-stealing&amp;rdquo;, which has the potential to fix all of these issues (with some other disadvantages, which I&amp;rsquo;ll discuss later).</description>
+    </item>
+    
+    <item>
+      <title>Lightweight Linux Kernel Development with KVM</title>
+      <link>https://blog.nelhage.com/2013/12/lightweight-linux-kernel-development-with-kvm/</link>
+      <pubDate>Mon, 30 Dec 2013 02:11:45 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2013/12/lightweight-linux-kernel-development-with-kvm/</guid>
+      <description>I don&amp;rsquo;t do a ton of Linux kernel development these days, but I&amp;rsquo;ve done a fair bit in the past, and picked up a number of useful techniques for doing kernel development in a relatively painless fashion. This blog post is a writeup of the tools and techniques I use when developing for the Linux kernel. Nothing I write here is &amp;ldquo;the one way&amp;rdquo; to do it, but this is a workflow I&amp;rsquo;ve found to work for me, that I hope others may find useful.</description>
+    </item>
+    
+    <item>
+      <title>Tracking down a memory leak in Ruby&#39;s EventMachine</title>
+      <link>https://blog.nelhage.com/2013/03/tracking-an-eventmachine-leak/</link>
+      <pubDate>Thu, 07 Mar 2013 13:13:37 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2013/03/tracking-an-eventmachine-leak/</guid>
+      <description>At Stripe, we rely heavily on ruby and EventMachine to power various internal and external services. Over the last several months, we&amp;rsquo;ve known that one such service suffered from a gradual memory leak, that would cause its memory usage to gradually balloon from a normal ~50MB to multiple gigabytes.
+It was easy enough to work around the leak by adding monitoring and restarting the process whenever memory usage grew too large, but we were determined to track down the root cause.</description>
+    </item>
+    
+    <item>
+      <title>Why node.js is cool (it&#39;s not about performance)</title>
+      <link>https://blog.nelhage.com/2012/03/why-node-js-is-cool/</link>
+      <pubDate>Mon, 12 Mar 2012 11:36:35 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2012/03/why-node-js-is-cool/</guid>
+      <description>For the past N months, it seems like there is no new technology stack that is either hotter or more controversial than node.js. node.js is cancer! node.js cures cancer! node.js is bad ass rock star tech!. I myself have given node.js a lot of shit, often involving the phrase &amp;ldquo;explicit continuation-passing style.&amp;rdquo;
+Most of the arguments I&amp;rsquo;ve seen seem to center around whether node.js is &amp;ldquo;scalable&amp;rdquo; or high-performance, and the relative merits of single-threaded event loops versus threading for scaling out, or other such noise.</description>
+    </item>
+    
+    <item>
+      <title>BlackHat/DEFCON 2011 talk: Breaking out of KVM</title>
+      <link>https://blog.nelhage.com/2011/08/breaking-out-of-kvm/</link>
+      <pubDate>Mon, 08 Aug 2011 13:32:29 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2011/08/breaking-out-of-kvm/</guid>
+      <description>I&amp;rsquo;ve posted the final slides from my talk this year at DEFCON and Black Hat, on breaking out of the KVM Kernel Virtual Machine on Linux.
+  Virtunoid: Breaking out of KVM  from Nelson Elhage  [Edited 2011-08-11] The code is now available. It should be fairly well-commented, and include links to everything you&amp;rsquo;ll need to get the exploit up and running in a local test environment, if you&amp;rsquo;re so inclined.</description>
+    </item>
+    
+    <item>
+      <title>Exploiting misuse of Python&#39;s &#34;pickle&#34;</title>
+      <link>https://blog.nelhage.com/2011/03/exploiting-pickle/</link>
+      <pubDate>Sun, 20 Mar 2011 18:38:13 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2011/03/exploiting-pickle/</guid>
+      <description>If you program in Python, you&amp;rsquo;re probably familiar with the pickle serialization library, which provides for efficient binary serialization and loading of Python datatypes. Hopefully, you&amp;rsquo;re also familiar with the warning printed prominently near the start of pickle&#39;s documentation:
+ Warning: The pickle module is not intended to be secure against erroneous or maliciously constructed data. Never unpickle data received from an untrusted or unauthenticated source.
+ Recently, however, I stumbled upon a project that was accepting and unpacking untrusted pickles over the network, and a poll of some friends revealed that few of them were aware of just how easy it is to exploit a service that does this.</description>
+    </item>
+    
+    <item>
+      <title>reptyr: Changing a process&#39;s controlling terminal</title>
+      <link>https://blog.nelhage.com/2011/02/changing-ctty/</link>
+      <pubDate>Tue, 08 Feb 2011 23:06:50 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2011/02/changing-ctty/</guid>
+      <description>reptyr (announced recently on this blog) takes a process that is currently running in one terminal, and transplants it to a new terminal. reptyr comes from a proud family of similar hacks, and works in the same basic way: We use ptrace(2) to attach to a target process and force it to execute code of our own choosing, in order to open the new terminal, and dup2(2) it over stdout and stderr.</description>
+    </item>
+    
+    <item>
+      <title>reptyr: Attach a running process to a new terminal</title>
+      <link>https://blog.nelhage.com/2011/01/reptyr-attach-a-running-process-to-a-new-terminal/</link>
+      <pubDate>Fri, 21 Jan 2011 21:56:01 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2011/01/reptyr-attach-a-running-process-to-a-new-terminal/</guid>
+      <description>Over the last week, I&amp;rsquo;ve written a nifty tool that I call reptyr. reptyr is a utility for taking an existing running program and attaching it to a new terminal. Started a long-running process over ssh, but have to leave and don&amp;rsquo;t want to interrupt it? Just start a screen, use reptyr to grab it, and then kill the ssh session and head on home.
+You can grab the source, or read on for some more details.</description>
+    </item>
+    
+    <item>
+      <title>Some Android reverse-engineering tools</title>
+      <link>https://blog.nelhage.com/2010/12/some-android-reverse-engineering-tools/</link>
+      <pubDate>Mon, 27 Dec 2010 16:26:13 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/12/some-android-reverse-engineering-tools/</guid>
+      <description>I&amp;rsquo;ve spent a lot of time this last week staring at decompiled Dalvik assembly. In the process, I created a couple of useful tools that I figure are worth sharing.
+I&amp;rsquo;ve been using dedexer instead of baksmali, honestly mainly because the former&amp;rsquo;s output has fewer blank lines and so is more readable on my netbook&amp;rsquo;s screen. Thus, these tools are designed to work with the output of dedexer, but the formats are simple enough that they should be easily portable to smali, if that&amp;rsquo;s your tool of choice (And it does look like a better tool overall, from what I can see).</description>
+    </item>
+    
+    <item>
+      <title>CVE-2010-4258: Turning denial-of-service into privilege escalation</title>
+      <link>https://blog.nelhage.com/2010/12/cve-2010-4258-from-dos-to-privesc/</link>
+      <pubDate>Fri, 10 Dec 2010 12:02:11 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/12/cve-2010-4258-from-dos-to-privesc/</guid>
+      <description>Dan Rosenberg recently released a privilege escalation bug for Linux, based on three different kernel vulnerabilities I reported recently. This post is about CVE-2010-4258, the most interesting of them, and, as Dan writes, the reason he wrote the exploit in the first place. In it, I&amp;rsquo;m going to do a brief tour of the various kernel features that collided to make this bug possible, and explain how they combine to turn an otherwise-boring oops into privilege escalation.</description>
+    </item>
+    
+    <item>
+      <title>Some notes on CVE-2010-3081 exploitability</title>
+      <link>https://blog.nelhage.com/2010/11/exploiting-cve-2010-3081/</link>
+      <pubDate>Tue, 30 Nov 2010 12:58:01 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/11/exploiting-cve-2010-3081/</guid>
+      <description>Most of you reading this blog probably remember CVE-2010-3081. The bug got an awful lot of publicity when it was discovered an announced, due to allowing local privilege escalation against virtually all 64-bit Linux kernels in common use at the time.
+While investigating CVE-2010-3081, I discovered that several of the commonly-believed facts about the CVE were wrong, and it was even more broadly exploitable than was publically documented. I&amp;rsquo;d like to share those observations here.</description>
+    </item>
+    
+    <item>
+      <title>Why scons is cool</title>
+      <link>https://blog.nelhage.com/2010/11/why-scons-is-cool/</link>
+      <pubDate>Sun, 07 Nov 2010 18:00:38 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/11/why-scons-is-cool/</guid>
+      <description>I&amp;rsquo;ve recently started playing with scons a little for some small personal projects. It&amp;rsquo;s not perfect, but I&amp;rsquo;ve rapidly come to the conclusion that it&amp;rsquo;s a probably far better choice than make in many cases. The main exceptions would be cases where you need to integrate into legacy build systems, or if asking or expecting developers to have scons installed is unreasonable for some reason.
+The main reason that scons is cool to me, and the thing that makes it fundamentally different from make, is the introduction of actual scoping.</description>
+    </item>
+    
+    <item>
+      <title>Configuring dnsmasq with VMware Workstation</title>
+      <link>https://blog.nelhage.com/2010/10/dnsmasq-and-vmware/</link>
+      <pubDate>Sun, 24 Oct 2010 23:15:23 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/10/dnsmasq-and-vmware/</guid>
+      <description>I love VMware workstation. I keep VMs around for basically every version of every major Linux distribution, and use them heavily for all kinds of kernel testing and development.
+This post is a quick writeup of my networking setup with VMware Workstation, using dnsmasq to assign my VMs addresses and provide a DNS server to resolve VM addresses.
+The objective I want to be able to resolve my VM&amp;rsquo;s hostnames so that I can ssh to them, or run other network services and access them from the host.</description>
+    </item>
+    
+    <item>
+      <title>Using Haskell&#39;s &#39;newtype&#39; in C</title>
+      <link>https://blog.nelhage.com/2010/10/using-haskells-newtype-in-c/</link>
+      <pubDate>Mon, 11 Oct 2010 13:11:25 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/10/using-haskells-newtype-in-c/</guid>
+      <description>A common problem in software engineering is avoiding confusion and errors when dealing with multiple types of data that share the same representation. Classic examples include differentiating between measurements stored in different units, distinguishing between a string of HTML and a string of plain text (one of these needs to be encoded before it can safely be included in a web page!), or keeping track of pointers to physical memory or virtual memory when writing the lower layers of an operating system&amp;rsquo;s memory management.</description>
+    </item>
+    
+    <item>
+      <title>amd64 and va_arg</title>
+      <link>https://blog.nelhage.com/2010/10/amd64-and-va_arg/</link>
+      <pubDate>Mon, 04 Oct 2010 00:14:28 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/10/amd64-and-va_arg/</guid>
+      <description>A while back, I was poking around LLVM bugs, and discovered, to my surprise, that LLVM doesn&amp;rsquo;t support the va_arg intrinsic, used by functions to accept multiple arguments, at all on amd64. It turns out that clang and llvm-gcc, the compilers that backend to LLVM, have their own implementations in the frontend, so this isn&amp;rsquo;t as big a deal as it might sound, but it was still a surprise to me.</description>
+    </item>
+    
+    <item>
+      <title>A brief look at Linux&#39;s security record</title>
+      <link>https://blog.nelhage.com/2010/09/a-brief-look-at-linuxs-security-record/</link>
+      <pubDate>Sun, 26 Sep 2010 23:16:19 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/09/a-brief-look-at-linuxs-security-record/</guid>
+      <description>After the fuss of the last two weeks because of CVE-2010-3081 and CVE-2010-3301, I decided to take a look at a handful of the high-profile privilege escalation vulnerabilities in Linux from the last few years.  So, here&#39;s a summary of the ones I picked out. There are also a large number of smaller ones, like an AF\_CAN exploit, or the l2cap overflow in the Bluetooth subsystem, that didn&#39;t get as much publicity, because they were found more quickly or didn&#39;t affect as many default configurations.</description>
+    </item>
+    
+    <item>
+      <title>Dear Twitter: Stop screwing over your developers. </title>
+      <link>https://blog.nelhage.com/2010/09/dear-twitter/</link>
+      <pubDate>Sun, 12 Sep 2010 23:48:28 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/09/dear-twitter/</guid>
+      <description>I really like Twitter. I think it&amp;rsquo;s a great, fun, service, that helps enable interesting online communities, and is a surprisingly effective way to spread news and information to lots of people online. One of the things that I&amp;rsquo;ve loved about Twitter is their API, and how open and welcoming they&amp;rsquo;ve been to developers. I even use Twitter from an IM client that I develop, using protocol support that I wrote myself.</description>
+    </item>
+    
+    <item>
+      <title>How is duct tape like the force?</title>
+      <link>https://blog.nelhage.com/2010/09/how-is-duct-tape-like-the-force/</link>
+      <pubDate>Sun, 05 Sep 2010 18:37:19 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/09/how-is-duct-tape-like-the-force/</guid>
+      <description>I&amp;rsquo;m at Dragon*Con this weekend, my second time here now. I decided that if I was going to Dragon*Con again, I needed to do something in terms of costuming, and I wanted it to be something unique &amp;ndash; I wasn&amp;rsquo;t going to come anywhere near as epic as some of the costumes people pull off, but I wanted something that was going to be a little impressive, hopefully totally unique, and perhaps slightly insane.</description>
+    </item>
+    
+    <item>
+      <title>Write yourself an strace in 70 lines of code</title>
+      <link>https://blog.nelhage.com/2010/08/write-yourself-an-strace-in-70-lines-of-code/</link>
+      <pubDate>Sun, 29 Aug 2010 12:33:26 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/08/write-yourself-an-strace-in-70-lines-of-code/</guid>
+      <description>Basically anyone who&amp;rsquo;s used Linux for any amount of time eventually comes to know and love the strace command. strace is the system-call tracer, which traces the calls that a program makes into the kernel in order to interact with the outside world. If you&amp;rsquo;re not already familiar with this incredibly versatile tool, I suggest you go check out my friend and coworker Greg Price&amp;rsquo;s excellent blog post on the subject, and then come back here.</description>
+    </item>
+    
+    <item>
+      <title>Navigating the Linux Kernel</title>
+      <link>https://blog.nelhage.com/2010/08/navigating-the-linux-kernel/</link>
+      <pubDate>Sun, 15 Aug 2010 21:52:58 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/08/navigating-the-linux-kernel/</guid>
+      <description>In response to my query last time, ezyang asked for any tips or tricks I have for finding my way around the Linux kernel. I&amp;rsquo;m not sure I have much in the way of systematic advice for tracking down the answers to questions about the Linux kernel, but thinking about what I do when posed with a patch to Linux that I need understand, or question I need to answer, I&amp;rsquo;ve come up with a collection of tips that will hopefully be helpful to others looking to source-dive Linux for whatever reason.</description>
+    </item>
+    
+    <item>
+      <title>Suggestion time: What should I blog about?</title>
+      <link>https://blog.nelhage.com/2010/08/suggestion-time-what-should-i-blog-about/</link>
+      <pubDate>Sun, 08 Aug 2010 21:44:55 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/08/suggestion-time-what-should-i-blog-about/</guid>
+      <description>I haven&amp;rsquo;t been feeling very motivated to blog lately &amp;ndash; I&amp;rsquo;ve missed the last two weeks of Iron Blogger, and I&amp;rsquo;m not totally enthusiastic about any of the items on my &amp;ldquo;to blog&amp;rdquo; list.
+But, I do enjoy blogging when I actually get into posts, and I&amp;rsquo;d like to keep updating this blog. So, in a bit of a copout, and following in Edward&amp;rsquo;s footsteps, this is an appeal to all of you: What should I blog about?</description>
+    </item>
+    
+    <item>
+      <title>Some musings on ORMs</title>
+      <link>https://blog.nelhage.com/2010/07/some-musings-on-orms/</link>
+      <pubDate>Sun, 18 Jul 2010 18:38:23 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/07/some-musings-on-orms/</guid>
+      <description>I&amp;rsquo;m pretty sure every developer who has ever worked with a modern database-backed application, particularly a web-app, has a love/hate relationship with their ORM, or object-relational mapper.
+On the one hand, ORMs are vastly more pleasant to work with than code that constructs raw SQL, even, generally, from a tool that gives you an object model to construct SQL, instead of requiring (Cthulhu help us all) string concatenation or interpolation.</description>
+    </item>
+    
+    <item>
+      <title>Implementing a declarative mini-language in the C preprocessor</title>
+      <link>https://blog.nelhage.com/2010/07/implementing-an-edsl-in-cpp/</link>
+      <pubDate>Sun, 04 Jul 2010 15:54:55 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/07/implementing-an-edsl-in-cpp/</guid>
+      <description>Last time, I announced Check Plus, a declarative language for defining Check tests in C. This time, I want to talk about the tricks I used to implement a declarative minilanguage using the C preprocessor (and some GCC extensions).
+The Problem We want to write some toplevel declarations that look like:
+#define SUITE_NAME example BEGIN_SUITE(&amp;quot;Example test suite&amp;quot;); #define TEST_CASE core BEGIN_TEST_CASE(&amp;quot;Core tests&amp;quot;); …  and so on, and somehow translate them into code that does the equivalent of:</description>
+    </item>
+    
+    <item>
+      <title>Check Plus: An EDSL for writing unit tests in C</title>
+      <link>https://blog.nelhage.com/2010/06/check-plus-an-edsl-for-writing-unit-tests-in-c/</link>
+      <pubDate>Sat, 26 Jun 2010 15:54:53 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/06/check-plus-an-edsl-for-writing-unit-tests-in-c/</guid>
+      <description>Check is an excellent unit-testing framework for C code, used by a number of relatively well-known projects. It includes features such as running all tests in separate address spaces (using fork(2)), which means that the test suite can properly report segfaults or similar crashes without the test runner crashes.
+My main complaint about Check is that (unsurprisingly for a framework written in C), it&amp;rsquo;s not very declarative. After you define all your tests as separate functions, you need to write code to manually collect them into &amp;ldquo;test cases&amp;rdquo;, which you then collect into &amp;ldquo;test suites&amp;rdquo;, which you can then run.</description>
+    </item>
+    
+    <item>
+      <title>Lab Notebooking for the Software Engineer</title>
+      <link>https://blog.nelhage.com/2010/06/lab-notebooking-for-the-software-engineer/</link>
+      <pubDate>Sun, 20 Jun 2010 22:53:07 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/06/lab-notebooking-for-the-software-engineer/</guid>
+      <description>A few weeks ago, I wrote that software engineers should keep lab notebooks as they work, in addition to just documenting things after the fact. Today, I&amp;rsquo;m going to share the techniques that I&amp;rsquo;ve found useful to try to get in the habit of lab-notebooking my work, even though I still feel like I could be better at writing things down.
+Here&amp;rsquo;s my advice for keeping a lab notebook as a computer scientist:</description>
+    </item>
+    
+    <item>
+      <title>Wordpress tricks: Disabling editing shortcuts</title>
+      <link>https://blog.nelhage.com/2010/06/disable-wordpress-edit-shortcuts/</link>
+      <pubDate>Sun, 13 Jun 2010 20:07:00 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/06/disable-wordpress-edit-shortcuts/</guid>
+      <description>One of the major reasons I can&amp;rsquo;t stand webapps is because I&amp;rsquo;m a serious emacs junkie, and I can&amp;rsquo;t edit text in anything that doesn&amp;rsquo;t have decent emacs keybindings.
+Fortunately, on Linux, at least, GTK provides basic emacs keybindings if you add
+gtk-key-theme-name = &amp;quot;Emacs&amp;quot;  to your .gtkrc-2.0. However, some webapps think that they deserve total control over your keys, and grab key combinations for a WYSIWYG editor of some sort.</description>
+    </item>
+    
+    <item>
+      <title>Confessions of a programmer: I hate code review</title>
+      <link>https://blog.nelhage.com/2010/06/i-hate-code-review/</link>
+      <pubDate>Sun, 06 Jun 2010 20:21:11 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/06/i-hate-code-review/</guid>
+      <description>Most of the projects I&#39;ve been working on today have fairly strict code review policies. My work requires code review on most of our code, and as we bring on an army of interns for the summer, I&#39;ve been responsible for reviewing lots of code. Additionally, about five months ago BarnOwl, the console-based IM client I develop, adopted an official pre-commit review policy. And I have a confession to make: I hate mandatory code review.</description>
+    </item>
+    
+    <item>
+      <title>Using X forwarding with screen by proxying $DISPLAY</title>
+      <link>https://blog.nelhage.com/2010/05/using-x-forwarding-with-screen/</link>
+      <pubDate>Sun, 30 May 2010 20:25:52 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/05/using-x-forwarding-with-screen/</guid>
+      <description>If you&amp;rsquo;re reading this blog, I probably don&amp;rsquo;t have to explain why I love GNU screen. I can keep a long-running session going on a server somewhere, and log in and resume my session without losing any state.
+I also love X-forwarding. I love being able to log into a remote server and work in a shell there, but still pop up graphical windows (for instance, gitk&amp;rsquo;s) on my local machine when I need to.</description>
+    </item>
+    
+    <item>
+      <title>Getting carried away with hack value</title>
+      <link>https://blog.nelhage.com/2010/05/hack-value/</link>
+      <pubDate>Sun, 23 May 2010 19:53:30 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/05/hack-value/</guid>
+      <description>Recently, I&amp;rsquo;ve been working on some BarnOwl branches that move more of the core functionality of BarnOwl into perl code, instead of C (BarnOwl is written in an unholy mix of C and perl code that call each other back and forth obsessively).
+Moving code into perl has many advantages, but one problem is speed &amp;ndash; perl code is obvious a lot slower than C, and BarnOwl has a lot of hot spots related to its tendency to keep tens or hundreds of thousands of messages in memory and loop over all of them in response to various commands.</description>
+    </item>
+    
+    <item>
+      <title>The Window Manager I Want</title>
+      <link>https://blog.nelhage.com/2010/05/the-window-manager-i-want/</link>
+      <pubDate>Sun, 09 May 2010 17:08:47 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/05/the-window-manager-i-want/</guid>
+      <description>Since I first discovered ratpoison in 2005 or so, I&#39;ve basically exclusively used tiling window managers, going through, over the years, StumpWM, Ion 3, and finally XMonad. They&#39;ve all had various strengths and weaknesses, but I&#39;ve never been totally happy with any of them. This blog entry is a writeup of what I want to see as a window manager. It&#39;s possible that some day I&#39;ll get annoyed enough to write it, but maybe this post will inspire someone else to (Not likely, but I can hope).</description>
+    </item>
+    
+    <item>
+      <title>Software Engineers should keep lab notebooks</title>
+      <link>https://blog.nelhage.com/2010/05/software-and-lab-notebooks/</link>
+      <pubDate>Sun, 02 May 2010 23:14:14 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/05/software-and-lab-notebooks/</guid>
+      <description>Software engineers, as a rule, suck at writing things down. Part of this is training &amp;ndash; unlike chemists and biologists who are trailed to obsessively document everything they do in their lab notebooks, computer scientists are taught to document the end results of their work, but aren&#39;t, in general, taught to take notes as they go, and document the steps they take in building a system. 6.005, MIT&#39;s new introductory software engineering class, attempted to require its students to keep lab notebooks for a few semesters, and was met with near-universal complaints and ridicule from the students (“Lab notebooks?</description>
+    </item>
+    
+    <item>
+      <title>Some thoughts on Quora</title>
+      <link>https://blog.nelhage.com/2010/04/some-thoughts-on-quora/</link>
+      <pubDate>Sun, 04 Apr 2010 23:33:51 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/04/some-thoughts-on-quora/</guid>
+      <description>With the announcement this week that Quora had taken $11 million in VC at an $86 million valuation, there&amp;rsquo;s been an awful lot of attention on Quora. I&amp;rsquo;ve had an account there and wanted to write up some of my initial thoughts.
+If you haven&amp;rsquo;t heard about Quora, it&amp;rsquo;s yet another question/answer site on the web. People pose questions, and you can view questions and answer them. I&amp;rsquo;ve heard it described as &amp;ldquo;StackOverflow, but for anything&amp;rdquo;, which is roughly true, even if I think they want to be more.</description>
+    </item>
+    
+    <item>
+      <title>Fun with the preprocessor: CONFIG_IA32_EMULATION hacks in Linux</title>
+      <link>https://blog.nelhage.com/2010/03/config_ia32_emulation_hacks/</link>
+      <pubDate>Sun, 28 Mar 2010 20:07:43 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/03/config_ia32_emulation_hacks/</guid>
+      <description>About two months ago, Linux saw CVE-2010-0307, which was a trival denial-of-service attack that could crash essentially any 64-bit Linux machine with 32-bit compatibility enabled. LWN has an excellent writeup of the bug, which turns out to be a subtle error related to the details of the execve system call and with 32-bit compatibility mode.  While dealing with this patch for Ksplice, I ended up reading an awful lot of the code in Linux that deals with handling 32-bit processes on 64-bit machines.</description>
+    </item>
+    
+    <item>
+      <title>Security doesn&#39;t respect abstraction boundaries</title>
+      <link>https://blog.nelhage.com/2010/03/security-doesnt-respect-abstraction/</link>
+      <pubDate>Sat, 13 Mar 2010 20:20:26 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/03/security-doesnt-respect-abstraction/</guid>
+      <description>The fundamental tool of any engineering discipline is the notion of abstraction. If we can build a set of useful, easily-described behaviors out of a complex system, we can build other systems on top of those pieces, without having to understand to worry about the full complexity of the underlying system. Without this notion of abstracting away complexity, we&#39;d be stuck writing our webapps in assembly code &amp;ndash; if not toggling them in to our frontpanels after painstakingly translating them into hex by hand.</description>
+    </item>
+    
+    <item>
+      <title>Followup to &#34;A Very Subtle Bug&#34;</title>
+      <link>https://blog.nelhage.com/2010/03/followup-to-a-very-subtle-bug/</link>
+      <pubDate>Wed, 03 Mar 2010 13:45:11 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/03/followup-to-a-very-subtle-bug/</guid>
+      <description>After my previous post got posted to reddit, there was a bunch of interesting discussion there about some details I&amp;rsquo;d handwaved over. This is a quick followup on some the investigation that various people carried out, and the conclusions they reached.
+In the reddit thread, lacos/lbzip2 objected that in his experiments, he didn&amp;rsquo;t see tar closing the input pipe before it was done reading the file, and so questioned where the SIGPIPE/EPIPE was coming from in the first place.</description>
+    </item>
+    
+    <item>
+      <title>A Very Subtle Bug</title>
+      <link>https://blog.nelhage.com/2010/02/a-very-subtle-bug/</link>
+      <pubDate>Sat, 27 Feb 2010 23:48:47 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/02/a-very-subtle-bug/</guid>
+      <description>6.033, MIT&amp;rsquo;s class on computer systems, has as one of its catchphrases, &amp;ldquo;Complex systems fail for complex reasons&amp;rdquo;. As a class about designing and building complex systems, it&amp;rsquo;s a reminder that failure modes are subtle and often involve strange interactions between multiple parts of a system. In my own experience, I&amp;rsquo;ve concluded that they&amp;rsquo;re often wrong. I like to say that complex systems don&amp;rsquo;t usually fail for complex reasons, but for the simplest, dumbest possible reasons &amp;ndash; there are just more available dumb reasons.</description>
+    </item>
+    
+    <item>
+      <title>Iron Blogger: Blogging for Beer</title>
+      <link>https://blog.nelhage.com/2010/02/iron-blogger-blogging-for-beer/</link>
+      <pubDate>Sun, 21 Feb 2010 23:09:57 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/02/iron-blogger-blogging-for-beer/</guid>
+      <description>So, you may have noticed that I suddenly started updating this blog for the first time in a while. The reason is that I&amp;rsquo;ve recently started an ongoing event with a whole bunch of friends around here to encourage us to blog more.
+Like so many good ideas, it all started with a fundamentally simple premise. On December 21, I sent the following message to Zephyr (MIT&amp;rsquo;s internal IM system &amp;ndash; like Twitter crossed with IRC, except older than either)</description>
+    </item>
+    
+    <item>
+      <title>Versioning dotfiles in git</title>
+      <link>https://blog.nelhage.com/2010/02/versioning-dotfiles-in-git/</link>
+      <pubDate>Sun, 14 Feb 2010 20:03:15 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/02/versioning-dotfiles-in-git/</guid>
+      <description>I&amp;rsquo;ve been looking for a good solution for versioning and synchronizing my dotfiles between machines for some time. I experimented with keeping all of ~ in subversion for a while, but it never worked out well for me.
+I&amp;rsquo;ve finally settled on a solution that I like using git, and so this is a writeup of my workflows for working with my dotfiles in git, in the hopes that someone else might find it useful.</description>
+    </item>
+    
+    <item>
+      <title>CVE-2007-4573: The Anatomy of a Kernel Exploit</title>
+      <link>https://blog.nelhage.com/2010/02/cve-2007-4573-the-anatomy-of-a-kernel-exploit/</link>
+      <pubDate>Fri, 05 Feb 2010 23:32:31 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/02/cve-2007-4573-the-anatomy-of-a-kernel-exploit/</guid>
+      <description>CVE-2007-4573 is two years old at this point, but it remains one of my favorite vulnerabilities. It was a local privilege-escalation vulnerability on all x86_64 kernels prior to v2.6.22.7. It&amp;rsquo;s very simple to understand with a little bit of background, and the exploit is super-simple, but it&amp;rsquo;s still more interesting than Yet Another NULL Pointer Dereference. Plus, it was the first kernel bug I wrote an exploit for, which was fun.</description>
+    </item>
+    
+    <item>
+      <title>Git in pictures</title>
+      <link>https://blog.nelhage.com/2010/01/git-in-pictures/</link>
+      <pubDate>Sun, 24 Jan 2010 23:30:02 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/01/git-in-pictures/</guid>
+      <description>In my previous blog post, I discussed how git is distinctive among version control system in the way in which it makes the backend model that is being used to store data the most important element of the tool, and that experts use it by having the complete model in their head, and thinking in terms of operations on this object model, rather than just in terms of knowing specific commands to accomplish specific tasks.</description>
+    </item>
+    
+    <item>
+      <title>On git and usability</title>
+      <link>https://blog.nelhage.com/2010/01/on-git-and-usability/</link>
+      <pubDate>Mon, 18 Jan 2010 00:57:31 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/01/on-git-and-usability/</guid>
+      <description>I&amp;rsquo;ve been helping a number of people get started working with git over the last couple of weeks, as Ksplice has brought on some new interns, and we&amp;rsquo;ve had to get them up to speed on our internal git repositories. (As you might expect from a bunch of kernel hackers, we use git for absolutely everything). While that experience is what prompted this post, it wasn&amp;rsquo;t really anything I haven&amp;rsquo;t seen before as SIPB transitioned from a group that mostly versioned code in SVN or SVK to one that used git almost exclusively, practically overnight, as these things go.</description>
+    </item>
+    
+    <item>
+      <title>A Brief Introduction to termios: Signaling and Job Control</title>
+      <link>https://blog.nelhage.com/2010/01/a-brief-introduction-to-termios-signaling-and-job-control/</link>
+      <pubDate>Mon, 11 Jan 2010 01:42:52 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2010/01/a-brief-introduction-to-termios-signaling-and-job-control/</guid>
+      <description>(This is part three of a multi-part introduction to termios and terminal emulation on UNIX. Read part 1 or part 2 if you&amp;rsquo;re new here)
+For my final entry on termios, I will be looking at job control in the shell (i.e. backgrounding and foreground jobs) and the very closely related topic of signal generation by termios, in response to INTR and friends.
+Sessions and Process Groups For the purposes of termios, processes are organized into two hierarchical groups, process groups and sessions.</description>
+    </item>
+    
+    <item>
+      <title>A Brief Introduction to termios: termios(3) and stty</title>
+      <link>https://blog.nelhage.com/2009/12/a-brief-introduction-to-termios-termios3-and-stty/</link>
+      <pubDate>Wed, 30 Dec 2009 01:47:17 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2009/12/a-brief-introduction-to-termios-termios3-and-stty/</guid>
+      <description>(This is part two of a multi-part introduction to termios and terminal emulation on UNIX. Read part 1 if you&amp;rsquo;re new here)
+In this entry, we&amp;rsquo;ll look at the interfaces that are used to control the behavior of the &amp;ldquo;termios&amp;rdquo; box sitting between the master and slave pty. The behaviors I described last time are fine if you have a completely dumb program talking to the terminal, but if the program over on the right is using curses (like emacs or vim), or even just readline (like bash), it will want to disable or customize some of the behaviors.</description>
+    </item>
+    
+    <item>
+      <title>A Brief Introduction to termios</title>
+      <link>https://blog.nelhage.com/2009/12/a-brief-introduction-to-termios/</link>
+      <pubDate>Tue, 22 Dec 2009 19:11:22 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2009/12/a-brief-introduction-to-termios/</guid>
+      <description>If you&amp;rsquo;re a regular user of the terminal on a UNIX system, there are probably a large number of behaviors you take mostly for granted without really thinking about them. If you press ^C or ^Z it kills or stops the foreground program &amp;ndash; unless it&amp;rsquo;s something like emacs or vim, in which case it gets handled like a normal keystroke. When you ssh to a remote host, though, they go to the processes on that machine, not the ssh process.</description>
+    </item>
+    
+    <item>
+      <title>wpa_supplicant: GUI and wpa_action</title>
+      <link>https://blog.nelhage.com/2008/09/wpa_supplicant-gui-and-wpa_action/</link>
+      <pubDate>Thu, 18 Sep 2008 12:07:49 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2008/09/wpa_supplicant-gui-and-wpa_action/</guid>
+      <description>I&amp;rsquo;ve made two new interesting discoveries about wpa_supplicant since writing my last blog post on the subject. (Actually, I pretty much made both of them while reading documentation in order to write it, and have been lame about writing them up).
+Using wpa_gui It turns out that wpa_gui not only allows you to select existing networks, but also to scan for and add new networks to your configuration file. In addition, you can run it as yourself, without needing to sudo it.</description>
+    </item>
+    
+    <item>
+      <title>autocutsel</title>
+      <link>https://blog.nelhage.com/2008/09/autocutsel/</link>
+      <pubDate>Tue, 16 Sep 2008 12:08:12 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2008/09/autocutsel/</guid>
+      <description>As most of you probably know, X has several different mechanisms for copy-paste, used by different applications in different ways. I know some people who use them deliberately, juggling two pieces of text in different clipboards at once, but for me, it&amp;rsquo;s always just been annoying. When I copy something, be it by Gnome C-c, emacs C-w, or selecting it in an xterm, I then want to be able to paste it again, no matter what mechanism I use.</description>
+    </item>
+    
+    <item>
+      <title>New Blog Location</title>
+      <link>https://blog.nelhage.com/2008/09/new-blog/</link>
+      <pubDate>Fri, 12 Sep 2008 14:17:42 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2008/09/new-blog/</guid>
+      <description>I finally got fed up with Blogger, and am moving this blog to live on Wordpress hosted off of scripts.mit.edu. In the process of converting everything over and setting up Wordpress I&amp;rsquo;ve decided I hate it, but hopefully I hate it less than I hate Blogger. We&amp;rsquo;ll see.
+I&amp;rsquo;ve also changed the URL to this blog from http://nelhage.com/blog to http://blog.nelhage.com, which I like better as URL anyways. It should redirect to the toplevel of the new URL now.</description>
+    </item>
+    
+    <item>
+      <title>Using wpa_supplicant on Debian/Ubuntu</title>
+      <link>https://blog.nelhage.com/2008/08/using-wpa_supplicant-on-debianubuntu/</link>
+      <pubDate>Fri, 22 Aug 2008 14:06:00 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2008/08/using-wpa_supplicant-on-debianubuntu/</guid>
+      <description>I&amp;rsquo;ve been using wpa_supplicant to manage wifi on my Ubuntu laptop for a while, and have found that it&amp;rsquo;s pretty close to what I want for managing wireless — closer than anything else I&amp;rsquo;ve found, at least. I figured I should document my setup and experiences.
+Some Background You probably all know just how much wireless on Linux can be a pain to get working right. Getting drivers and so forth working is usually fine these days, especially if you&amp;rsquo;re using Ubuntu, but managing connecting to multiple networks and dealing with WPA and WEP is a serious pain in the ass.</description>
+    </item>
+    
+    <item>
+      <title>Automounting sshfs</title>
+      <link>https://blog.nelhage.com/2008/03/automounting-sshfs/</link>
+      <pubDate>Sun, 23 Mar 2008 18:54:00 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2008/03/automounting-sshfs/</guid>
+      <description>For some time now, many of us around MIT have noticed just how awesome sshfs is. It gives a totally lightweight way to access the remote filesystem of any machine you have ssh to, without requiring any extra setup on the host. I&amp;rsquo;ve been running for at least a year now with my /data RAID on my server sshfs-mounted on my laptop, and it works totally great.
+Recently, I came across two awesome things that make sshfs even neater.</description>
+    </item>
+    
+    <item>
+      <title>Conkeror</title>
+      <link>https://blog.nelhage.com/2008/03/conkeror/</link>
+      <pubDate>Thu, 13 Mar 2008 19:57:00 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2008/03/conkeror/</guid>
+      <description>I&amp;rsquo;ve recently switched to Conkeror as my primary browser. It started life as a Firefox extension, but nowadays it&amp;rsquo;s a standalone app built on top of Mozilla&amp;rsquo;s xulrunner, so it uses the Gecko rendering engine.
+What it is, is an emacs implemented in Javascript, for the web. This means on the one hand that it acts like emacs. Most of the basic emacs keybindings are supported &amp;ndash; you open URLs with C-x C-f, and have buffers you can switch between with C-x b and so on.</description>
+    </item>
+    
+    <item>
+      <title>todo.pl ratmenu</title>
+      <link>https://blog.nelhage.com/2008/02/todopl-ratmenu/</link>
+      <pubDate>Tue, 19 Feb 2008 23:46:00 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2008/02/todopl-ratmenu/</guid>
+      <description>broder has been hacking on some better quicksilver integration for Hiveminder using todo.pl.
+I don&amp;rsquo;t use a mac, but I don&amp;rsquo;t see why linux users shouldn&amp;rsquo;t get fun toys to. So I hacked up the following two-liner that uses todo.pl and ratmenu to pop up a list of tasks, and mark one as completed:
+#!/bin/sh todo.pl | perl -ne &#39;push @a,$2,&amp;quot;todo.pl done $1&amp;quot; if /^#([\w]+) (.+)$/;&#39; \ -e &#39;END{exec(&amp;quot;ratmenu&amp;quot;,@a)}&#39;  I dropped it into my ~/bin and bound it to C-t x in my window manager (XMonad).</description>
+    </item>
+    
+    <item>
+      <title>A week with the iPhone</title>
+      <link>https://blog.nelhage.com/2007/12/a-week-with-the-iphone/</link>
+      <pubDate>Mon, 31 Dec 2007 01:41:00 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2007/12/a-week-with-the-iphone/</guid>
+      <description>I&amp;rsquo;ve had a new iPhone for about a week now, so I figure it&amp;rsquo;s time to write up some thoughts about it.
+First, the little things. It is, in typical Apple fashion, an incredibly slick piece of work. Scrolling and zooming images or webpages is simple, easy, and, well, just fun to do and watch. Mobile Safari does a great job of making full webpages usable on the tiny screen.</description>
+    </item>
+    
+    <item>
+      <title>DEF CON</title>
+      <link>https://blog.nelhage.com/2007/08/def-con/</link>
+      <pubDate>Sun, 05 Aug 2007 22:53:00 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2007/08/def-con/</guid>
+      <description>I&amp;rsquo;m sitting in the airport in Las Vegas on the way back from [DEF CON][http://defcon.org] 15. It&amp;rsquo;s the first time I&amp;rsquo;ve been at the con, and it wasn&amp;rsquo;t really what I expected. Frankly, I walked away feeling kinda underwhelmed.
+Very few of the talks were as technical as I was hoping &amp;ndash; they were almost universally broad overviews of an area, with lots of introduction, and relatively little, to my eye, technical meat.</description>
+    </item>
+    
+    <item>
+      <title>6.170, CVS, and SVN</title>
+      <link>https://blog.nelhage.com/2007/02/3/</link>
+      <pubDate>Sun, 11 Feb 2007 01:33:00 +0000</pubDate>
+      
+      <guid>https://blog.nelhage.com/2007/02/3/</guid>
+      <description>I&amp;rsquo;m taking 6.170 Lab in Software Engineering this semester. The course sucks in various ways, but one of the most egregious, in my opinion, is that they force you to use CVS for your version control. Problem sets are distributed by the TAs importing them into your repository, and are then checked out later to be graded. Well, CVS sucks, and there&amp;rsquo;s no way I&amp;rsquo;m going to use it when there are sane, modern alternatives like SVN and SVK</description>
+    </item>
+    
+  </channel>
+</rss>
