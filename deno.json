@@ -2,6 +2,7 @@
 	"tasks": {
 		"dev": "deno run --allow-read --allow-write --allow-net index.ts",
 		"release": "deno run --allow-read --allow-write --allow-net index.ts",
+		"test": "deno test --allow-read",
 		"compile": "deno compile --allow-read --allow-write --allow-net index.ts",
 		"compile-linux": "deno compile --allow-read --allow-write --allow-net --target x86_64-unknown-linux-gnu index.ts"
 	},
