@@ -4,26 +4,21 @@ export function blogs(blogs: BlogPost[] | null) {
 	console.log('blogs from component', blogs);
 
 	if (blogs && blogs.length > 0) {
-		let blogLink: URL;
-		let postLink: URL;
 		const blog = blogs.map((currentBlog) => {
-			if (currentBlog.blog.url.includes('http' || 'https')) {
-				blogLink = new URL(currentBlog.blog.url);
-			}
+			// TODO: This link logic is super weird and seems like a lot of work.
+			const blogLink = currentBlog.blog.url.includes('http' || 'https')
+				? new URL(currentBlog.blog.url).href
+				: 'https://' + currentBlog.blog.url;
 
-			if (currentBlog.post.url.includes('http' || 'https')) {
-				postLink = new URL(currentBlog.post.url);
-			}
+			const postLink = currentBlog.post.url.includes('http' || 'https')
+				? new URL(currentBlog.post.url).href
+				: 'https://' + currentBlog.post.url;
 
 			return (`
-					<a id='link' class='fave-links-group' href=${
-				blogLink.href || currentBlog.blog.url
-			}>
+					<a class='blog-card' href=${blogLink}>
 						${currentBlog.blog.title}
 					</a>
-					<a id='link' class='fave-links-group' href=${
-				postLink.href || currentBlog.post.url
-			}>
+					<a class='blog-card' href=${postLink}>
 						${currentBlog.post.title}
 					</a>
 					<p>${currentBlog.post.description}</p>

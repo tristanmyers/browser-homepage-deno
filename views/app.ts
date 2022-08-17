@@ -26,7 +26,7 @@ export function app() {
 		</head>
 		<body>
 				${links(userLinks).replaceAll(',', '')}
-				${blogs(userBlogs)}
+				${blogs(userBlogs).replaceAll(',', '')}
 		</body>
 	</html>
 	`;
