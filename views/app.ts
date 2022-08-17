@@ -4,7 +4,10 @@ import { blogs } from './blogs.ts';
 import { links } from './links.ts';
 
 const userLinks: string[] = getLinks();
-const userBlogs = await getBlogs(['./tests/blog_testing/madeofbugs.xml']);
+const userBlogs = await getBlogs([
+	'./tests/blog_testing/madeofbugs.xml',
+	'./tests/blog_testing/madeofskeletons.xml',
+]);
 
 export function app() {
 	const page = `

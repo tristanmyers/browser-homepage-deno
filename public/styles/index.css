@@ -34,3 +34,12 @@ a:hover {
   font-size: 1.5em;
   box-shadow: 5px 5px 10px black;
 }
+
+#blogs-feed { 
+  background-color: var(--fave-links-bg-color);
+  width: fit-content;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 1.5em;
+  box-shadow: 5px 5px 10px black;
+}
