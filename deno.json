@@ -1,20 +1,20 @@
 {
-  "tasks": {
-    "dev": "deno run --allow-read --allow-write --allow-net index.ts",
-    "release": "deno run --allow-read --allow-write --allow-net index.ts",
-    "compile": "deno compile --allow-read --allow-write --allow-net index.ts",
-    "compile-linux": "deno compile --allow-read --allow-write --allow-net --target x86_64-unknown-linux-gnu index.ts"
-  },
-  "fmt": {
-    "options": {
-      "useTabs": true,
-      "indentWidth": 2,
-      "singleQuote": true
-    }
-  },
-  "test": {
-    "files": {
-      "include": ["tests/"]
-    }
-  }
+	"tasks": {
+		"dev": "deno run --allow-read --allow-write --allow-net index.ts",
+		"release": "deno run --allow-read --allow-write --allow-net index.ts",
+		"compile": "deno compile --allow-read --allow-write --allow-net index.ts",
+		"compile-linux": "deno compile --allow-read --allow-write --allow-net --target x86_64-unknown-linux-gnu index.ts"
+	},
+	"fmt": {
+		"options": {
+			"useTabs": true,
+			"indentWidth": 2,
+			"singleQuote": true
+		}
+	},
+	"test": {
+		"files": {
+			"include": ["tests/"]
+		}
+	}
 }

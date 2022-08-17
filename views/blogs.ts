@@ -1,12 +1,12 @@
-import { BlogPost } from "../types/models/blogs.ts";
+import { BlogPost } from '../types/models/blogs.ts';
 
 // TODO: adjust to work with blogs data
 export function blogs(blogs: BlogPost[]) {
-  const blog = blogs.map((currentBlog) => {
-    const blogLink = new URL(currentBlog.blog.url);
-    const postLink = new URL(currentBlog.post.url);
-    return (
-      `
+	const blog = blogs.map((currentBlog) => {
+		const blogLink = new URL(currentBlog.blog.url);
+		const postLink = new URL(currentBlog.post.url);
+		return (
+			`
 				<a id='link' class='fave-links-group' href=${blogLink.href}>
 					${currentBlog.blog.title}
 				</a>
@@ -15,16 +15,16 @@ export function blogs(blogs: BlogPost[]) {
 				</a>
 				<p>${currentBlog.post.description}</p>
 			`
-    );
-  });
+		);
+	});
 
-  if (blogs && blogs.length > 0) {
-    return `
+	if (blogs && blogs.length > 0) {
+		return `
 			<div class='blogs-feed'>
 				${blog}
 			</div>
 		`;
-  } else {
-    return `<p>No blogs available</p>`;
-  }
+	} else {
+		return `<p>No blogs available</p>`;
+	}
 }
