@@ -1,5 +1,5 @@
 import { linkedom } from '../deps.ts';
-import { app } from '../views/app.tsx';
+import { app } from '../views/app.ts';
 
 export function rootHandler(req: Request) {
 	let data = null;
