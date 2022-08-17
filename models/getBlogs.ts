@@ -2,11 +2,8 @@ import { rss } from '../deps.ts';
 import { BlogPost } from '../types/models/blogs.ts';
 
 // Read blog xml files, parsed the rss feeds and return blog with recent post.
-export function getBlogs(blogUrls: string[]) {
+export async function getBlogs(blogUrls: string[]) {
 	const decoder = new TextDecoder('utf-8');
-	const feed: BlogPost[] = [];
-	let recentPost: BlogPost['post'];
-	let currentBlog: BlogPost['blog'];
 
 	const blogs: string[] = [];
 	// NOTE: Could this be done better?
@@ -19,30 +16,39 @@ export function getBlogs(blogUrls: string[]) {
 		}
 	});
 
-	// BUG: Feed is not being updated.
 	if (blogs.length > 0) {
-		blogs.forEach(async (blog) => {
-			const blogData = await rss.parseFeed(
-				blog,
-			);
-			const post = blogData.entries[0];
+		const feed = await createBlogFeed(blogs);
+		return feed;
+	}
+	return null;
+}
 
-			currentBlog = {
-				title: blogData.title.value,
-				url: blogData.id,
-			};
+async function createBlogFeed(blogs: string[]) {
+	const feed: BlogPost[] = [];
+	let recentPost: BlogPost['post'];
+	let currentBlog: BlogPost['blog'];
 
-			recentPost = {
-				title: post.title ? post.title.value : 'Post title not found.',
-				url: post.id,
-				description: post.description
-					? post.description.value
-					: 'Description not found.',
-				publishedAt: post.published,
-			};
+	for (const blog of blogs) {
+		const blogData = await rss.parseFeed(
+			blog,
+		);
+		const post = blogData.entries[0];
 
-			feed.push({ blog: currentBlog, post: recentPost });
-		});
+		currentBlog = {
+			title: blogData.title.value,
+			url: blogData.id,
+		};
+
+		recentPost = {
+			title: post.title ? post.title.value : 'Post title not found.',
+			url: post.id,
+			description: post.description
+				? post.description.value
+				: 'Description not found.',
+			publishedAt: post.published,
+		};
+
+		feed.push({ blog: currentBlog, post: recentPost });
 	}
 
 	return feed;

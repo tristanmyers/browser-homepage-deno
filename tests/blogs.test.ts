@@ -2,7 +2,7 @@ import { asserts } from '../deps.ts';
 import { getBlogs } from '../models/getBlogs.ts';
 import { BlogPost } from '../types/models/blogs.ts';
 
-const blogs = getBlogs([
+const blogs = await getBlogs([
 	'./tests/blog_testing/madeofbugs.xml',
 ]);
 

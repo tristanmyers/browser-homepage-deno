@@ -3,10 +3,10 @@ import getLinks from '../models/getLinks.ts';
 import { blogs } from './blogs.ts';
 import { links } from './links.ts';
 
-export function app() {
-	const userLinks: string[] = getLinks();
-	const userBlogs = getBlogs(['./tests/blog_testing/madeofbugs.xml']);
+const userLinks: string[] = getLinks();
+const userBlogs = await getBlogs(['./tests/blog_testing/madeofbugs.xml']);
 
+export function app() {
 	const page = `
 	<!DOCTYPE html>
 	<html lang="en">
