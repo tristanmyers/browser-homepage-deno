@@ -1,13 +1,13 @@
-import { getBlogs } from "../models/getBlogs.ts";
-import getLinks from "../models/getLinks.ts";
-import { blogs } from "./blogs.tsx";
-import { links } from "./links.tsx";
+import { getBlogs } from '../models/getBlogs.ts';
+import getLinks from '../models/getLinks.ts';
+import { blogs } from './blogs.ts';
+import { links } from './links.ts';
 
 export function app() {
-  const userLinks: string[] = getLinks();
-  const userBlogs = getBlogs(["./tests/blog_testing/madeofbugs.xml"]);
+	const userLinks: string[] = getLinks();
+	const userBlogs = getBlogs(['./tests/blog_testing/madeofbugs.xml']);
 
-  const page = `
+	const page = `
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -22,11 +22,11 @@ export function app() {
 			/>
 		</head>
 		<body>
-				${links(userLinks).replaceAll(",", "")}
+				${links(userLinks).replaceAll(',', '')}
 				${blogs(userBlogs)}
 		</body>
 	</html>
 	`;
 
-  return page;
+	return page;
 }

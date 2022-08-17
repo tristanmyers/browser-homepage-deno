@@ -19,7 +19,7 @@ export function getBlogs(blogUrls: string[]) {
     }
   });
 
-  // BUG: Feed is being updated.
+  // BUG: Feed is not being updated.
   if (blogs.length > 0) {
     blogs.forEach(async (blog) => {
       const blogData = await rss.parseFeed(
