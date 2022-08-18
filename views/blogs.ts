@@ -15,13 +15,15 @@ export function blogs(blogs: BlogPost[] | null) {
 				: 'https://' + currentBlog.post.url;
 
 			return (`
-					<a class='blog-card' href=${blogLink}>
+				<div class="blog-card">
+					<a class="blog-link" href=${blogLink}>
 						${currentBlog.blog.title}
 					</a>
-					<a class='blog-card' href=${postLink}>
+					<a class="blog-link" href=${postLink}>
 						${currentBlog.post.title}
 					</a>
 					<p>${currentBlog.post.description}</p>
+				</div>
 				`);
 		});
 

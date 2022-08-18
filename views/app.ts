@@ -25,8 +25,10 @@ export function app() {
 			/>
 		</head>
 		<body>
+			<main>
 				${links(userLinks).replaceAll(',', '')}
 				${blogs(userBlogs).replaceAll(',', '')}
+			</main>
 		</body>
 	</html>
 	`;

@@ -23,6 +23,13 @@ a:hover {
   color: var(--link-hover-color);
 }
 
+main {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin: 10px;
+}
+
 .fave-links {
   background-color: var(--fave-links-bg-color);
   display: flex;
@@ -42,4 +49,12 @@ a:hover {
   border-radius: 10px;
   font-size: 1.5em;
   box-shadow: 5px 5px 10px black;
+}
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-bottom: 2px solid black;
+  margin-bottom: 30px;
 }
