@@ -1,13 +1,20 @@
 /* Color pallets
-  https://coolors.co/palette/f4f1de-e07a5f-3d405b-81b29a-f2cc8f <- Using right now
+  https://coolors.co/palette/f4f1de-e07a5f-3d405b-81b29a-f2cc8f
   https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557
   https://coolors.co/palette/ffede1-f9fbf2-d7f9ff-afcbff-0e1c36
 */
 
 :root {
-  --main-bg-color: hsl(234, 20%, 30%);
+  /*   https://coolors.co/palette/f4f1de-e07a5f-3d405b-81b29a-f2cc8f */
+  /* --main-bg-color: hsl(234, 20%, 30%);
   --main-link-color: hsl(13, 68%, 63% );
-  --fave-links-bg-color: hsl(52, 50%, 91%); 
+  --section-bg-color: hsl(52, 50%, 91%); 
+  --link-hover-color: black; */
+
+  /* https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557 */
+  --main-bg-color: hsl(215, 50%, 23%);
+  --main-link-color: hsl(203, 39%, 44%);
+  --section-bg-color: hsl(105, 55%, 96%); 
   --link-hover-color: black;
 }
 
@@ -30,22 +37,23 @@ main {
   margin: 10px;
 }
 
-.fave-links {
-  background-color: var(--fave-links-bg-color);
+section {
+  background-color: var(--section-bg-color);
+  padding: 20px;
+}
+
+#fave-links {
   display: flex;
   flex-direction: column;
   gap: 2px;
   width: fit-content;
-  padding: 20px;
   border-radius: 10px;
   font-size: 1.5em;
   box-shadow: 5px 5px 10px black;
 }
 
 #blogs-feed { 
-  background-color: var(--fave-links-bg-color);
   width: fit-content;
-  padding: 20px;
   border-radius: 10px;
   font-size: 1.5em;
   box-shadow: 5px 5px 10px black;

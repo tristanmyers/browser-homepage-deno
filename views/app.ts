@@ -9,6 +9,7 @@ const userBlogs = await getBlogs([
 	'./tests/blog_testing/madeofskeletons.xml',
 ]);
 
+// TODO: replaceAll() is not a good solution.
 export function app() {
 	const page = `
 	<!DOCTYPE html>

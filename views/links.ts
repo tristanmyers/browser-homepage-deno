@@ -10,11 +10,15 @@ export function links(links: string[]) {
 
 	if (links && links.length > 0) {
 		return `
-			<div class='fave-links'>
+			<section id='fave-links'>
 				${linkElements}
-			</div>
+			</section>
 		`;
 	} else {
-		return `<p>No links available</p>`;
+		return (`
+			<section>
+				<p>No links available</p>
+			</section>
+		`);
 	}
 }

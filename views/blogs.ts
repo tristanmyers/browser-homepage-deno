@@ -29,15 +29,19 @@ export function blogs(blogs: BlogPost[] | null) {
 			}</p>
 					<p>${currentBlog.post.description}</p>
 				</div>
-				`);
+			`);
 		});
 
 		return (`
-			<div id='blogs-feed'>
+			<section id='blogs-feed'>
 				${blog}
-			</div>
+			</section>
 		`);
 	} else {
-		return `<p>No blogs available</p>`;
+		return (`
+			<section>
+				<p>No blogs available</p>
+			</section>
+		`);
 	}
 }
