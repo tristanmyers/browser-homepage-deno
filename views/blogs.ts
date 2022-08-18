@@ -22,6 +22,11 @@ export function blogs(blogs: BlogPost[] | null) {
 					<a class="blog-link" href=${postLink}>
 						${currentBlog.post.title}
 					</a>
+					<p>${
+				currentBlog.post.publishedAt
+					? `Published on: ${currentBlog.post.publishedAt.toLocaleDateString()}`
+					: null
+			}</p>
 					<p>${currentBlog.post.description}</p>
 				</div>
 				`);
