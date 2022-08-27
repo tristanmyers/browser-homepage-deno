@@ -1,4 +1,4 @@
-export function links(links: string[]) {
+export function renderLinks(links: string[]) {
 	const linkElements = links.map((link) => {
 		const linkObj = new URL(link);
 		return `

@@ -1,6 +1,6 @@
 import { BlogPost } from '../types/models/blogs.ts';
 
-export function blogs(blogs: BlogPost[] | null) {
+export function renderBlogs(blogs: BlogPost[] | null) {
 	console.log('blogs from component', blogs);
 
 	if (blogs && blogs.length > 0) {
