@@ -1,15 +1,24 @@
-import { getBlogs } from '../models/getBlogs.ts';
+import getBlogs from '../models/getBlogs.ts';
 import getLinks from '../models/getLinks.ts';
-import { blogs } from './blogs.ts';
-import { links } from './links.ts';
+import { BlogPost } from '../types/models/blogs.ts';
+import { renderBlogs } from './blogs.ts';
+import { renderLinks } from './links.ts';
 
-const userLinks: string[] = getLinks();
-const userBlogs = await getBlogs([
-	'./tests/blog_testing/madeofbugs.xml',
-	'./tests/blog_testing/madeofskeletons.xml',
-]);
+let links = 'No links available';
+let blogs = 'No blogs available';
+const userLinks: string[] | null = getLinks();
+const userBlogs: BlogPost[] | null = getBlogs();
 
 // TODO: replaceAll() is not a good solution.
+if (userLinks) links = renderLinks(userLinks).replaceAll(',', '');
+if (userBlogs) blogs = renderBlogs(userBlogs).replaceAll(',', '');
+
+// const userBlogs = await getBlogs([
+// 	'./tests/blog_testing/madeofbugs.xml',
+// 	'./tests/blog_testing/madeofskeletons.xml',
+// ]);
+getBlogs();
+
 export function app() {
 	const page = `
 	<!DOCTYPE html>
@@ -27,8 +36,8 @@ export function app() {
 		</head>
 		<body>
 			<main>
-				${links(userLinks).replaceAll(',', '')}
-				${blogs(userBlogs).replaceAll(',', '')}
+				${links}
+				${blogs}
 			</main>
 		</body>
 	</html>
