@@ -49,7 +49,7 @@ export default function getBlogs() {
 	}
 }
 
-// Check if the last updated time from db is >=24 hours ago if so return true.
+// Check if the last updated time from db is > 0 days if so return true.
 function checkLastUpdated(lastUpdated: string) {
 	const lastUpdatedDate = new Date(lastUpdated);
 	const lastUpdatedDateUTC = Date.UTC(
