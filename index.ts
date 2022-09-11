@@ -24,11 +24,18 @@ async function handler(req: Request): Promise<Response> {
 
 	switch (reqUrl.pathname) {
 		case '/': {
-			const data = rootHandler(req);
+			const data = rootHandler(req, 1);
 			if (data) {
 				resData.body = data;
 				resData.status = 200;
 			}
+			break;
+		}
+
+		case '/madeofbugs.xml': {
+			resData.body = await Deno.readFile('./tests/blog_testing/madeofbugs.xml');
+			resData.contentType = 'text/xml';
+			resData.status = 200;
 			break;
 		}
 
