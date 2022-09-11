@@ -13,7 +13,7 @@ import { BlogPost } from '../types/models/blogs.ts';
 const getBlogsFromUser = `
 SELECT blogs 
 FROM users
-WHERE id = 1;
+WHERE id = ?;
 `;
 
 const getBlogLastUpdated = `
@@ -28,24 +28,73 @@ SET blogs = "./tests/blog_testing/madeofbugs.xml,./tests/blog_testing/madeofskel
 WHERE id = 1
 `;
 
-export default function getBlogs() {
+export default function getBlogs(userId: number) {
 	const db = new DB('main.db');
+	let needsUpdating;
 	try {
-		const lastUpdated = db.query(getBlogLastUpdated);
-		db.close();
-		const needsUpdating = checkLastUpdated(lastUpdated[0][0] as string);
+		console.log('Getting blogs last updated time...');
 
-		// TODO
-		if (needsUpdating) {
-			// get blogs urls from db -> fetch blog data from urls
-		} else {
-			// go through each file in ../cached_data/blogs
-			// gonna have to figure out how to map urls and cached blog file paths together
-		}
+		const lastUpdated = db.query(getBlogLastUpdated);
+		needsUpdating = checkLastUpdated(lastUpdated[0][0] as string);
 	} catch (err) {
 		console.error('Error getting blogs last updated from user', err);
-		db.close();
 		return null;
+	}
+
+	// TODO
+	if (needsUpdating) {
+		// get blogs urls from db -> fetch blog data from urls
+		const cachedBlogLinks: any[] = [];
+		let blogLinks;
+
+		try {
+			blogLinks = db.query<[string]>(getBlogsFromUser, [userId])[0][0]
+				.split(
+					',',
+				);
+		} catch (err) {
+			console.error('Error getting blog links from user', err);
+		} finally {
+			db.close();
+		}
+
+		if (blogLinks) {
+			blogLinks.forEach(async (link) => {
+				const url = new URL('http://localhost:8081/madeofbugs.xml');
+				const blogData = await fetch(url.href);
+				const encoder = new TextEncoder();
+				const uint8_blogData = encoder.encode(await blogData.text());
+
+				try {
+					await Deno.writeFile(
+						`./cached_data/user_${userId}/blogs${url.pathname}`,
+						uint8_blogData,
+					);
+				} catch (err) {
+					if (err instanceof Deno.errors.NotFound) {
+						await Deno.mkdir(`./cached_data/user_${userId}/blogs/`, {
+							recursive: true,
+						});
+
+						await Deno.writeFile(
+							`./cached_data/user_${userId}/blogs${url.pathname}`,
+							uint8_blogData,
+						);
+					}
+				}
+				// BUG: not pushing correctly.
+				cachedBlogLinks.push(
+					`./cached_data/user_${userId}/blogs/${url.pathname}`,
+				);
+				console.log('pushed cached link');
+			});
+		}
+
+		console.log(cachedBlogLinks);
+		readCachedBlogs(cachedBlogLinks);
+	} else {
+		// go through each file in ../cached_data/blogs
+		// gonna have to figure out how to map urls and cached blog file paths together
 	}
 }
 
@@ -80,13 +129,15 @@ function checkLastUpdated(lastUpdated: string) {
 }
 
 // Read blog xml files, parse the rss feeds and return blog with the most recent post.
-export async function readCachedBlogs(blogUrls: string[]) {
+async function readCachedBlogs(blogUrls: string[]) {
 	const decoder = new TextDecoder('utf-8');
 
 	const blogs: string[] = [];
 	// NOTE: Could this be done better?
 	blogUrls.forEach((blog) => {
 		try {
+			console.log('Reading cached blog file...');
+
 			const xml = Deno.readFileSync(blog);
 			blogs.push(decoder.decode(xml));
 		} catch (err) {
@@ -130,6 +181,8 @@ async function createBlogFeed(blogs: string[]) {
 
 		feed.push({ blog: currentBlog, post: recentPost });
 	}
+
+	console.log('User blog feed', feed);
 
 	return feed;
 }
