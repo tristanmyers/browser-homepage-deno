@@ -29,12 +29,16 @@ export default function getLinks(): string[] | null {
 	const db = new DB('main.db');
 
 	try {
+		console.log('Checking if user exist...');
+
 		db.query(createUsers);
 	} catch (err) {
 		console.error('Error creating user', err);
 	}
 
 	try {
+		console.log('Getting links from user...');
+
 		links = db.query(getLinksFromUser);
 	} catch (err) {
 		console.error('Error getting links from user.', err);
