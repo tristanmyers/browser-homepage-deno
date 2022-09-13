@@ -60,7 +60,6 @@ export default async function getBlogs(
 
 	if (!blogLinks) return null;
 
-	// TODO
 	// By default we will read from the cache and if we need to update, we fetch and cache then continue on the default path of reading from cache.
 	if (needsUpdating) {
 		// get blogs urls from db -> fetch blog file from url
@@ -126,7 +125,7 @@ function checkLastUpdated(lastUpdated: string) {
 		(currentDateUTC - lastUpdatedDateUTC) / msPerDay,
 	);
 
-	console.log('days difference', daysDifference);
+	console.log('last updated', daysDifference + ' days ago');
 
 	if (daysDifference > 5) {
 		return true;
