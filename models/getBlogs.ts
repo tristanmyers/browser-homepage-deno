@@ -68,16 +68,24 @@ export default async function getBlogs(
 
 		for (const link in blogLinks) {
 			const url = new URL(blogLinks[link]);
-			const blogData = await fetch(url.href);
-			const encoder = new TextEncoder();
-			const uint8_blogData = encoder.encode(await blogData.text());
 			const filePath = `./cached_data/user_${userId}/blogs${url.pathname}`;
 
-			cacheBlog(userId, filePath, uint8_blogData);
+			const blogData = await fetch(url.href).then(async (response) => {
+				const encoder = new TextEncoder();
+				return encoder.encode(await response.text());
+			})
+				.catch((err) => {
+					console.error('Error fetching blogs from url', err);
+					return false;
+				});
+
+			if (blogData) cacheBlog(userId, filePath, blogData as Uint8Array);
 
 			cachedBlogLinks.push(filePath);
 		}
-	} else {
+	}
+
+	if (!needsUpdating) {
 		console.log('Reading blogs from cache...');
 
 		blogLinks.forEach((link) => {
@@ -166,7 +174,7 @@ async function readCachedBlogs(blogUrls: string[]) {
 			const xml = Deno.readFileSync(blog);
 			blogs.push(decoder.decode(xml));
 		} catch (err) {
-			console.error('Error reading blog file: ', err);
+			console.error('Error reading cached blog file: ', err);
 		}
 	});
 
