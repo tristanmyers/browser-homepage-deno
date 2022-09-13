@@ -1,5 +1,4 @@
-import { http } from './deps.ts';
-import { rootHandler } from './controllers/rootHandler.ts';
+import { http } from '../deps.ts';
 
 type ResponseData = {
 	body: BodyInit;
@@ -7,8 +6,7 @@ type ResponseData = {
 	contentType: string;
 };
 
-const port = 8081;
-const stylesDir = './public/styles/';
+const port = 8082;
 
 await http.serve(handler, { port });
 
@@ -23,12 +21,19 @@ async function handler(req: Request): Promise<Response> {
 	const reqUrl = new URL(req.url);
 
 	switch (reqUrl.pathname) {
-		case '/': {
-			const data = rootHandler(req, 1);
-			if (data) {
-				resData.body = data;
-				resData.status = 200;
-			}
+		case '/madeofbugs.xml': {
+			resData.body = await Deno.readFile('./tests/blog_testing/madeofbugs.xml');
+			resData.contentType = 'text/xml';
+			resData.status = 200;
+			break;
+		}
+
+		case '/madeofskeletons.xml': {
+			resData.body = await Deno.readFile(
+				'./tests/blog_testing/madeofskeletons.xml',
+			);
+			resData.contentType = 'text/xml';
+			resData.status = 200;
 			break;
 		}
 
@@ -36,20 +41,6 @@ async function handler(req: Request): Promise<Response> {
 			resData.body = 'Page not found';
 			resData.status = 404;
 			break;
-	}
-
-	// BUG: Currently does not work with multiple css files.
-	// This serves the static files
-	if (reqUrl.pathname.startsWith('/public/')) {
-		const styleFiles = Deno.readDir(stylesDir);
-
-		for await (const file of styleFiles) {
-			return new Response(await Deno.readFile(stylesDir + file.name), {
-				headers: {
-					'content-type': 'text/css',
-				},
-			});
-		}
 	}
 
 	return new Response(resData.body, {
