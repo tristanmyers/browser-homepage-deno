@@ -2,7 +2,6 @@ import { DB, rss } from '../deps.ts';
 import { BlogPost } from '../types/models/blogs.ts';
 
 /*
-	TODO: Query the user for the blogs.
 	TODO: Save time the users blogs were last updated under the user in the db.
 
 	Query the user for blogs -> Get the blogs last updated date -> Check if the date is 24 hours ago
@@ -22,13 +21,18 @@ FROM users
 WHERE id = 1;
 `;
 
+const updateBlogLastUpdated = `
+UPDATE users
+SET blogsLastUpdated = ?
+WHERE id = 1;
+`;
+
 const _addBlogsToUser = `
 UPDATE users
 SET blogs = "http://localhost:8082/madeofbugs.xml,http://localhost:8082/madeofskeletons.xml"
 WHERE id = 1
 `;
 
-// TODO: Update last time updated in DB
 export default async function getBlogs(
 	userId: number,
 ): Promise<BlogPost[] | null> {
@@ -54,8 +58,6 @@ export default async function getBlogs(
 			);
 	} catch (err) {
 		console.error('Error getting blog links from user', err);
-	} finally {
-		db.close();
 	}
 
 	if (!blogLinks) return null;
@@ -82,6 +84,15 @@ export default async function getBlogs(
 
 			cachedBlogLinks.push(filePath);
 		}
+
+		try {
+			console.log('Updating blogs last updated time...');
+
+			const currentDate = new Date();
+			db.query(updateBlogLastUpdated, [currentDate.toISOString()]);
+		} catch (err) {
+			console.error('Error updating blog last updated time', err);
+		}
 	}
 
 	if (!needsUpdating) {
@@ -101,6 +112,7 @@ export default async function getBlogs(
 	const feed = readCachedBlogs(cachedBlogLinks);
 	if (!feed) return null;
 
+	db.close();
 	return feed;
 }
 
@@ -173,6 +185,7 @@ async function readCachedBlogs(blogUrls: string[]) {
 			const xml = Deno.readFileSync(blog);
 			blogs.push(decoder.decode(xml));
 		} catch (err) {
+			// TODO: Need to handle blog not being in cache
 			console.error('Error reading cached blog file: ', err);
 		}
 	});
