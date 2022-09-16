@@ -6,14 +6,11 @@ import {
 } from 'https://deno.land/std@0.155.0/encoding/base64.ts';
 
 /*
-	TODO: Save time the users blogs were last updated under the user in the db.
-	TODO: Handle blog not being in cache.
 	TODO: Move most of this logic to the controller.
 	TODO: Types need proper typing
 	TODO: Need to handle duplicate blogs
-	BUG: Double blog post happening
 
-	Query the user for blogs -> Get the blogs last updated date -> Check if the date is 24 hours ago
+	Query the user for blogs -> Get the blogs last updated date -> Check if the date is 5 or more days ago
 	If it was fetch the new data from the blog urls.
 	If not get the cached blog data.
 */
