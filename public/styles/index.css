@@ -35,26 +35,27 @@ main {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  margin: 10px;
+  place-content: center;
 }
 
 section {
   background-color: var(--section-bg-color);
   padding: 20px;
+  overflow-y: scroll;
 }
 
 #fave-links {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  width: fit-content;
+  width: 15%;
   border-radius: 10px;
   font-size: 1.5em;
   box-shadow: 5px 5px 10px black;
 }
 
 #blogs-feed { 
-  width: fit-content;
+  width: 75%;
   border-radius: 10px;
   font-size: 1.5em;
   box-shadow: 5px 5px 10px black;

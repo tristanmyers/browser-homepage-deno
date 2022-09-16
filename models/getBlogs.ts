@@ -9,6 +9,7 @@ import {
 	TODO: Move most of this logic to the controller.
 	TODO: Types need proper typing
 	TODO: Need to handle duplicate blogs
+	BUG: users needs to refresh page after loading if cached blog not found error happens
 
 	Query the user for blogs -> Get the blogs last updated date -> Check if the date is 5 or more days ago
 	If it was fetch the new data from the blog urls.
@@ -122,7 +123,7 @@ export default async function getBlogs(
 	if (!feed) return null;
 
 	db.close();
-	return feed;
+	return await feed;
 }
 
 // Check if the last updated time from db is > 0 days if so return true.
@@ -194,6 +195,8 @@ async function readCachedBlogs(blogPaths: string[], userId: number) {
 			blogs.push(decoder.decode(xml));
 		} catch (err) {
 			if (err instanceof Deno.errors.NotFound) {
+				console.log('handling no blog file in cache directory');
+
 				const filename = blog.substring(blog.lastIndexOf('/') + 1);
 				const base64Filename = filename.slice(0, filename.lastIndexOf('.'));
 				const blogURL = decodeFilename(base64Filename);

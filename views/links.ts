@@ -10,9 +10,10 @@ export function renderLinks(links: string[]) {
 
 	if (links && links.length > 0) {
 		return `
-			<section id='fave-links'>
-				${linkElements}
-			</section>
+		<section id='fave-links'>
+			<h1>Common links</h1>
+			${linkElements}
+		</section>
 		`;
 	} else {
 		return (`

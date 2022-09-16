@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS users (
 // BUG: No such column "tee"
 const _addUser = `
 INSERT INTO users (id, username, links, blogs, blogsLastUpdated)
-VALUES(1, "tee", "https://twitch.tv/directory/following/live,https://youtube.com/,https://reddit.com/,https:twitter.com/,https://news.ycombinator.com", "./tests/blog_testing/madeofbugs.xml,./tests/blog_testing/madeofskeletons.xml", "2022-08-27T19:49:48.828Z")
+VALUES(1, "tee", "https://twitch.tv/directory/following/live,https://youtube.com/,https://reddit.com/,https:twitter.com/,https://news.ycombinator.com,https://github.com/", "./tests/blog_testing/madeofbugs.xml,./tests/blog_testing/madeofskeletons.xml", "2022-08-27T19:49:48.828Z")
 `;
 
 const _addLinksToUser = `

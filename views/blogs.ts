@@ -32,12 +32,14 @@ export function renderBlogs(blogs: BlogPost[] | null) {
 
 		return (`
 			<section id='blogs-feed'>
-				${blog}
+				<h1>Recent post from favorite blogs</h1>
+				<div>${blog}</div>
 			</section>
 		`);
 	} else {
 		return (`
 			<section>
+				<p>Recent post from favorite blogs</p>
 				<p>No blogs available</p>
 			</section>
 		`);

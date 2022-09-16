@@ -4,16 +4,16 @@ import { BlogPost } from '../types/models/blogs.ts';
 import { renderBlogs } from './blogs.ts';
 import { renderLinks } from './links.ts';
 
-let links = 'No links available';
-let blogs = 'No blogs available';
-const userLinks: string[] | null = getLinks();
-const userBlogs: BlogPost[] | null = await getBlogs(1);
+export async function app(_userId: number): Promise<string> {
+	let links = 'No links available';
+	let blogs = 'No blogs available';
+	const userLinks: string[] | null = getLinks();
+	const userBlogs: BlogPost[] | null = await getBlogs(1);
 
-// TODO: replaceAll() is not a good solution.
-if (userLinks) links = renderLinks(userLinks).replaceAll(',', '');
-if (userBlogs) blogs = renderBlogs(userBlogs).replaceAll(',', '');
+	// TODO: replaceAll() is not a good solution.
+	if (userLinks) links = renderLinks(userLinks).replaceAll(',', '');
+	if (userBlogs) blogs = renderBlogs(userBlogs).replaceAll(',', '');
 
-export function app(_userId: number) {
 	const page = `
 	<!DOCTYPE html>
 	<html lang="en">

@@ -10,7 +10,7 @@ type ResponseData = {
 const port = 8081;
 const stylesDir = './public/styles/';
 
-await http.serve(handler, { port });
+http.serve(handler, { port });
 
 async function handler(req: Request): Promise<Response> {
 	// Have to always set body and status or else a 500 happens.
@@ -24,7 +24,7 @@ async function handler(req: Request): Promise<Response> {
 
 	switch (reqUrl.pathname) {
 		case '/': {
-			const data = rootHandler(req, 1);
+			const data = await rootHandler(req, 1);
 			if (data) {
 				resData.body = data;
 				resData.status = 200;
