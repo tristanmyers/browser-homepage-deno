@@ -1,8 +1,6 @@
 import { BlogPost } from '../types/models/blogs.ts';
 
 export function renderBlogs(blogs: BlogPost[] | null) {
-	console.log('blogs from component', blogs);
-
 	if (blogs && blogs.length > 0) {
 		const blog = blogs.map((currentBlog) => {
 			// TODO: This link logic is super weird and seems like a lot of work.
