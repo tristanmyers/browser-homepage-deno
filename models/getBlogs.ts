@@ -1,8 +1,17 @@
 import { DB, rss } from '../deps.ts';
 import { BlogPost } from '../types/models/blogs.ts';
+import {
+	decode,
+	encode,
+} from 'https://deno.land/std@0.155.0/encoding/base64.ts';
 
 /*
 	TODO: Save time the users blogs were last updated under the user in the db.
+	TODO: Handle blog not being in cache.
+	TODO: Move most of this logic to the controller.
+	TODO: Types need proper typing
+	TODO: Need to handle duplicate blogs
+	BUG: Double blog post happening
 
 	Query the user for blogs -> Get the blogs last updated date -> Check if the date is 24 hours ago
 	If it was fetch the new data from the blog urls.
@@ -69,7 +78,10 @@ export default async function getBlogs(
 
 		for (const link in blogLinks) {
 			const url = new URL(blogLinks[link]);
-			const filePath = `./cached_data/user_${userId}/blogs${url.pathname}`;
+			const filePath = `./cached_data/user_${userId}/blogs/${
+				encodeFilename(url.href) + '.xml'
+			}`;
+			console.log(filePath);
 
 			const blogData = await fetch(url.href).then(async (response) => {
 				const encoder = new TextEncoder();
@@ -85,6 +97,7 @@ export default async function getBlogs(
 			cachedBlogLinks.push(filePath);
 		}
 
+		// Update the blogs last updated time in the db
 		try {
 			console.log('Updating blogs last updated time...');
 
@@ -100,16 +113,15 @@ export default async function getBlogs(
 
 		blogLinks.forEach((link) => {
 			const url = new URL(link);
-			const fileFromPathname = url.pathname.substring(
-				url.pathname.lastIndexOf('/'),
-			);
-			const filePath = `./cached_data/user_${userId}/blogs${fileFromPathname}`;
+			const filePath = `./cached_data/user_${userId}/blogs/${
+				encodeFilename(url.href) + '.xml'
+			}`;
 
 			cachedBlogLinks.push(filePath);
 		});
 	}
 
-	const feed = readCachedBlogs(cachedBlogLinks);
+	const feed = readCachedBlogs(cachedBlogLinks, userId);
 	if (!feed) return null;
 
 	db.close();
@@ -139,7 +151,7 @@ function checkLastUpdated(lastUpdated: string) {
 
 	console.log('last updated', daysDifference + ' days ago');
 
-	if (daysDifference > 5) {
+	if (daysDifference >= 5) {
 		return true;
 	}
 
@@ -173,20 +185,35 @@ async function cacheBlog(
 }
 
 // Read blog xml files, parse the rss feeds and return blog with the most recent post.
-async function readCachedBlogs(blogUrls: string[]) {
+async function readCachedBlogs(blogPaths: string[], userId: number) {
 	const decoder = new TextDecoder('utf-8');
-
 	const blogs: string[] = [];
 	// NOTE: Could this be done better?
-	blogUrls.forEach((blog) => {
+	blogPaths.forEach(async (blog) => {
 		try {
 			console.log('Reading cached blog file...');
 
 			const xml = Deno.readFileSync(blog);
 			blogs.push(decoder.decode(xml));
 		} catch (err) {
-			// TODO: Need to handle blog not being in cache
-			console.error('Error reading cached blog file: ', err);
+			if (err instanceof Deno.errors.NotFound) {
+				const filename = blog.substring(blog.lastIndexOf('/') + 1);
+				const base64Filename = filename.slice(0, filename.lastIndexOf('.'));
+				const blogURL = decodeFilename(base64Filename);
+
+				const blogData = await fetch(blogURL).then(async (response) => {
+					const encoder = new TextEncoder();
+					return encoder.encode(await response.text());
+				})
+					.catch((err) => {
+						console.error('Error fetching blogs from url', err);
+						return false;
+					});
+
+				if (blogData) cacheBlog(userId, blog, blogData as Uint8Array);
+			} else {
+				console.error('Error reading cached blog file: ', err);
+			}
 		}
 	});
 
@@ -228,4 +255,23 @@ async function createBlogFeed(blogs: string[]) {
 	console.log('User blog feed', feed);
 
 	return feed;
+}
+
+function encodeFilename(filename: string): string {
+	// BUG: This will break when encoding long urls that are longer than the operating system filename character limit.
+	const encoder = new TextEncoder();
+
+	const uint8Arr_encodedBlogURL = encoder.encode(
+		filename,
+	);
+	const base64_encodedBlogURL = encode(uint8Arr_encodedBlogURL);
+	return base64_encodedBlogURL;
+}
+
+function decodeFilename(filename: string): string {
+	const decoder = new TextDecoder('utf-8');
+
+	const uint8Arr_decodedBlogURL = decode(filename);
+	const str_decodedBlogURL = decoder.decode(uint8Arr_decodedBlogURL);
+	return str_decodedBlogURL;
 }
