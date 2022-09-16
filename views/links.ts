@@ -1,4 +1,4 @@
-export function links(links: string[]) {
+export function renderLinks(links: string[]) {
 	const linkElements = links.map((link) => {
 		const linkObj = new URL(link);
 		return `
@@ -10,11 +10,16 @@ export function links(links: string[]) {
 
 	if (links && links.length > 0) {
 		return `
-			<div class='fave-links'>
-				${linkElements}
-			</div>
+		<section id='fave-links'>
+			<h1>Common links</h1>
+			${linkElements}
+		</section>
 		`;
 	} else {
-		return `<p>No links available</p>`;
+		return (`
+			<section>
+				<p>No links available</p>
+			</section>
+		`);
 	}
 }

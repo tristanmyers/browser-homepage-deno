@@ -4,14 +4,16 @@ const createUsers = `
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE,
-  links TEXT 
+  links TEXT,
+	blogs TEXT,
+	blogsLastUpdated TEXT
 )
 `;
 
 // BUG: No such column "tee"
 const _addUser = `
-INSERT INTO users (id, username, links)
-VALUES(1, "tee", "https://twitch.tv/directory/following,https://youtube.com/,https://reddit.com/,https:twitter.com/,https://news.ycombinator.com")
+INSERT INTO users (id, username, links, blogs, blogsLastUpdated)
+VALUES(1, "tee", "https://twitch.tv/directory/following/live,https://youtube.com/,https://reddit.com/,https:twitter.com/,https://news.ycombinator.com,https://github.com/", "./tests/blog_testing/madeofbugs.xml,./tests/blog_testing/madeofskeletons.xml", "2022-08-27T19:49:48.828Z")
 `;
 
 const _addLinksToUser = `
@@ -22,13 +24,34 @@ WHERE id = 1
 
 const getLinksFromUser = 'SELECT links FROM users WHERE id = 1';
 
-export default function getLinks(): string[] {
+export default function getLinks(): string[] | null {
+	let links: Row[] | null = null;
 	const db = new DB('main.db');
-	db.query(createUsers);
 
-	const links: Row[] = db.query(getLinksFromUser);
-	const linksToString: string = links[0][0] as string;
+	try {
+		console.log('Checking if user exist...');
 
-	db.close();
-	return linksToString.split(',');
+		db.query(createUsers);
+	} catch (err) {
+		console.error('Error creating user', err);
+	}
+
+	try {
+		console.log('Getting links from user...');
+
+		links = db.query(getLinksFromUser);
+	} catch (err) {
+		console.error('Error getting links from user.', err);
+	} finally {
+		db.close();
+	}
+
+	if (links && links.length > 0) {
+		const linksToString: string = links[0][0] as string;
+		return linksToString.split(',');
+	} else if (links && links.length === 0) {
+		return links = null;
+	}
+
+	return null;
 }
