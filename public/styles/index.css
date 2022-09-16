@@ -37,6 +37,7 @@ main {
   gap: 20px;
   place-content: center;
   overflow: hidden;
+  height: 90vh;
 }
 
 section {
@@ -45,18 +46,30 @@ section {
   height: 75vh;
 }
 
+footer {
+  background-color: var(--section-bg-color);
+  position: sticky;
+  bottom: 10px;
+  padding: 20px;
+  width: 95vw;
+  margin: auto;
+  border-radius: 10px;
+  font-size: larger;
+  text-align: center;
+}
+
 #fave-links {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  width: 15%;
+  width: 15vw;
   border-radius: 10px;
   font-size: 1.5em;
   box-shadow: 5px 5px 10px black;
 }
 
 #blogs-feed { 
-  width: 75%;
+  width: 75vw;
   border-radius: 10px;
   font-size: 1.5em;
   box-shadow: 5px 5px 10px black;

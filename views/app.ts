@@ -4,7 +4,7 @@ import { BlogPost } from '../types/models/blogs.ts';
 import { renderBlogs } from './blogs.ts';
 import { renderLinks } from './links.ts';
 
-const testBlogs: BlogPost[] = [
+const _testBlogs: BlogPost[] = [
 	{
 		blog: {
 			title: 'Posts on Made of Bugs',
@@ -58,6 +58,7 @@ export async function app(_userId: number): Promise<string> {
 				${links}
 				${blogs}
 			</main>
+			<footer>Made by <a href="https://tristanmyers.dev/">Tristan Myers</a></footer>
 		</body>
 	</html>
 	`;
