@@ -1,3 +1,5 @@
+#!/usr/bin/env deno
+
 import { http } from './deps.ts';
 import { rootHandler } from './controllers/rootHandler.ts';
 
