@@ -10,6 +10,10 @@ import {
 	TODO: Types need proper typing
 	TODO: Need to handle duplicate blogs
 	BUG: users needs to refresh page after loading if cached blog not found error happens
+	TODO: Request will keep sending each time if cached blog not found error happens
+	TODO: handle undefined urls
+	TODO: handle descriptions being
+	TODO: Sort by most recent
 
 	Query the user for blogs -> Get the blogs last updated date -> Check if the date is 5 or more days ago
 	If it was fetch the new data from the blog urls.
