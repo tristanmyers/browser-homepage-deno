@@ -10,7 +10,7 @@ const testingUser: User = {
 	links:
 		'https://twitch.tv/directory/following/live,https://youtube.com/,https://reddit.com/,https://twitter.com/,https://news.ycombinator.com,https://github.com/',
 	blogs:
-		'./tests/blog_testing/madeofbugs.xml,./tests/blog_testing/madeofskeletons.xml',
+		'http://localhost:8082/madeofbugs.xml,http://localhost:8082/madeofskeletons.xml',
 	blogsLastUpdated: `${new Date().toISOString()}`,
 };
 
