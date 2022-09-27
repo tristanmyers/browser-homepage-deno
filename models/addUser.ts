@@ -17,14 +17,14 @@ export default function addUser(user: User): boolean {
 	const db = new DB('main.db');
 	const userExist = checkIfExist(username);
 
-	if (userExist === false) return false;
+	if (userExist === true) return false;
 
 	try {
-		console.log('Adding user...', [user]);
+		console.log('Adding user... \n', [user]);
 		db.query(addUserMut, [username, links, blogs, blogsLastUpdated]);
 		return true;
 	} catch (err) {
-		console.error('Error creating user under users table', err);
+		console.error('Error creating user under users table\n', err);
 		return false;
 	} finally {
 		db.close();
@@ -34,7 +34,9 @@ export default function addUser(user: User): boolean {
 function checkIfExist(username: string): boolean {
 	const db = new DB('main.db');
 	const user = db.query(checkUserExistMut, [username]);
-
-	if (user.length === 0) return false;
+	
+	if (user.length === 0) {
+		return false;
+	}
 	return true;
 }
