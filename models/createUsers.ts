@@ -18,7 +18,7 @@ export default function createUsers(): boolean {
 		db.query(createUsersMut);
 		return true;
 	} catch (err) {
-		console.error('Error creating users table', err);
+		console.error('Error creating users table\n', err);
 		return false;
 	} finally {
 		db.close();

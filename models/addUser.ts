@@ -34,7 +34,7 @@ export default function addUser(user: User): boolean {
 function checkIfExist(username: string): boolean {
 	const db = new DB('main.db');
 	const user = db.query(checkUserExistMut, [username]);
-	
+
 	if (user.length === 0) {
 		return false;
 	}
