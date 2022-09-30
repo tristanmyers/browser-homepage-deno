@@ -38,9 +38,9 @@ export async function rootHandler(
 		);
 	}
 
-	if (data) {
-		return data.toString();
+	if (data === null) {
+		return data;
 	}
 
-	return data;
+	return data.toString();
 }
