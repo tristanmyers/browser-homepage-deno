@@ -4,6 +4,7 @@ import {
 	decode,
 	encode,
 } from 'https://deno.land/std@0.155.0/encoding/base64.ts';
+import { getBlogsLastUpdated } from './getBlogLastUpdated.ts';
 
 /*
 	TODO: Move most of this logic to the controller.
@@ -24,12 +25,6 @@ const getBlogsFromUser = `
 SELECT blogs 
 FROM users
 WHERE id = ?;
-`;
-
-const getBlogLastUpdated = `
-SELECT blogsLastUpdated
-FROM users
-WHERE id = 1;
 `;
 
 const updateBlogLastUpdated = `
@@ -53,16 +48,6 @@ export default async function getBlogs(
 	const cachedBlogLinks: string[] = [];
 
 	try {
-		console.log('Getting blogs last updated time...');
-
-		const lastUpdated = db.query(getBlogLastUpdated);
-		needsUpdating = checkLastUpdated(lastUpdated[0][0] as string);
-	} catch (err) {
-		console.error('Error getting blogs last updated from user', err);
-		return null;
-	}
-
-	try {
 		blogLinks = db.query<[string]>(getBlogsFromUser, [userId])[0][0]
 			.split(
 				',',
@@ -74,6 +59,13 @@ export default async function getBlogs(
 	if (!blogLinks) return null;
 
 	// By default we will read from the cache and if we need to update, we fetch and cache then continue on the default path of reading from cache.
+	const lastUpdated = getBlogsLastUpdated(userId);
+	if (lastUpdated === false) {
+		needsUpdating = false;
+	} else {
+		needsUpdating = checkLastUpdated(lastUpdated);
+	}
+
 	if (needsUpdating) {
 		// get blogs urls from db -> fetch blog file from url
 		console.log('Updating blog files...');
@@ -110,7 +102,7 @@ export default async function getBlogs(
 		}
 	}
 
-	if (!needsUpdating) {
+	if (needsUpdating === false) {
 		console.log('Reading blogs from cache...');
 
 		blogLinks.forEach((link) => {
@@ -131,7 +123,7 @@ export default async function getBlogs(
 }
 
 // Check if the last updated time from db is > 0 days if so return true.
-function checkLastUpdated(lastUpdated: string) {
+function checkLastUpdated(lastUpdated: string): boolean {
 	const lastUpdatedDate = new Date(lastUpdated);
 	const lastUpdatedDateUTC = Date.UTC(
 		lastUpdatedDate.getFullYear(),
