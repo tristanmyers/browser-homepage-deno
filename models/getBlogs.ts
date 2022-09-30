@@ -6,6 +6,7 @@ import {
 } from 'https://deno.land/std@0.155.0/encoding/base64.ts';
 import { getBlogsLastUpdated } from './getBlogLastUpdated.ts';
 import { getBlogsFromUser } from './getBlogLinksFromUser.ts';
+import { updateBlogsLastUpdated } from './updateBlogsLastUpdated.ts';
 
 /*
 	TODO: Move most of this logic to the controller.
@@ -22,12 +23,6 @@ import { getBlogsFromUser } from './getBlogLinksFromUser.ts';
 	If not get the cached blog data.
 */
 
-const updateBlogLastUpdated = `
-UPDATE users
-SET blogsLastUpdated = ?
-WHERE id = 1;
-`;
-
 const _addBlogsToUser = `
 UPDATE users
 SET blogs = "http://localhost:8082/madeofbugs.xml,http://localhost:8082/madeofskeletons.xml"
@@ -39,7 +34,7 @@ export default async function getBlogs(
 ): Promise<BlogPost[] | null> {
 	const db = new DB('main.db');
 	const cachedBlogLinks: string[] = [];
-	
+
 	const blogs = getBlogsFromUser(userId);
 	if (blogs === false) return null;
 
@@ -61,8 +56,8 @@ export default async function getBlogs(
 			const filePath = `./cached_data/user_${userId}/blogs/${
 				encodeFilename(url.href) + '.xml'
 			}`;
-			console.log(filePath);
 
+			// Do I even need to await this if i'm using then/catch?
 			const blogData = await fetch(url.href).then(async (response) => {
 				const encoder = new TextEncoder();
 				return encoder.encode(await response.text());
@@ -75,16 +70,7 @@ export default async function getBlogs(
 			if (blogData) cacheBlog(userId, filePath, blogData as Uint8Array);
 
 			cachedBlogLinks.push(filePath);
-		}
-
-		// Update the blogs last updated time in the db
-		try {
-			console.log('Updating blogs last updated time...');
-
-			const currentDate = new Date();
-			db.query(updateBlogLastUpdated, [currentDate.toISOString()]);
-		} catch (err) {
-			console.error('Error updating blog last updated time', err);
+			updateBlogsLastUpdated(userId);
 		}
 	}
 
