@@ -9,7 +9,6 @@ import { getBlogsFromUser } from './getBlogLinksFromUser.ts';
 import { updateBlogsLastUpdated } from './updateBlogsLastUpdated.ts';
 
 /*
-	TODO: Move most of this logic to the controller.
 	TODO: Types need proper typing
 	TODO: Need to handle duplicate blogs
 	BUG: users needs to refresh page after loading if cached blog not found error happens
@@ -22,12 +21,6 @@ import { updateBlogsLastUpdated } from './updateBlogsLastUpdated.ts';
 	If it was fetch the new data from the blog urls.
 	If not get the cached blog data.
 */
-
-const _addBlogsToUser = `
-UPDATE users
-SET blogs = "http://localhost:8082/madeofbugs.xml,http://localhost:8082/madeofskeletons.xml"
-WHERE id = 1
-`;
 
 export default async function getBlogs(
 	userId: number,
@@ -57,21 +50,21 @@ export default async function getBlogs(
 				encodeFilename(url.href) + '.xml'
 			}`;
 
-			// Do I even need to await this if i'm using then/catch?
+			// NOTE: Do I even need to await this if i'm using then/catch?
 			const blogData = await fetch(url.href).then(async (response) => {
 				const encoder = new TextEncoder();
 				return encoder.encode(await response.text());
 			})
 				.catch((err) => {
-					console.error('Error fetching blogs from url', err);
+					console.error('Error fetching blogs from url\n', err);
 					return false;
 				});
 
 			if (blogData) cacheBlog(userId, filePath, blogData as Uint8Array);
 
 			cachedBlogLinks.push(filePath);
-			updateBlogsLastUpdated(userId);
 		}
+		updateBlogsLastUpdated(userId);
 	}
 
 	if (needsUpdating === false) {
@@ -87,9 +80,10 @@ export default async function getBlogs(
 		});
 	}
 
-	const feed = readCachedBlogs(cachedBlogLinks, userId);
-	if (!feed) return null;
+	const cachedBlogs = readCachedBlogs(cachedBlogLinks, userId);
+	if (cachedBlogs === null) return null;
 
+	const feed = createBlogFeed(cachedBlogs);
 	db.close();
 	return await feed;
 }
@@ -128,12 +122,13 @@ async function cacheBlog(
 	userId: number,
 	pathToWrite: string,
 	blogData: Uint8Array,
-) {
+): Promise<boolean> {
 	try {
 		await Deno.writeFile(
 			pathToWrite,
 			blogData,
 		);
+		return true;
 	} catch (err) {
 		if (err instanceof Deno.errors.NotFound) {
 			await Deno.mkdir(`./cached_data/user_${userId}/blogs/`, {
@@ -144,14 +139,16 @@ async function cacheBlog(
 				pathToWrite,
 				blogData,
 			);
+			return true;
 		} else {
-			console.error('Error caching blog', err);
+			console.error('Error caching blog\n', err);
+			return false;
 		}
 	}
 }
 
 // Read blog xml files, parse the rss feeds and return blog with the most recent post.
-async function readCachedBlogs(blogPaths: string[], userId: number) {
+function readCachedBlogs(blogPaths: string[], userId: number): string[] | null {
 	const decoder = new TextDecoder('utf-8');
 	const blogs: string[] = [];
 	// NOTE: Could this be done better?
@@ -174,25 +171,24 @@ async function readCachedBlogs(blogPaths: string[], userId: number) {
 					return encoder.encode(await response.text());
 				})
 					.catch((err) => {
-						console.error('Error fetching blogs from url', err);
+						console.error('Error fetching blogs from url\n', err);
 						return false;
 					});
 
 				if (blogData) cacheBlog(userId, blog, blogData as Uint8Array);
 			} else {
-				console.error('Error reading cached blog file: ', err);
+				console.error('Error reading cached blog file: \n', err);
 			}
 		}
 	});
 
 	if (blogs.length <= 0) return null;
 
-	const feed = await createBlogFeed(blogs);
-	return feed;
+	return blogs;
 }
 
 // Parse each blog for necessary data and return a list of each blog.
-async function createBlogFeed(blogs: string[]) {
+async function createBlogFeed(blogs: string[]): Promise<BlogPost[]> {
 	const feed: BlogPost[] = [];
 	let recentPost: BlogPost['post'];
 	let currentBlog: BlogPost['blog'];

@@ -17,6 +17,11 @@ const testingUser: User = {
 const _realBlogs =
 	'https://sadgrl.online/feed.xml,https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml,https://blog.nelhage.com/atom.xml,https://www.christianheilmann.com/feed/,https://kinduff.com/feed.xml,https://alexanderell.is/index.xml,https://calpaterson.com/calpaterson.rss,https://www.happyassassin.net/rss.xml,https://tim.mcnamara.nz/rss,https://blog.relyabilit.ie/rss/,https://xakcop.com/index.xml,https://www.jvt.me/kind/articles/feed.xml,https://macwright.com/rss.xml,https://tinyprojects.dev/feed.xml,https://www.joshwcomeau.com/rss.xml,https://www.danielsieger.com/atom.xml';
 
+const _testingBlogLinks = [
+	'http://localhost:8082/madeofbugs.xml',
+	'http://localhost:8082/madeofskeletons.xml',
+];
+
 export async function rootHandler(
 	req: Request,
 	userId: number,
