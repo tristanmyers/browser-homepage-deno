@@ -5,6 +5,7 @@ import {
 	encode,
 } from 'https://deno.land/std@0.155.0/encoding/base64.ts';
 import { getBlogsLastUpdated } from './getBlogLastUpdated.ts';
+import { getBlogsFromUser } from './getBlogLinksFromUser.ts';
 
 /*
 	TODO: Move most of this logic to the controller.
@@ -20,12 +21,6 @@ import { getBlogsLastUpdated } from './getBlogLastUpdated.ts';
 	If it was fetch the new data from the blog urls.
 	If not get the cached blog data.
 */
-
-const getBlogsFromUser = `
-SELECT blogs 
-FROM users
-WHERE id = ?;
-`;
 
 const updateBlogLastUpdated = `
 UPDATE users
@@ -43,22 +38,13 @@ export default async function getBlogs(
 	userId: number,
 ): Promise<BlogPost[] | null> {
 	const db = new DB('main.db');
-	let needsUpdating;
-	let blogLinks;
 	const cachedBlogLinks: string[] = [];
-
-	try {
-		blogLinks = db.query<[string]>(getBlogsFromUser, [userId])[0][0]
-			.split(
-				',',
-			);
-	} catch (err) {
-		console.error('Error getting blog links from user', err);
-	}
-
-	if (!blogLinks) return null;
+	
+	const blogs = getBlogsFromUser(userId);
+	if (blogs === false) return null;
 
 	// By default we will read from the cache and if we need to update, we fetch and cache then continue on the default path of reading from cache.
+	let needsUpdating;
 	const lastUpdated = getBlogsLastUpdated(userId);
 	if (lastUpdated === false) {
 		needsUpdating = false;
@@ -70,8 +56,8 @@ export default async function getBlogs(
 		// get blogs urls from db -> fetch blog file from url
 		console.log('Updating blog files...');
 
-		for (const link in blogLinks) {
-			const url = new URL(blogLinks[link]);
+		for (const link in blogs) {
+			const url = new URL(blogs[link]);
 			const filePath = `./cached_data/user_${userId}/blogs/${
 				encodeFilename(url.href) + '.xml'
 			}`;
@@ -105,7 +91,7 @@ export default async function getBlogs(
 	if (needsUpdating === false) {
 		console.log('Reading blogs from cache...');
 
-		blogLinks.forEach((link) => {
+		blogs.forEach((link) => {
 			const url = new URL(link);
 			const filePath = `./cached_data/user_${userId}/blogs/${
 				encodeFilename(url.href) + '.xml'
