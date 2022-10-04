@@ -18,5 +18,7 @@ export function getBlogsLastUpdated(userId: number): string | false {
 	} catch (err) {
 		console.error('Error getting blogs last updated from user\n', err);
 		return false;
+	} finally {
+		db.close();
 	}
 }

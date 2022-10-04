@@ -15,5 +15,7 @@ export function addBlogsToUser(userId: number, blogLinks: string[]): boolean {
 	} catch (err) {
 		console.log('Error adding blogs to user\n', err);
 		return false;
+	} finally {
+		db.close();
 	}
 }

@@ -19,5 +19,7 @@ export function getBlogsFromUser(userId: number): string[] | false {
 	} catch (err) {
 		console.error('Error getting blog links from user\n', err);
 		return false;
+	} finally {
+		db.close();
 	}
 }

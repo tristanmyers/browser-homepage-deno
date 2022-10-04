@@ -18,5 +18,7 @@ export function updateBlogsLastUpdated(userId: number): boolean {
 	} catch (err) {
 		console.error('Error updating blog last updated time', err);
 		return false;
+	} finally {
+		db.close();
 	}
 }
