@@ -5,7 +5,6 @@ import addUser from '../models/addUser.ts';
 import createUsers from '../models/createUsers.ts';
 import { app } from '../views/app.ts';
 
-
 export async function rootHandler(
 	req: Request,
 	userId: number,

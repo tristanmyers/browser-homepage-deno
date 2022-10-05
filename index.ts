@@ -1,5 +1,5 @@
 #!/usr/bin/env deno
-import { http, parse, Args, DB } from './deps.ts';
+import { Args, DB, http, parse } from './deps.ts';
 import { rootHandler } from './controllers/rootHandler.ts';
 
 type ResponseData = {
@@ -11,7 +11,7 @@ type ResponseData = {
 export type DenoArguments = {
 	testing: boolean;
 	release: boolean;
-}
+};
 
 const port = 8081;
 const stylesDir = './public/styles/';
