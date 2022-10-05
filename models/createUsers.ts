@@ -1,18 +1,16 @@
-import { DB } from '../deps.ts';
+import { db } from '../index.ts';
 
 const createUsersMut = `
 CREATE TABLE IF NOT EXISTS users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT UNIQUE,
-  links TEXT,
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	user TEXT UNIQUE,
+	links TEXT, 
 	blogs TEXT,
 	blogsLastUpdated TEXT
 )
 `;
 
 export default function createUsers(): boolean {
-	const db = new DB('main.db');
-
 	try {
 		console.log('Checking if users table exists...');
 		db.query(createUsersMut);

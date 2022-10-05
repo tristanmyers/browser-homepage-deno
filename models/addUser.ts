@@ -1,4 +1,4 @@
-import { DB } from '../deps.ts';
+import { db } from '../index.ts';
 import { User } from '../types/models/user.ts';
 
 const checkUserExistMut = `
@@ -14,14 +14,18 @@ VALUES(?, ?, ?, ?)
 // TODO: Could adjust User type to take in an array and turn that array into what sqlite is expecting;
 export default function addUser(user: User): boolean {
 	const { username, links, blogs, blogsLastUpdated } = user;
-	const db = new DB('main.db');
 	const userExist = checkIfExist(username);
 
 	if (userExist === true) return false;
 
 	try {
 		console.log('Adding user... \n', [user]);
-		db.query(addUserMut, [username, links, blogs, blogsLastUpdated]);
+		db.query(addUserMut, [
+			username,
+			links.toString(),
+			blogs.toString(),
+			blogsLastUpdated,
+		]);
 		return true;
 	} catch (err) {
 		console.error('Error creating user under users table\n', err);
@@ -32,7 +36,6 @@ export default function addUser(user: User): boolean {
 }
 
 function checkIfExist(username: string): boolean {
-	const db = new DB('main.db');
 	const user = db.query(checkUserExistMut, [username]);
 
 	if (user.length === 0) {

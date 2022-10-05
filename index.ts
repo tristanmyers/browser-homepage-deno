@@ -2,6 +2,8 @@
 
 import { http } from './deps.ts';
 import { rootHandler } from './controllers/rootHandler.ts';
+import { Args, parse } from "https://deno.land/std@0.158.0/flags/mod.ts";
+import { DB } from './deps.ts';
 
 type ResponseData = {
 	body: BodyInit;
@@ -9,8 +11,16 @@ type ResponseData = {
 	contentType: string;
 };
 
+export type DenoArguments = {
+	testing: boolean;
+	release: boolean;
+}
+
 const port = 8081;
 const stylesDir = './public/styles/';
+
+export const args: Args<DenoArguments> = parse(Deno.args);
+export const db = args.testing ? new DB('testing.db') : new DB('main.db');
 
 http.serve(handler, { port });
 
