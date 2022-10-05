@@ -29,14 +29,16 @@ const _testBlogs: BlogPost[] = [
 	},
 ];
 
-export async function app(_userId: number): Promise<string> {
+// TODO: replaceAll() is not a good solution.
+export async function app(userId: number): Promise<string> {
 	let links = 'No links available';
 	let blogs = 'No blogs available';
-	const userLinks: string[] | null = getLinks();
-	const userBlogs: BlogPost[] | null = await getBlogs(1);
+	const userLinks: string[] | null = getLinks(userId);
+	const userBlogs: BlogPost[] | null = await getBlogs(userId);
 
-	// TODO: replaceAll() is not a good solution.
-	if (userLinks) links = renderLinks(userLinks).replaceAll(',', '');
+	if (userLinks && userLinks.length > 0) {
+		links = renderLinks(userLinks).replaceAll(',', '');
+	}
 	if (userBlogs) blogs = renderBlogs(userBlogs).replaceAll(',', '');
 
 	const page = `

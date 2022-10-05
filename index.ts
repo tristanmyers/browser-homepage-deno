@@ -1,4 +1,5 @@
-import { http } from './deps.ts';
+#!/usr/bin/env deno
+import { Args, DB, http, parse } from './deps.ts';
 import { rootHandler } from './controllers/rootHandler.ts';
 
 type ResponseData = {
@@ -7,8 +8,16 @@ type ResponseData = {
 	contentType: string;
 };
 
+export type DenoArguments = {
+	testing: boolean;
+	release: boolean;
+};
+
 const port = 8081;
 const stylesDir = './public/styles/';
+
+export const args: Args<DenoArguments> = parse(Deno.args);
+export const db = args.testing ? new DB('testing.db') : new DB('main.db');
 
 http.serve(handler, { port });
 
@@ -52,6 +61,7 @@ async function handler(req: Request): Promise<Response> {
 		}
 	}
 
+	db.close();
 	return new Response(resData.body, {
 		status: resData.status,
 		headers: {

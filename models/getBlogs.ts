@@ -1,94 +1,61 @@
-import { DB, rss } from '../deps.ts';
+import { rss } from '../deps.ts';
 import { BlogPost } from '../types/models/blogs.ts';
 import {
 	decode,
 	encode,
 } from 'https://deno.land/std@0.155.0/encoding/base64.ts';
+import { getBlogsLastUpdated } from './getBlogLastUpdated.ts';
+import { getBlogsFromUser } from './getBlogLinksFromUser.ts';
+import { updateBlogsLastUpdated } from './updateBlogsLastUpdated.ts';
 
 /*
-	TODO: Move most of this logic to the controller.
 	TODO: Types need proper typing
 	TODO: Need to handle duplicate blogs
 	BUG: users needs to refresh page after loading if cached blog not found error happens
 	TODO: Request will keep sending each time if cached blog not found error happens
 	TODO: handle undefined urls
+	TODO: handle descriptions being
+	TODO: Sort by most recent
 
 	Query the user for blogs -> Get the blogs last updated date -> Check if the date is 5 or more days ago
 	If it was fetch the new data from the blog urls.
 	If not get the cached blog data.
 */
 
-const getBlogsFromUser = `
-SELECT blogs 
-FROM users
-WHERE id = ?;
-`;
-
-const getBlogLastUpdated = `
-SELECT blogsLastUpdated
-FROM users
-WHERE id = 1;
-`;
-
-const updateBlogLastUpdated = `
-UPDATE users
-SET blogsLastUpdated = ?
-WHERE id = 1;
-`;
-
-const _addBlogsToUser = `
-UPDATE users
-SET blogs = "http://localhost:8082/madeofbugs.xml,http://localhost:8082/madeofskeletons.xml"
-WHERE id = 1
-`;
-
 export default async function getBlogs(
 	userId: number,
 ): Promise<BlogPost[] | null> {
-	const db = new DB('main.db');
-	let needsUpdating;
-	let blogLinks;
 	const cachedBlogLinks: string[] = [];
 
-	try {
-		console.log('Getting blogs last updated time...');
-
-		const lastUpdated = db.query(getBlogLastUpdated);
-		needsUpdating = checkLastUpdated(lastUpdated[0][0] as string);
-	} catch (err) {
-		console.error('Error getting blogs last updated from user', err);
-		return null;
-	}
-
-	try {
-		blogLinks = db.query<[string]>(getBlogsFromUser, [userId])[0][0]
-			.split(
-				',',
-			);
-	} catch (err) {
-		console.error('Error getting blog links from user', err);
-	}
-
-	if (!blogLinks) return null;
+	const blogs = getBlogsFromUser(userId);
+	if (blogs === false) return null;
 
 	// By default we will read from the cache and if we need to update, we fetch and cache then continue on the default path of reading from cache.
+	let needsUpdating;
+	const lastUpdated = getBlogsLastUpdated(userId);
+	if (lastUpdated === false) {
+		needsUpdating = false;
+	} else {
+		needsUpdating = checkLastUpdated(lastUpdated);
+	}
+
 	if (needsUpdating) {
 		// get blogs urls from db -> fetch blog file from url
 		console.log('Updating blog files...');
 
-		for (const link in blogLinks) {
-			const url = new URL(blogLinks[link]);
+		for (const link in blogs) {
+			const url = new URL(blogs[link]);
 			const filePath = `./cached_data/user_${userId}/blogs/${
 				encodeFilename(url.href) + '.xml'
 			}`;
-			console.log(filePath);
 
+			// NOTE: Do I even need to await this if i'm using then/catch?
 			const blogData = await fetch(url.href).then(async (response) => {
 				const encoder = new TextEncoder();
 				return encoder.encode(await response.text());
 			})
 				.catch((err) => {
-					console.error('Error fetching blogs from url', err);
+					console.error('Error fetching blogs from url\n', err);
 					return false;
 				});
 
@@ -96,22 +63,13 @@ export default async function getBlogs(
 
 			cachedBlogLinks.push(filePath);
 		}
-
-		// Update the blogs last updated time in the db
-		try {
-			console.log('Updating blogs last updated time...');
-
-			const currentDate = new Date();
-			db.query(updateBlogLastUpdated, [currentDate.toISOString()]);
-		} catch (err) {
-			console.error('Error updating blog last updated time', err);
-		}
+		updateBlogsLastUpdated(userId);
 	}
 
-	if (!needsUpdating) {
+	if (needsUpdating === false) {
 		console.log('Reading blogs from cache...');
 
-		blogLinks.forEach((link) => {
+		blogs.forEach((link) => {
 			const url = new URL(link);
 			const filePath = `./cached_data/user_${userId}/blogs/${
 				encodeFilename(url.href) + '.xml'
@@ -121,15 +79,15 @@ export default async function getBlogs(
 		});
 	}
 
-	const feed = readCachedBlogs(cachedBlogLinks, userId);
-	if (!feed) return null;
+	const cachedBlogs = readCachedBlogs(cachedBlogLinks, userId);
+	if (cachedBlogs === null) return null;
 
-	db.close();
+	const feed = createBlogFeed(cachedBlogs);
 	return await feed;
 }
 
 // Check if the last updated time from db is > 0 days if so return true.
-function checkLastUpdated(lastUpdated: string) {
+function checkLastUpdated(lastUpdated: string): boolean {
 	const lastUpdatedDate = new Date(lastUpdated);
 	const lastUpdatedDateUTC = Date.UTC(
 		lastUpdatedDate.getFullYear(),
@@ -162,12 +120,13 @@ async function cacheBlog(
 	userId: number,
 	pathToWrite: string,
 	blogData: Uint8Array,
-) {
+): Promise<boolean> {
 	try {
 		await Deno.writeFile(
 			pathToWrite,
 			blogData,
 		);
+		return true;
 	} catch (err) {
 		if (err instanceof Deno.errors.NotFound) {
 			await Deno.mkdir(`./cached_data/user_${userId}/blogs/`, {
@@ -178,14 +137,16 @@ async function cacheBlog(
 				pathToWrite,
 				blogData,
 			);
+			return true;
 		} else {
-			console.error('Error caching blog', err);
+			console.error('Error caching blog\n', err);
+			return false;
 		}
 	}
 }
 
 // Read blog xml files, parse the rss feeds and return blog with the most recent post.
-async function readCachedBlogs(blogPaths: string[], userId: number) {
+function readCachedBlogs(blogPaths: string[], userId: number): string[] | null {
 	const decoder = new TextDecoder('utf-8');
 	const blogs: string[] = [];
 	// NOTE: Could this be done better?
@@ -208,25 +169,24 @@ async function readCachedBlogs(blogPaths: string[], userId: number) {
 					return encoder.encode(await response.text());
 				})
 					.catch((err) => {
-						console.error('Error fetching blogs from url', err);
+						console.error('Error fetching blogs from url\n', err);
 						return false;
 					});
 
 				if (blogData) cacheBlog(userId, blog, blogData as Uint8Array);
 			} else {
-				console.error('Error reading cached blog file: ', err);
+				console.error('Error reading cached blog file: \n', err);
 			}
 		}
 	});
 
 	if (blogs.length <= 0) return null;
 
-	const feed = await createBlogFeed(blogs);
-	return feed;
+	return blogs;
 }
 
 // Parse each blog for necessary data and return a list of each blog.
-async function createBlogFeed(blogs: string[]) {
+async function createBlogFeed(blogs: string[]): Promise<BlogPost[]> {
 	const feed: BlogPost[] = [];
 	let recentPost: BlogPost['post'];
 	let currentBlog: BlogPost['blog'];
