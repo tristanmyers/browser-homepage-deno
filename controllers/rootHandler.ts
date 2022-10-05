@@ -1,4 +1,3 @@
-import { HTMLDocument } from 'https://esm.sh/v91/linkedom@0.14.12/types/html/document.d.ts';
 import { realUser, testingUser } from '../data/user.ts';
 import { linkedom } from '../deps.ts';
 import { args } from '../index.ts';
@@ -11,7 +10,7 @@ export async function rootHandler(
 	req: Request,
 	userId: number,
 ): Promise<string | null> {
-	let data: null | HTMLDocument = null;
+	let data: any = null;
 
 	if (req.method === 'GET') {
 		createUsers();

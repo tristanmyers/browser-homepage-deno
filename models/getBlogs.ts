@@ -1,4 +1,4 @@
-import { DB, rss } from '../deps.ts';
+import { rss } from '../deps.ts';
 import { BlogPost } from '../types/models/blogs.ts';
 import {
 	decode,
@@ -25,7 +25,6 @@ import { updateBlogsLastUpdated } from './updateBlogsLastUpdated.ts';
 export default async function getBlogs(
 	userId: number,
 ): Promise<BlogPost[] | null> {
-	const db = new DB('main.db');
 	const cachedBlogLinks: string[] = [];
 
 	const blogs = getBlogsFromUser(userId);
@@ -84,7 +83,6 @@ export default async function getBlogs(
 	if (cachedBlogs === null) return null;
 
 	const feed = createBlogFeed(cachedBlogs);
-	db.close();
 	return await feed;
 }
 

@@ -1,10 +1,9 @@
-import { DB } from '../deps.ts';
+import { db } from "../index.ts";
 
 const getLinksFromUser = 'SELECT links FROM users WHERE id = ?';
 
 export default function getLinks(userId: number): string[] | null {
 	let links: string | null = null;
-	const db = new DB('main.db');
 
 	try {
 		console.log('Getting links from user...');
@@ -14,7 +13,5 @@ export default function getLinks(userId: number): string[] | null {
 	} catch (err) {
 		console.error('Error getting links from user.', err);
 		return null;
-	} finally {
-		db.close();
 	}
 }

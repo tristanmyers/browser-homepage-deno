@@ -1,4 +1,4 @@
-import { DB } from '../deps.ts';
+import { db } from "../index.ts";
 
 const getBlogsFromUserQuery = `
 SELECT blogs 
@@ -7,8 +7,6 @@ WHERE id = ?;
 `;
 
 export function getBlogsFromUser(userId: number): string[] | false {
-	const db = new DB('main.db');
-
 	let blogLinks;
 	try {
 		blogLinks = db.query<[string]>(getBlogsFromUserQuery, [userId])[0][0]
@@ -19,7 +17,5 @@ export function getBlogsFromUser(userId: number): string[] | false {
 	} catch (err) {
 		console.error('Error getting blog links from user\n', err);
 		return false;
-	} finally {
-		db.close();
 	}
 }

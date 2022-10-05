@@ -30,8 +30,6 @@ export default function addUser(user: User): boolean {
 	} catch (err) {
 		console.error('Error creating user under users table\n', err);
 		return false;
-	} finally {
-		db.close();
 	}
 }
 

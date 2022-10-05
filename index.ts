@@ -1,9 +1,6 @@
 #!/usr/bin/env deno
-
-import { http } from './deps.ts';
+import { http, parse, Args, DB } from './deps.ts';
 import { rootHandler } from './controllers/rootHandler.ts';
-import { Args, parse } from "https://deno.land/std@0.158.0/flags/mod.ts";
-import { DB } from './deps.ts';
 
 type ResponseData = {
 	body: BodyInit;
@@ -64,6 +61,7 @@ async function handler(req: Request): Promise<Response> {
 		}
 	}
 
+	db.close();
 	return new Response(resData.body, {
 		status: resData.status,
 		headers: {

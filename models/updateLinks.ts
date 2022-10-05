@@ -1,4 +1,4 @@
-import { DB } from '../deps.ts';
+import { db } from "../index.ts";
 
 const updateLinksMut = `
 UPDATE users
@@ -7,8 +7,6 @@ WHERE id = 1
 `;
 
 export default function updateLinks(): boolean {
-	const db = new DB('main.db');
-
 	try {
 		console.log('Checking if users table exists...');
 		db.query(updateLinksMut);
@@ -16,7 +14,5 @@ export default function updateLinks(): boolean {
 	} catch (err) {
 		console.error('Error creating users table', err);
 		return false;
-	} finally {
-		db.close();
 	}
 }
