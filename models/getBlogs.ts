@@ -1,4 +1,4 @@
-import { rss } from '../deps.ts';
+import { DB, rss } from '../deps.ts';
 import { BlogPost } from '../types/models/blogs.ts';
 import {
 	decode,
@@ -9,14 +9,6 @@ import { getBlogsFromUser } from './getBlogLinksFromUser.ts';
 import { updateBlogsLastUpdated } from './updateBlogsLastUpdated.ts';
 
 /*
-	TODO: Types need proper typing
-	TODO: Need to handle duplicate blogs
-	BUG: users needs to refresh page after loading if cached blog not found error happens
-	TODO: Request will keep sending each time if cached blog not found error happens
-	TODO: handle undefined urls
-	TODO: handle descriptions being
-	TODO: Sort by most recent
-
 	Query the user for blogs -> Get the blogs last updated date -> Check if the date is 5 or more days ago
 	If it was fetch the new data from the blog urls.
 	If not get the cached blog data.
@@ -24,15 +16,16 @@ import { updateBlogsLastUpdated } from './updateBlogsLastUpdated.ts';
 
 export default async function getBlogs(
 	userId: number,
+	db: DB,
 ): Promise<BlogPost[] | null> {
 	const cachedBlogLinks: string[] = [];
 
-	const blogs = getBlogsFromUser(userId);
+	const blogs = getBlogsFromUser(userId, db);
 	if (blogs === false) return null;
 
 	// By default we will read from the cache and if we need to update, we fetch and cache then continue on the default path of reading from cache.
 	let needsUpdating;
-	const lastUpdated = getBlogsLastUpdated(userId);
+	const lastUpdated = getBlogsLastUpdated(userId, db);
 	if (lastUpdated === false) {
 		needsUpdating = false;
 	} else {
@@ -63,7 +56,7 @@ export default async function getBlogs(
 
 			cachedBlogLinks.push(filePath);
 		}
-		updateBlogsLastUpdated(userId);
+		updateBlogsLastUpdated(userId, db);
 	}
 
 	if (needsUpdating === false) {

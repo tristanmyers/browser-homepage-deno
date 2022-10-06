@@ -17,7 +17,6 @@ const port = 8081;
 const stylesDir = './public/styles/';
 
 export const args: Args<DenoArguments> = parse(Deno.args);
-export const db = args.testing ? new DB('testing.db') : new DB('main.db');
 
 http.serve(handler, { port });
 
@@ -33,11 +32,13 @@ async function handler(req: Request): Promise<Response> {
 
 	switch (reqUrl.pathname) {
 		case '/': {
-			const data = await rootHandler(req, 1);
+			const db = createDB(args);
+			const data = await rootHandler(req, 1, db);
 			if (data) {
 				resData.body = data;
 				resData.status = 200;
 			}
+			db.close();
 			break;
 		}
 
@@ -61,11 +62,15 @@ async function handler(req: Request): Promise<Response> {
 		}
 	}
 
-	db.close();
 	return new Response(resData.body, {
 		status: resData.status,
 		headers: {
 			'content-type': resData.contentType,
 		},
 	});
+}
+
+function createDB(args: Args<DenoArguments>): DB {
+	const db = args.testing ? new DB('testing.db') : new DB('main.db');
+	return db;
 }

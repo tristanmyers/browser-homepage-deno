@@ -1,4 +1,4 @@
-import { db } from '../index.ts';
+import { DB } from '../deps.ts';
 
 const getBlogsFromUserQuery = `
 SELECT blogs 
@@ -6,7 +6,7 @@ FROM users
 WHERE id = ?;
 `;
 
-export function getBlogsFromUser(userId: number): string[] | false {
+export function getBlogsFromUser(userId: number, db: DB): string[] | false {
 	let blogLinks;
 	try {
 		blogLinks = db.query<[string]>(getBlogsFromUserQuery, [userId])[0][0]

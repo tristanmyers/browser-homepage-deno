@@ -37,6 +37,15 @@ async function handler(req: Request): Promise<Response> {
 			break;
 		}
 
+		case '/caffeinspiration': {
+			resData.body = await Deno.readFile(
+				'./tests/blog_testing/caffeinspiration.xml',
+			);
+			resData.contentType = 'text/xml';
+			resData.status = 200;
+			break;
+		}
+
 		default:
 			resData.body = 'Page not found';
 			resData.status = 404;

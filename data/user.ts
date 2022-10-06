@@ -13,6 +13,7 @@ export const testingUser: User = {
 	blogs: [
 		'http://localhost:8082/madeofbugs.xml',
 		'http://localhost:8082/madeofskeletons.xml',
+		'https://localhost:8082/caffeinspiration.xml',
 	],
 	blogsLastUpdated: `${new Date().toISOString()}`,
 };

@@ -1,4 +1,4 @@
-import { db } from '../index.ts';
+import { DB } from '../deps.ts';
 
 const createUsersMut = `
 CREATE TABLE IF NOT EXISTS users (
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS users (
 )
 `;
 
-export default function createUsers(): boolean {
+export default function createUsers(db: DB): boolean {
 	try {
 		console.log('Checking if users table exists...');
 		db.query(createUsersMut);

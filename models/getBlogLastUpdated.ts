@@ -1,4 +1,4 @@
-import { db } from '../index.ts';
+import { DB } from '../deps.ts';
 
 const getBlogLastUpdatedQuery = `
 SELECT blogsLastUpdated
@@ -6,7 +6,7 @@ FROM users
 WHERE id = ?
 `;
 
-export function getBlogsLastUpdated(userId: number): string | false {
+export function getBlogsLastUpdated(userId: number, db: DB): string | false {
 	try {
 		console.log('Getting blogs last updated time...');
 
