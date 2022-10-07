@@ -18,7 +18,7 @@ export function renderBlogs(blogs: BlogPost[] | null) {
 			const publishedAt = currentBlog.post.publishedAt
 				? `Published on: ${currentBlog.post.publishedAt.toLocaleDateString()}`
 				: null;
-
+			// TODO: Need to figure out how to remove html
 			let description = currentBlog.post.description ??
 				'No description available';
 
@@ -29,10 +29,6 @@ export function renderBlogs(blogs: BlogPost[] | null) {
 				}
 			}
 
-			console.log(
-				description.replace('&(.|\n)*?;', ''),
-			);
-
 			return (`
 				<div class="blog-card">
 					<a class="blog-link" href=${blogLink}>
@@ -42,7 +38,7 @@ export function renderBlogs(blogs: BlogPost[] | null) {
 						${postTitle}
 					</a>
 					<p>${publishedAt}</p>
-					<p>${description.replace(/(<([^>]+)>)/g, '')}
+					<p>${description}
 				</div>
 			`);
 		});
