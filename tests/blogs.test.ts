@@ -3,7 +3,7 @@ import getBlogs from '../models/getBlogs.ts';
 import { BlogPost } from '../types/models/blogs.ts';
 
 const blogs = await getBlogs(1);
-
+// I'm not sure why this is failing
 const { assertEquals } = asserts;
 Deno.test('blogs test', () => {
 	const testBlog: BlogPost[] = [

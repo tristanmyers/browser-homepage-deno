@@ -1,4 +1,4 @@
-import { db } from '../index.ts';
+import { DB } from '../deps.ts';
 
 const addBlogsToUserMut = `
 UPDATE users
@@ -6,7 +6,11 @@ SET blogs = ?
 WHERE id = ?
 `;
 
-export function addBlogsToUser(userId: number, blogLinks: string[]): boolean {
+export function addBlogsToUser(
+	userId: number,
+	blogLinks: string[],
+	db: DB,
+): boolean {
 	try {
 		db.query<[string]>(addBlogsToUserMut, [blogLinks.toString(), userId]);
 		return true;

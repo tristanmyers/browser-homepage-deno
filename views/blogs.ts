@@ -1,6 +1,7 @@
 import { BlogPost } from '../types/models/blogs.ts';
 
 export function renderBlogs(blogs: BlogPost[] | null) {
+	const descCharLimit = 450;
 	if (blogs && blogs.length > 0) {
 		const blog = blogs.map((currentBlog) => {
 			// TODO: This link logic is super weird and seems like a lot of work.
@@ -12,20 +13,32 @@ export function renderBlogs(blogs: BlogPost[] | null) {
 				? new URL(currentBlog.post.url).href
 				: 'https://' + currentBlog.post.url;
 
+			const blogTitle = currentBlog.blog.title ?? 'No blog title available';
+			const postTitle = currentBlog.post.title ?? 'No post title available';
+			const publishedAt = currentBlog.post.publishedAt
+				? `Published on: ${currentBlog.post.publishedAt.toLocaleDateString()}`
+				: null;
+			// TODO: Need to figure out how to remove html
+			let description = currentBlog.post.description ??
+				'No description available';
+
+			if (currentBlog.post.description) {
+				if (currentBlog.post.description.length > descCharLimit) {
+					description = currentBlog.post.description.slice(0, descCharLimit) +
+						'...';
+				}
+			}
+
 			return (`
 				<div class="blog-card">
 					<a class="blog-link" href=${blogLink}>
-						${currentBlog.blog.title}
+						${blogTitle}
 					</a>
 					<a class="blog-link" href=${postLink}>
-						${currentBlog.post.title}
+						${postTitle}
 					</a>
-					<p>${
-				currentBlog.post.publishedAt
-					? `Published on: ${currentBlog.post.publishedAt.toLocaleDateString()}`
-					: null
-			}</p>
-					<p>${currentBlog.post.description}</p>
+					<p>${publishedAt}</p>
+					<p>${description}
 				</div>
 			`);
 		});

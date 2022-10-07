@@ -3,7 +3,7 @@
 		"dev": "deno run --allow-read --allow-write --allow-net index.ts --testing",
 		"testServer": "deno run --allow-read --allow-write --allow-net test_server/index.ts",
 		"release": "deno run --allow-read --allow-write --allow-net index.ts --release",
-		"test": "deno test --allow-read --allow-write",
+		"test": "deno test --allow-read --allow-write --allow-net -- --testing",
 		"compile": "deno compile --allow-read --allow-write --allow-net index.ts",
 		"compile-linux": "deno compile --allow-read --allow-write --allow-net --target x86_64-unknown-linux-gnu index.ts"
 	},

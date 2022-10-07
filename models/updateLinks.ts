@@ -1,4 +1,4 @@
-import { db } from '../index.ts';
+import { DB } from '../deps.ts';
 import { User } from '../types/models/user.ts';
 
 const updateLinksMut = `
@@ -10,6 +10,7 @@ WHERE id = ?
 export default function updateLinks(
 	userId: boolean,
 	links: User['links'],
+	db: DB,
 ): boolean {
 	try {
 		console.log('Checking if users table exists...');

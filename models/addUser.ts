@@ -1,4 +1,4 @@
-import { db } from '../index.ts';
+import { DB } from '../deps.ts';
 import { User } from '../types/models/user.ts';
 
 const checkUserExistMut = `
@@ -11,10 +11,9 @@ INSERT INTO users (username, links, blogs, blogsLastUpdated)
 VALUES(?, ?, ?, ?)
 `;
 
-// TODO: Could adjust User type to take in an array and turn that array into what sqlite is expecting;
-export default function addUser(user: User): boolean {
+export default function addUser(user: User, db: DB): boolean {
 	const { username, links, blogs, blogsLastUpdated } = user;
-	const userExist = checkIfExist(username);
+	const userExist = checkIfExist(username, db);
 
 	if (userExist === true) return false;
 
@@ -33,7 +32,7 @@ export default function addUser(user: User): boolean {
 	}
 }
 
-function checkIfExist(username: string): boolean {
+function checkIfExist(username: string, db: DB): boolean {
 	const user = db.query(checkUserExistMut, [username]);
 
 	if (user.length === 0) {

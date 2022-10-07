@@ -1,4 +1,4 @@
-import { db } from '../index.ts';
+import { DB } from '../deps.ts';
 
 const updateBlogLastUpdatedMut = `
 UPDATE users
@@ -7,7 +7,7 @@ WHERE id = ?
 `;
 
 // Update the blogs last updated time in the db
-export function updateBlogsLastUpdated(userId: number): boolean {
+export function updateBlogsLastUpdated(userId: number, db: DB): boolean {
 	try {
 		console.log('Updating blogs last updated time...');
 
