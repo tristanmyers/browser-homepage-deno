@@ -9,7 +9,12 @@ export default function getLinks(userId: number, db: DB): string[] | null {
 		console.log('Getting links from user...');
 
 		links = db.query<[string]>(getLinksFromUser, [userId])[0][0];
-		return links.split(',');
+
+		if (links) {
+			return links.split(',');
+		}
+
+		return null;
 	} catch (err) {
 		console.error('Error getting links from user.', err);
 		return null;
