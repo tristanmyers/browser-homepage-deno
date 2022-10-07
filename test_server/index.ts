@@ -37,7 +37,7 @@ async function handler(req: Request): Promise<Response> {
 			break;
 		}
 
-		case '/caffeinspiration': {
+		case '/caffeinspiration.xml': {
 			resData.body = await Deno.readFile(
 				'./tests/blog_testing/caffeinspiration.xml',
 			);

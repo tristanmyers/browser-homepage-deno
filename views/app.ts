@@ -30,6 +30,7 @@ export async function app(userId: number, db: DB): Promise<string> {
 				type='text/css'
 				href='./public/styles/index.css'
 			/>
+			<link rel="stylesheet" type='text/css' href='https://rsms.me/inter/inter.css'/>
 		</head>
 		<body>
 			<main>
