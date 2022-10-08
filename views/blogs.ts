@@ -51,10 +51,10 @@ export function renderBlogs(blogs: BlogPost[] | null) {
 
 			return (`
 				<div class="blog-card">
-					<a class="blog-link" href=${blogLink}>
+					<a id="blog-title" class="blog-link" href=${blogLink}>
 						${blogTitle}
 					</a>
-					<a class="blog-link" href=${postLink}>
+					<a id="post-title" class="blog-link" href=${postLink}>
 						${postTitle}
 					</a>
 					<p>${publishedAt}</p>
