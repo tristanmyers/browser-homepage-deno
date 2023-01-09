@@ -25,11 +25,40 @@ function getBlogURL(blog: BlogPost['blog'] | BlogPost['post']) {
 	return url;
 }
 
+// Sortes blogs based on publishedAt, most recent -> earliest  
+function sortBlogs(blogs: BlogPost[]): BlogPost[] {
+	return blogs.sort((blog1, blog2) => {
+		if (blog1.post.publishedAt && blog2.post.publishedAt) {
+			const diff1 = Number(blog1.post.publishedAt) -
+				Number(blog2.post.publishedAt);
+
+			const diff2 = Number(blog2.post.publishedAt) -
+				Number(blog1.post.publishedAt);
+
+			if (
+				diff2 > diff1
+			) {
+				return 1;
+			}
+
+			if (
+				diff1 > diff2
+			) {
+				return -1;
+			}
+
+			return 0;
+		}
+
+		return 0;
+	});
+}
+
 export function renderBlogs(blogs: BlogPost[] | null) {
 	const descCharLimit = 450;
 
 	if (blogs && blogs.length > 0) {
-		const blog = blogs.map((currentBlog) => {
+		const blog = sortBlogs(blogs).map((currentBlog) => {
 			// TODO: This link logic is super weird and seems like a lot of work.
 			const blogLink = getBlogURL(currentBlog.blog);
 			const postLink = getBlogURL(currentBlog.post);
