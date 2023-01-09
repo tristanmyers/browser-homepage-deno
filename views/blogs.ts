@@ -46,7 +46,7 @@ export function renderBlogs(blogs: BlogPost[] | null) {
 			if (currentBlog.post.description) {
 				if (currentBlog.post.description.length > descCharLimit) {
 					description = currentBlog.post.description.slice(0, descCharLimit) +
-						'<script>alert("YOU HAVE BEEN HACKED 1337 HAHAH")</script>';
+						'...';
 				}
 			}
 

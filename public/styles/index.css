@@ -37,7 +37,7 @@ main {
   flex-direction: row;
   gap: 20px;
   place-content: center;
-  overflow: hidden;
+  overflow-x: hidden;
   height: 90vh;
 }
 
@@ -45,6 +45,7 @@ section {
   background-color: var(--section-bg-color);
   padding: 20px;
   height: 75vh;
+  scrollbar-width: thin;
 }
 
 footer {
@@ -52,7 +53,7 @@ footer {
   position: sticky;
   bottom: 10px;
   padding: 20px;
-  width: 95vw;
+  width: 90%;
   margin: auto;
   border-radius: 10px;
   font-size: larger;
@@ -67,15 +68,23 @@ footer {
   border-radius: 10px;
   font-size: 1.5em;
   box-shadow: 5px 5px 10px black;
+  height: 85vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #blogs-feed { 
   width: 75vw;
+  height: 85vh;
   border-radius: 10px;
   font-size: 1.5em;
   box-shadow: 5px 5px 10px black;
   overflow-y: scroll; 
-  scrollbar-width: thin;
+  overflow-x: hidden;
+}
+
+#blog-title {
+  margin: 0 0 0.8rem 0;
 }
 
 .blog-card {
@@ -84,4 +93,43 @@ footer {
   gap: 2px;
   border-bottom: 2px solid black;
   margin-bottom: 30px;
+}
+
+@media screen and (min-width: 375px) and (max-width: 975px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    height: unset;
+  }
+
+  section {
+    margin: 0 auto 0 auto;
+  }
+
+  #fave-links {
+    gap: 8px;
+    width: 85%;
+    height: 45vh;
+    overflow-y: scroll;
+  }
+
+  #blogs-feed { 
+    margin-bottom: 20px;
+    width: 85%;
+    height: 100vh;
+    overflow-y: scroll;
+  }
+}
+
+@media screen and (min-width: 977px) and (max-width: 1200px) {
+  #fave-links {
+    gap: 8px;
+    width: 35%;
+    height: 85vh;
+    overflow-y: scroll;
+  }
+
+  #blogs-feed { 
+    height: 85vh;
+  }
 }
