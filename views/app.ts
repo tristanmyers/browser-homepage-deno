@@ -1,4 +1,4 @@
-import { DB } from '../deps.ts';
+import { DB, html } from '../deps.ts';
 import getBlogs from '../models/getBlogs.ts';
 import getLinks from '../models/getLinks.ts';
 import { BlogPost } from '../types/models/blogs.ts';
@@ -17,30 +17,33 @@ export async function app(userId: number, db: DB): Promise<string> {
 	}
 	if (userBlogs) blogs = renderBlogs(userBlogs).replaceAll(',', '');
 
-	const page = `
-	<!DOCTYPE html>
-	<html lang="en">
-		<head>
-			<meta charset="UTF-8" />
-			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-			<title>Tees Homepage</title>
-			<link
-				rel='stylesheet'
-				type='text/css'
-				href='./public/styles/index.css'
-			/>
-			<link rel="stylesheet" type='text/css' href='https://rsms.me/inter/inter.css'/>
-		</head>
-		<body>
-			<main>
-				${links}
-				${blogs}
-			</main>
-			<footer>Made by <a href="https://tristanmyers.dev/">Tristan Myers</a></footer>
-		</body>
-	</html>
-	`;
+	const page = html`
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tees Homepage</title>
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="./public/styles/index.css"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://rsms.me/inter/inter.css"
+        />
+      </head>
+      <body>
+        <main>${links} ${blogs}</main>
+        <footer>
+          Made by <a href="https://tristanmyers.dev/">Tristan Myers</a>
+        </footer>
+      </body>
+    </html>
+  `;
 
 	return page;
 }

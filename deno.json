@@ -1,6 +1,6 @@
 {
 	"tasks": {
-		"dev": "deno run --allow-read --allow-write --allow-net index.ts --testing",
+		"dev": "deno run --allow-read --allow-write --allow-net --allow-env index.ts --testing",
 		"testServer": "deno run --allow-read --allow-write --allow-net test_server/index.ts",
 		"release": "deno run --allow-read --allow-write --allow-net index.ts --release",
 		"test": "deno test --allow-read --allow-write --allow-net -- --testing",

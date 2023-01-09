@@ -24,7 +24,7 @@ export default async function getBlogs(
 	if (blogs === false) return null;
 
 	// By default we will read from the cache and if we need to update, we fetch and cache then continue on the default path of reading from cache.
-	let needsUpdating;
+	let needsUpdating = false;
 	const lastUpdated = getBlogsLastUpdated(userId, db);
 	if (lastUpdated === false) {
 		needsUpdating = false;
