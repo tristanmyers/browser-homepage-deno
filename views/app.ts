@@ -1,23 +1,23 @@
-import { DB, html } from "../deps.ts";
-import getBlogs from "../models/getBlogs.ts";
-import getLinks from "../models/getLinks.ts";
-import { BlogPost } from "../types/models/blogs.ts";
-import { renderBlogs } from "./blogs.ts";
-import { renderLinks } from "./links.ts";
+import { DB, html } from '../deps.ts';
+import getBlogs from '../models/getBlogs.ts';
+import getLinks from '../models/getLinks.ts';
+import { BlogPost } from '../types/models/blogs.ts';
+import { renderBlogs } from './blogs.ts';
+import { renderLinks } from './links.ts';
 
 // TODO: replaceAll() is not a good solution.
 export async function app(userId: number, db: DB): Promise<string> {
-  let links = "No links available";
-  let blogs = "No blogs available";
-  const userLinks: string[] | null = getLinks(userId, db);
-  const userBlogs: BlogPost[] | null = await getBlogs(userId, db);
+	let links = 'No links available';
+	let blogs = 'No blogs available';
+	const userLinks: string[] | null = getLinks(userId, db);
+	const userBlogs: BlogPost[] | null = await getBlogs(userId, db);
 
-  if (userLinks && userLinks.length > 0) {
-    links = renderLinks(userLinks).replaceAll(",", "");
-  }
-  if (userBlogs) blogs = renderBlogs(userBlogs).replaceAll(",", "");
+	if (userLinks && userLinks.length > 0) {
+		links = renderLinks(userLinks).replaceAll(',', '');
+	}
+	if (userBlogs) blogs = renderBlogs(userBlogs).replaceAll(',', '');
 
-  const page = html`
+	const page = html`
     <!DOCTYPE html>
     <html lang="en">
       <head>
@@ -45,5 +45,5 @@ export async function app(userId: number, db: DB): Promise<string> {
     </html>
   `;
 
-  return page;
+	return page;
 }
