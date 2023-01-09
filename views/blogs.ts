@@ -1,19 +1,22 @@
 import { html } from '../deps.ts';
 import { BlogPost } from '../types/models/blogs.ts';
 
+function getBlogURL(blog: BlogPost['blog'] | BlogPost['post']) {
+	const url = blog.url.includes('http' || 'https')
+		? new URL(blog.url).href
+		: 'https://' + blog.url;
+
+	return url;
+}
+
 export function renderBlogs(blogs: BlogPost[] | null) {
 	const descCharLimit = 450;
 
 	if (blogs && blogs.length > 0) {
 		const blog = blogs.map((currentBlog) => {
 			// TODO: This link logic is super weird and seems like a lot of work.
-			const blogLink = currentBlog.blog.url.includes('http' || 'https')
-				? new URL(currentBlog.blog.url).href
-				: 'https://' + currentBlog.blog.url;
-
-			const postLink = currentBlog.post.url.includes('http' || 'https')
-				? new URL(currentBlog.post.url).href
-				: 'https://' + currentBlog.post.url;
+			const blogLink = getBlogURL(currentBlog.blog);
+			const postLink = getBlogURL(currentBlog.post);
 
 			const blogTitle = currentBlog.blog.title ?? 'No blog title available';
 			const postTitle = currentBlog.post.title ?? 'No post title available';
