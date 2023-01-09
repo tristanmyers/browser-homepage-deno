@@ -17,13 +17,13 @@ function cleanIt(dirtyStr: string): string {
 	return sanitizeHtml(cleaned, { allowedTags: [] });
 }
 
-function getBlogURL(blog: BlogPost['blog'] | BlogPost['post']) {
-	const url = blog.url.includes('http' || 'https')
-		? new URL(blog.url).href
-		: 'https://' + blog.url;
-
-	return url;
-}
+// function getBlogURL(blog: BlogPost['blog'] | BlogPost['post']) {
+// 	const url = blog.url.includes('http' || 'https')
+// 		? new URL(blog.url).href
+// 		: 'https://' + blog.url;
+//
+// 	return url;
+// }
 
 // Sortes blogs based on publishedAt, most recent -> earliest  
 function sortBlogs(blogs: BlogPost[]): BlogPost[] {
@@ -59,9 +59,8 @@ export function renderBlogs(blogs: BlogPost[] | null) {
 
 	if (blogs && blogs.length > 0) {
 		const blog = sortBlogs(blogs).map((currentBlog) => {
-			// TODO: This link logic is super weird and seems like a lot of work.
-			const blogLink = getBlogURL(currentBlog.blog);
-			const postLink = getBlogURL(currentBlog.post);
+			const blogLink = currentBlog.blog.url;
+			const postLink = currentBlog.post.url;
 
 			const blogTitle = currentBlog.blog.title ?? 'No blog title available';
 			const postTitle = currentBlog.post.title ?? 'No post title available';
@@ -90,9 +89,9 @@ export function renderBlogs(blogs: BlogPost[] | null) {
 		});
 
 		return html`
-      <section id="blogs-feed">
+      <section id="blogs-feed-container">
         <h1>Recent post from favorite blogs</h1>
-        <div>${blog}</div>
+        <div id="blogs-feed">${blog}</div>
       </section>
     `;
 	} else {
