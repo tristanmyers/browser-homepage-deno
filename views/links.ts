@@ -15,9 +15,11 @@ export function renderLinks(links: string[]) {
 
 	if (links && links.length > 0) {
 		return html`
-      <section id="fave-links">
+      <section id="fave-links-container">
         <h1>Common links</h1>
-        ${linkElements}
+        <div id="fave-links">
+          ${linkElements}
+        </div>
       </section>
     `;
 	} else {
