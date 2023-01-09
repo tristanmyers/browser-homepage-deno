@@ -7,7 +7,7 @@ export function renderLinks(links: string[]) {
 		console.debug('linkObj', linkObj);
 
 		return html`
-      <a id="link" class="fave-links-group" href=${linkObj.href}>
+      <a id="link" class="fave-links-group" href=${linkObj.href} target="_blank">
         ${linkObj.hostname}
       </a>
     `;
