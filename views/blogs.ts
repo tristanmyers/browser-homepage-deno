@@ -1,9 +1,20 @@
 import { html } from "../deps.ts";
 import { BlogPost } from "../types/models/blogs.ts";
-import { Html5Entities, XmlEntities, Html4Entities } from "../util/deno_html_entities/mod.js";
+import {
+  Html4Entities,
+  Html5Entities,
+  XmlEntities,
+} from "../util/deno_html_entities/mod.js";
+// @deno-types="npm:@types/sanitize-html@2"
+import sanitizeHtml from 'npm:sanitize-html@2.8';
 
-function cleanIt(str: string): string {
-  return Html5Entities.decode(Html4Entities.decode(XmlEntities.decode(str)));
+// NOTE: This could be done in getBlogs but whatever.
+// Removes all html tags
+function cleanIt(dirtyStr: string): string {
+  const cleaned = Html5Entities.decode(
+    Html4Entities.decode(XmlEntities.decode(dirtyStr))
+  );
+  return sanitizeHtml(cleaned, {allowedTags: []});
 }
 
 function getBlogURL(blog: BlogPost["blog"] | BlogPost["post"]) {
@@ -35,15 +46,16 @@ export function renderBlogs(blogs: BlogPost[] | null) {
       if (currentBlog.post.description) {
         if (currentBlog.post.description.length > descCharLimit) {
           description =
-            currentBlog.post.description.slice(0, descCharLimit) + '<script>alert("YOU HAVE BEEN HACKED 1337 HAHAH")</script>';
+            currentBlog.post.description.slice(0, descCharLimit) +
+            '<script>alert("YOU HAVE BEEN HACKED 1337 HAHAH")</script>';
         }
       }
 
       return html`
         <div class="blog-card">
-          <a class="blog-link" href=${blogLink}> ${blogTitle} </a>
-          <a class="blog-link" href=${postLink}> ${postTitle} </a>
-          <p>${publishedAt}</p>
+          <a class="blog-link" href=${blogLink}> ${cleanIt(blogTitle)} </a>
+          <a class="blog-link" href=${postLink}> ${cleanIt(postTitle)} </a>
+          <p>${cleanIt(publishedAt || '')}</p>
           <p>${cleanIt(description)}</p>
         </div>
       `;
