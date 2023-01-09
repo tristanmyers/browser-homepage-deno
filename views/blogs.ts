@@ -1,7 +1,9 @@
+import { html } from '../deps.ts';
 import { BlogPost } from '../types/models/blogs.ts';
 
 export function renderBlogs(blogs: BlogPost[] | null) {
 	const descCharLimit = 450;
+
 	if (blogs && blogs.length > 0) {
 		const blog = blogs.map((currentBlog) => {
 			// TODO: This link logic is super weird and seems like a lot of work.
@@ -29,32 +31,28 @@ export function renderBlogs(blogs: BlogPost[] | null) {
 				}
 			}
 
-			return (`
-				<div class="blog-card">
-					<a class="blog-link" href=${blogLink}>
-						${blogTitle}
-					</a>
-					<a class="blog-link" href=${postLink}>
-						${postTitle}
-					</a>
-					<p>${publishedAt}</p>
-					<p>${description}
-				</div>
-			`);
+			return html`
+        <div class="blog-card">
+          <a class="blog-link" href=${blogLink}> ${blogTitle} </a>
+          <a class="blog-link" href=${postLink}> ${postTitle} </a>
+          <p>${publishedAt}</p>
+          <p>${description}</p>
+        </div>
+      `;
 		});
 
-		return (`
-			<section id='blogs-feed'>
-				<h1>Recent post from favorite blogs</h1>
-				<div>${blog}</div>
-			</section>
-		`);
+		return html`
+      <section id="blogs-feed">
+        <h1>Recent post from favorite blogs</h1>
+        <div>${blog}</div>
+      </section>
+    `;
 	} else {
-		return (`
-			<section>
-				<p>Recent post from favorite blogs</p>
-				<p>No blogs available</p>
-			</section>
-		`);
+		return html`
+      <section>
+        <p>Recent post from favorite blogs</p>
+        <p>No blogs available</p>
+      </section>
+    `;
 	}
 }
