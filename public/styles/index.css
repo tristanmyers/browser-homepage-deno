@@ -60,7 +60,7 @@ section {
   display: flex;
   flex-direction: column;
   /* overflow-y: scroll; */
-  /* overflow-x: scroll; */
+  overflow-x: scroll;
   height: 100%;
 }
 
@@ -75,6 +75,7 @@ section {
 #blogs-feed {
   height: 85vh;
   overflow-y: scroll; 
+  padding-right: 2px;
   /* overflow-x: scroll; */
 }
 
