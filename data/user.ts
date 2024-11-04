@@ -39,7 +39,6 @@ export const realUser: User = {
 		'https://alexanderell.is/index.xml',
 		'https://calpaterson.com/calpaterson.rss',
 		'https://www.happyassassin.net/rss.xml',
-		'https://tim.mcnamara.nz/rss',
 		'https://blog.relyabilit.ie/rss/',
 		'https://xakcop.com/index.xml',
 		'https://www.jvt.me/kind/articles/feed.xml',
