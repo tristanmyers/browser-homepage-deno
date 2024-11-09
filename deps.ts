@@ -5,8 +5,7 @@
 //export * as asserts from 'https://deno.land/std@0.171.0/testing/asserts.ts';
 //export { type Args, parse } from 'https://deno.land/std@0.171.0/flags/mod.ts';
 
-// TODO: update sqlite dependency
 //export { DB, type Row } from 'https://deno.land/x/sqlite@v3.9.1/mod.ts';
-export { html } from 'https://deno.land/x/html@v1.2.0/mod.ts';
+//export { html } from 'https://deno.land/x/html@v1.2.0/mod.ts';
 
 // import sanitizeHtml isn't working here so it's in another file

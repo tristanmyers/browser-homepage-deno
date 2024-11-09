@@ -1,4 +1,4 @@
-import { html } from '../deps.ts';
+import { html } from 'html';
 
 export function renderLinks(links: string[]) {
 	const linkElements = links.map((link) => {
