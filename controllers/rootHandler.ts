@@ -1,5 +1,6 @@
 import { realUser, testingUser } from '../data/user.ts';
-import { DB, linkedom } from '../deps.ts';
+import { DB } from '../deps.ts';
+import * as linkedom from 'linkedom';
 import { args } from '../index.ts';
 import addUser from '../models/addUser.ts';
 import createUsers from '../models/createUsers.ts';

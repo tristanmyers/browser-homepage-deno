@@ -1,6 +1,7 @@
 #!/usr/bin/env deno
-import { Args, DB, http, parse } from './deps.ts';
+import { DB } from './deps.ts';
 import { rootHandler } from './controllers/rootHandler.ts';
+import { type Args, parse } from '@std/flags';
 
 type ResponseData = {
 	body: BodyInit;
@@ -18,7 +19,7 @@ const stylesDir = './public/styles/';
 
 export const args: Args<DenoArguments> = parse(Deno.args);
 
-http.serve(handler, { port });
+Deno.serve({ port }, handler);
 
 async function handler(req: Request): Promise<Response> {
 	// Have to always set body and status or else a 500 happens.

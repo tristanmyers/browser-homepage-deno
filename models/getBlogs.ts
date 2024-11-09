@@ -1,4 +1,4 @@
-import { DB, rss } from '../deps.ts';
+import { DB } from '../deps.ts';
 import { BlogPost } from '../types/models/blogs.ts';
 import {
 	decode,
@@ -7,6 +7,7 @@ import {
 import { getBlogsLastUpdated } from './getBlogLastUpdated.ts';
 import { getBlogsFromUser } from './getBlogLinksFromUser.ts';
 import { updateBlogsLastUpdated } from './updateBlogsLastUpdated.ts';
+import * as rss from 'rss';
 
 /*
 	Query the user for blogs -> Get the blogs last updated date -> Check if the date is 5 or more days ago
