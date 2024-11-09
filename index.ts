@@ -1,5 +1,5 @@
 #!/usr/bin/env deno
-import { DB } from './deps.ts';
+import { DB } from 'sqlite';
 import { rootHandler } from './controllers/rootHandler.ts';
 import { type Args, parse } from '@std/flags';
 

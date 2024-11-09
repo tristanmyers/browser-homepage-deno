@@ -1,4 +1,5 @@
-import { DB, html } from '../deps.ts';
+import { html } from '../deps.ts';
+import { DB } from 'sqlite';
 import getBlogs from '../models/getBlogs.ts';
 import getLinks from '../models/getLinks.ts';
 import { BlogPost } from '../types/models/blogs.ts';

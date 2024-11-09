@@ -1,5 +1,5 @@
 import { realUser, testingUser } from '../data/user.ts';
-import { DB } from '../deps.ts';
+import { DB } from 'sqlite';
 import * as linkedom from 'linkedom';
 import { args } from '../index.ts';
 import addUser from '../models/addUser.ts';

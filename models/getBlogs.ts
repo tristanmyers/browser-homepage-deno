@@ -1,4 +1,4 @@
-import { DB } from '../deps.ts';
+import { DB } from 'sqlite';
 import { BlogPost } from '../types/models/blogs.ts';
 import {
 	decode,
