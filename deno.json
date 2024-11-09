@@ -8,11 +8,9 @@
 		"compile-linux": "deno compile --allow-read --allow-write --allow-net --target x86_64-unknown-linux-gnu index.ts"
 	},
 	"fmt": {
-		"options": {
-			"useTabs": true,
-			"indentWidth": 2,
-			"singleQuote": true
-		}
+		"useTabs": true,
+		"indentWidth": 2,
+		"singleQuote": true
 	},
 	"test": {
 		"include": ["tests/"]

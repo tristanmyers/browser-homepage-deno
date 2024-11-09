@@ -55,15 +55,15 @@ async function handler(req: Request): Promise<Response> {
 		const styleFiles = Deno.readDir(stylesDir);
 
 		for await (const file of styleFiles) {
-      console.log(file.name);
-      
-      if (file.name === 'index.css') {
-        return new Response(await Deno.readFile(stylesDir + file.name), {
-          headers: {
-            'content-type': 'text/css',
-          },
-        });
-      }
+			console.log(file.name);
+
+			if (file.name === 'index.css') {
+				return new Response(await Deno.readFile(stylesDir + file.name), {
+					headers: {
+						'content-type': 'text/css',
+					},
+				});
+			}
 		}
 	}
 

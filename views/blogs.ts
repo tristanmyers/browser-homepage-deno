@@ -25,7 +25,7 @@ function cleanIt(dirtyStr: string): string {
 // 	return url;
 // }
 
-// Sortes blogs based on publishedAt, most recent -> earliest  
+// Sortes blogs based on publishedAt, most recent -> earliest
 function sortBlogs(blogs: BlogPost[]): BlogPost[] {
 	return blogs.sort((blog1, blog2) => {
 		if (blog1.post.publishedAt && blog2.post.publishedAt) {
