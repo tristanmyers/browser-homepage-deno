@@ -2,6 +2,7 @@
 import { DB } from 'sqlite';
 import { rootHandler } from './controllers/rootHandler.ts';
 import { type Args, parse } from '@std/flags';
+import {addLinks, removeLinks} from "./models/updateLinks.ts";
 
 type ResponseData = {
 	body: BodyInit;
@@ -40,6 +41,28 @@ async function handler(req: Request): Promise<Response> {
 				resData.status = 200;
 			}
 			db.close();
+			break;
+		}
+
+		case '/api/addLink': {
+			const db = createDB(args);
+			//TODO: get links from request body
+			const links = ['placeholder.com'];
+			addLinks(1, db, links);
+
+			resData.body = "It worked."
+			resData.status = 200;
+			break;
+		}
+
+		case '/api/removeLink': {
+			const db = createDB(args);
+			//TODO: get links from request body
+			const links = ['placeholder.com'];
+			removeLinks(1, db, links);
+
+			resData.body = "It worked."
+			resData.status = 200;
 			break;
 		}
 
