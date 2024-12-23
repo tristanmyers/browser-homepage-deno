@@ -55,29 +55,29 @@ section {
 }
 
 #scrolling-banner {
-  -webkit-animation: banner 10s linear infinite;
-          animation: banner 10s linear infinite;
-  box-sizing: border-box;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-/*  overflow: hidden;*/
-/*  position: absolute;*/
-  width: 70vw;
-  transition: 0.35s ease-in-out;
-  transform: translateX(120%) translateZ(0) scale(1, 1);
-  white-space: nowrap;
+	-webkit-animation: banner 10s linear infinite;
+	animation: banner 10s linear infinite;
+	box-sizing: border-box;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	/*  overflow: hidden;*/
+	/*  position: absolute;*/
+	width: 70vw;
+	transition: 0.35s ease-in-out;
+	transform: translateX(120%) translateZ(0) scale(1, 1);
+	white-space: nowrap;
 }
 
 @-webkit-keyframes banner {
-  100% {
-    transform: translateX(-70%);
-  }
+	100% {
+		transform: translateX(-70%);
+	}
 }
 
 @keyframes banner {
-  100% {
-    transform: translateX(-70%);
-  }
+	100% {
+		transform: translateX(-70%);
+	}
 }
 /* SCROLLING BANNER STOP */
 

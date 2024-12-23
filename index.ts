@@ -2,7 +2,8 @@
 import { DB } from 'sqlite';
 import { rootHandler } from './controllers/rootHandler.ts';
 import { type Args, parse } from '@std/flags';
-import {addLinks, removeLinks} from "./models/updateLinks.ts";
+import { addLinks, removeLinks } from './models/updateLinks.ts';
+import { loginHandler } from './controllers/loginHandler.ts';
 
 type ResponseData = {
 	body: BodyInit;
@@ -50,7 +51,7 @@ async function handler(req: Request): Promise<Response> {
 			const links = ['placeholder.com'];
 			addLinks(1, db, links);
 
-			resData.body = "It worked."
+			resData.body = 'It worked.';
 			resData.status = 200;
 			break;
 		}
@@ -61,8 +62,17 @@ async function handler(req: Request): Promise<Response> {
 			const links = ['placeholder.com'];
 			removeLinks(1, db, links);
 
-			resData.body = "It worked."
+			resData.body = 'It worked.';
 			resData.status = 200;
+			break;
+		}
+
+		case '/login': {
+			const data = await loginHandler(req);
+			if (data) {
+				resData.body = data;
+				resData.status = 200;
+			}
 			break;
 		}
 
