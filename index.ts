@@ -4,6 +4,8 @@ import { rootHandler } from './controllers/rootHandler.ts';
 import { type Args, parse } from '@std/flags';
 import { addLinks, removeLinks } from './models/updateLinks.ts';
 import { loginHandler } from './controllers/loginHandler.ts';
+import addUser from "./models/addUser.ts";
+import {realUser, testingUser} from "./data/user.ts";
 
 type ResponseData = {
 	body: BodyInit;
@@ -19,7 +21,15 @@ export type DenoArguments = {
 const port = 8081;
 const stylesDir = './public/styles/';
 
-export const args: Args<DenoArguments> = parse(Deno.args);
+export let envVars: string;
+
+if (Deno.env.has("ENV_TYPE")) {
+	envVars = Deno.env.get("ENV_TYPE") || "development";
+} else {
+	console.warn("No environment variables: ENV_TYPE has not been set");
+	console.warn("setting to development environment");
+	envVars = "development";
+}
 
 Deno.serve({ port }, handler);
 
@@ -35,7 +45,7 @@ async function handler(req: Request): Promise<Response> {
 
 	switch (reqUrl.pathname) {
 		case '/': {
-			const db = createDB(args);
+			const db = createDB(envVars);
 			const data = await rootHandler(req, 1, db);
 			if (data) {
 				resData.body = data;
@@ -46,7 +56,7 @@ async function handler(req: Request): Promise<Response> {
 		}
 
 		case '/api/addLink': {
-			const db = createDB(args);
+			const db = createDB(envVars);
 			//TODO: get links from request body
 			const links = ['placeholder.com'];
 			addLinks(1, db, links);
@@ -57,7 +67,7 @@ async function handler(req: Request): Promise<Response> {
 		}
 
 		case '/api/removeLink': {
-			const db = createDB(args);
+			const db = createDB(envVars);
 			//TODO: get links from request body
 			const links = ['placeholder.com'];
 			removeLinks(1, db, links);
@@ -108,7 +118,7 @@ async function handler(req: Request): Promise<Response> {
 	});
 }
 
-function createDB(args: Args<DenoArguments>): DB {
-	const db = args.testing ? new DB('testing.db') : new DB('main.db');
+function createDB(args: string): DB {
+	const db = args == "development" ? new DB('testing.db') : new DB('main.db');
 	return db;
 }
