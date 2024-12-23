@@ -1,4 +1,4 @@
-import { DB } from '../deps.ts';
+import { DB } from 'sqlite';
 
 const createUsersMut = `
 CREATE TABLE IF NOT EXISTS users (

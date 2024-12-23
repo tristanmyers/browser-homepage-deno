@@ -12,9 +12,9 @@
 	--link-hover-color: black; */
 
 	/* https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557 */
-	--main-bg-color: hsl(0, 0%, 100%);
-	--main-link-color: hsl(0, 0%, 0%);
-	--section-bg-color: hsl(0, 0%, 100%);
+	--main-bg-color: hsl(215, 50%, 23%);
+	--main-link-color: hsl(203, 39%, 44%);
+	--section-bg-color: hsl(105, 55%, 96%);
 	--link-hover-color: black;
 }
 
@@ -25,7 +25,7 @@ body {
 }
 
 a {
-	color: var(--main-link-color);
+	color: var(--main-bg-color);
 }
 
 a:hover {
@@ -37,13 +37,14 @@ main {
 	flex-direction: row;
 	gap: 20px;
 	place-content: center;
-	margin: 0 10vw 0 10vw;
+	overflow: hidden;
 }
 
 section {
 	background-color: var(--section-bg-color);
 	padding: 20px;
 	height: 75vh;
+	scrollbar-width: thin;
 }
 
 /* SCROLLING BANNER */
@@ -53,19 +54,19 @@ section {
 	margin-bottom: 2px;
 }
 
-/*#scrolling-banner {*/
-/*	-webkit-animation: banner 10s linear infinite;*/
-/*	animation: banner 10s linear infinite;*/
-/*	box-sizing: border-box;*/
-/*	-webkit-backface-visibility: hidden;*/
-/*	backface-visibility: hidden;*/
-/*	!*  overflow: hidden;*!*/
-/*	!*  position: absolute;*!*/
-/*	width: 70vw;*/
-/*	transition: 0.35s ease-in-out;*/
-/*	transform: translateX(120%) translateZ(0) scale(1, 1);*/
-/*	white-space: nowrap;*/
-/*}*/
+#scrolling-banner {
+	-webkit-animation: banner 10s linear infinite;
+	animation: banner 10s linear infinite;
+	box-sizing: border-box;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	/*  overflow: hidden;*/
+	/*  position: absolute;*/
+	width: 70vw;
+	transition: 0.35s ease-in-out;
+	transform: translateX(120%) translateZ(0) scale(1, 1);
+	white-space: nowrap;
+}
 
 @-webkit-keyframes banner {
 	100% {
@@ -78,28 +79,38 @@ section {
 		transform: translateX(-70%);
 	}
 }
-/* SCROLLING BANNER END */
+/* SCROLLING BANNER STOP */
 
 #fave-links-container {
 	gap: 2px;
 	height: 85vh;
+	width: 15vw;
+	border-radius: 10px;
 	font-size: 1.5em;
+	box-shadow: 5px 5px 10px black;
 }
 
 #fave-links {
 	display: flex;
 	flex-direction: column;
+	/* overflow-y: scroll; */
+	overflow-x: scroll;
 	height: 100%;
 }
 
 #blogs-feed-container {
+	width: 90vw;
 	height: 100%;
+	border-radius: 10px;
 	font-size: 1.5em;
+	box-shadow: 5px 5px 10px black;
 }
 
 #blogs-feed {
 	height: 85vh;
+	overflow-y: scroll;
 	padding-right: 2px;
+	/* overflow-x: scroll; */
 }
 
 #blog-title {
@@ -135,6 +146,7 @@ footer a:hover {
 
 	#fave-links-container {
 		gap: 8px;
+		width: 65%;
 		height: 45vh;
 	}
 
