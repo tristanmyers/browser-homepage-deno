@@ -1,4 +1,4 @@
-import { DB } from '../deps.ts';
+import { DB } from 'sqlite';
 import { User } from '../types/models/user.ts';
 
 const checkUserExistMut = `

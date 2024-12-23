@@ -1,5 +1,3 @@
-import { http } from '../deps.ts';
-
 type ResponseData = {
 	body: BodyInit;
 	status: number;
@@ -8,7 +6,7 @@ type ResponseData = {
 
 const port = 8082;
 
-await http.serve(handler, { port });
+await Deno.serve({ port }, handler);
 
 async function handler(req: Request): Promise<Response> {
 	// Have to always set body and status or else a 500 happens.

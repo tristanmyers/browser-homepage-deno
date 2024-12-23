@@ -1,4 +1,4 @@
-import { DB } from '../deps.ts';
+import { DB } from 'sqlite';
 
 const getLinksFromUser = 'SELECT links FROM users WHERE id = ?';
 

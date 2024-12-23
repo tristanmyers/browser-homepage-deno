@@ -1,4 +1,5 @@
-import { DB, html } from '../deps.ts';
+import { html } from 'html';
+import { DB } from 'sqlite';
 import getBlogs from '../models/getBlogs.ts';
 import getLinks from '../models/getLinks.ts';
 import { BlogPost } from '../types/models/blogs.ts';
@@ -37,6 +38,9 @@ export async function app(userId: number, db: DB): Promise<string> {
         />
       </head>
       <body>
+<!--        <section id="banner-container">-->
+<!--          <p id="scrolling-banner">Hello, world! Am I scrolling?</p>-->
+<!--        </section>-->
         <main>${links} ${blogs}</main>
         <footer>
           Made by <a href="https://tristanmyers.dev/">Tristan Myers</a>

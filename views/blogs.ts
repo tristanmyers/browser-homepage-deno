@@ -1,4 +1,4 @@
-import { html } from '../deps.ts';
+import { html } from 'html';
 import { BlogPost } from '../types/models/blogs.ts';
 import {
 	Html4Entities,
@@ -6,7 +6,7 @@ import {
 	XmlEntities,
 } from '../util/deno_html_entities/mod.js';
 // @deno-types="npm:@types/sanitize-html@2"
-import sanitizeHtml from 'npm:sanitize-html@2.8';
+import sanitizeHtml from 'sanitize-html';
 
 // NOTE: This could be done in getBlogs but whatever.
 // Removes all html tags
@@ -25,7 +25,7 @@ function cleanIt(dirtyStr: string): string {
 // 	return url;
 // }
 
-// Sortes blogs based on publishedAt, most recent -> earliest  
+// Sortes blogs based on publishedAt, most recent -> earliest
 function sortBlogs(blogs: BlogPost[]): BlogPost[] {
 	return blogs.sort((blog1, blog2) => {
 		if (blog1.post.publishedAt && blog2.post.publishedAt) {

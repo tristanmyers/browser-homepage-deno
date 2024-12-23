@@ -9,7 +9,7 @@ export const testingUser: User = {
 		'https://twitter.com/',
 		'https://news.ycombinator.com',
 		'https://github.com/',
-    'https://netflix.com/',
+		'https://netflix.com/',
 	],
 	blogs: [
 		'http://localhost:8082/madeofbugs.xml',

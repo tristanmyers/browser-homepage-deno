@@ -5,131 +5,131 @@
 */
 
 :root {
-  /*   https://coolors.co/palette/f4f1de-e07a5f-3d405b-81b29a-f2cc8f */
-  /* --main-bg-color: hsl(234, 20%, 30%);
-  --main-link-color: hsl(13, 68%, 63% );
-  --section-bg-color: hsl(52, 50%, 91%); 
-  --link-hover-color: black; */
+	/*   https://coolors.co/palette/f4f1de-e07a5f-3d405b-81b29a-f2cc8f */
+	/* --main-bg-color: hsl(234, 20%, 30%);
+	--main-link-color: hsl(13, 68%, 63% );
+	--section-bg-color: hsl(52, 50%, 91%); 
+	--link-hover-color: black; */
 
-  /* https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557 */
-  --main-bg-color: hsl(215, 50%, 23%);
-  --main-link-color: hsl(203, 39%, 44%);
-  --section-bg-color: hsl(105, 55%, 96%); 
-  --link-hover-color: black;
+	/* https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557 */
+	--main-bg-color: hsl(215, 50%, 23%);
+	--main-link-color: hsl(203, 39%, 44%);
+	--section-bg-color: hsl(105, 55%, 96%);
+	--link-hover-color: black;
 }
 
 body {
-  background-color: var(--main-bg-color);
-  color: black;
-  font-family: Inter;
+	background-color: var(--main-bg-color);
+	color: black;
+	font-family: Inter;
 }
 
 a {
-  color: var(--main-link-color);
+	color: var(--main-link-color);
 }
 
 a:hover {
-  color: var(--link-hover-color);
+	color: var(--link-hover-color);
 }
 
 main {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  place-content: center;
-  overflow-x: hidden;
-  height: 90vh;
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	place-content: center;
+	overflow-x: hidden;
+	height: 90vh;
 }
 
 section {
-  background-color: var(--section-bg-color);
-  padding: 20px;
-  height: 75vh;
-  scrollbar-width: thin;
+	background-color: var(--section-bg-color);
+	padding: 20px;
+	height: 75vh;
+	scrollbar-width: thin;
 }
 
 footer {
-  background-color: var(--section-bg-color);
-  position: sticky;
-  bottom: 10px;
-  padding: 20px;
-  width: 90%;
-  margin: auto;
-  border-radius: 10px;
-  font-size: larger;
-  text-align: center;
+	background-color: var(--section-bg-color);
+	position: sticky;
+	bottom: 10px;
+	padding: 20px;
+	width: 90%;
+	margin: auto;
+	border-radius: 10px;
+	font-size: larger;
+	text-align: center;
 }
 
 #fave-links {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  width: 15vw;
-  border-radius: 10px;
-  font-size: 1.5em;
-  box-shadow: 5px 5px 10px black;
-  height: 85vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	width: 15vw;
+	border-radius: 10px;
+	font-size: 1.5em;
+	box-shadow: 5px 5px 10px black;
+	height: 85vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
-#blogs-feed { 
-  width: 75vw;
-  height: 85vh;
-  border-radius: 10px;
-  font-size: 1.5em;
-  box-shadow: 5px 5px 10px black;
-  overflow-y: scroll; 
-  overflow-x: hidden;
+#blogs-feed {
+	width: 75vw;
+	height: 85vh;
+	border-radius: 10px;
+	font-size: 1.5em;
+	box-shadow: 5px 5px 10px black;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 #blog-title {
-  margin: 0 0 0.8rem 0;
+	margin: 0 0 0.8rem 0;
 }
 
 .blog-card {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  border-bottom: 2px solid black;
-  margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	border-bottom: 2px solid black;
+	margin-bottom: 30px;
 }
 
 @media screen and (min-width: 375px) and (max-width: 975px) {
-  main {
-    display: flex;
-    flex-direction: column;
-    height: unset;
-  }
+	main {
+		display: flex;
+		flex-direction: column;
+		height: unset;
+	}
 
-  section {
-    margin: 0 auto 0 auto;
-  }
+	section {
+		margin: 0 auto 0 auto;
+	}
 
-  #fave-links {
-    gap: 8px;
-    width: 85%;
-    height: 45vh;
-    overflow-y: scroll;
-  }
+	#fave-links {
+		gap: 8px;
+		width: 85%;
+		height: 45vh;
+		overflow-y: scroll;
+	}
 
-  #blogs-feed { 
-    margin-bottom: 20px;
-    width: 85%;
-    height: 100vh;
-    overflow-y: scroll;
-  }
+	#blogs-feed {
+		margin-bottom: 20px;
+		width: 85%;
+		height: 100vh;
+		overflow-y: scroll;
+	}
 }
 
 @media screen and (min-width: 977px) and (max-width: 1200px) {
-  #fave-links {
-    gap: 8px;
-    width: 35%;
-    height: 85vh;
-    overflow-y: scroll;
-  }
+	#fave-links {
+		gap: 8px;
+		width: 35%;
+		height: 85vh;
+		overflow-y: scroll;
+	}
 
-  #blogs-feed { 
-    height: 85vh;
-  }
+	#blogs-feed {
+		height: 85vh;
+	}
 }

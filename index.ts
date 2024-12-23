@@ -1,6 +1,9 @@
 #!/usr/bin/env deno
-import { Args, DB, http, parse } from './deps.ts';
+import { DB } from 'sqlite';
 import { rootHandler } from './controllers/rootHandler.ts';
+import { type Args, parse } from '@std/flags';
+import { addLinks, removeLinks } from './models/updateLinks.ts';
+import { loginHandler } from './controllers/loginHandler.ts';
 
 type ResponseData = {
 	body: BodyInit;
@@ -18,7 +21,7 @@ const stylesDir = './public/styles/';
 
 export const args: Args<DenoArguments> = parse(Deno.args);
 
-http.serve(handler, { port });
+Deno.serve({ port }, handler);
 
 async function handler(req: Request): Promise<Response> {
 	// Have to always set body and status or else a 500 happens.
@@ -42,6 +45,37 @@ async function handler(req: Request): Promise<Response> {
 			break;
 		}
 
+		case '/api/addLink': {
+			const db = createDB(args);
+			//TODO: get links from request body
+			const links = ['placeholder.com'];
+			addLinks(1, db, links);
+
+			resData.body = 'It worked.';
+			resData.status = 200;
+			break;
+		}
+
+		case '/api/removeLink': {
+			const db = createDB(args);
+			//TODO: get links from request body
+			const links = ['placeholder.com'];
+			removeLinks(1, db, links);
+
+			resData.body = 'It worked.';
+			resData.status = 200;
+			break;
+		}
+
+		case '/login': {
+			const data = await loginHandler(req);
+			if (data) {
+				resData.body = data;
+				resData.status = 200;
+			}
+			break;
+		}
+
 		default:
 			resData.body = 'Page not found';
 			resData.status = 404;
@@ -54,15 +88,15 @@ async function handler(req: Request): Promise<Response> {
 		const styleFiles = Deno.readDir(stylesDir);
 
 		for await (const file of styleFiles) {
-      console.log(file.name);
-      
-      if (file.name === 'index.css') {
-        return new Response(await Deno.readFile(stylesDir + file.name), {
-          headers: {
-            'content-type': 'text/css',
-          },
-        });
-      }
+			console.log(file.name);
+
+			if (file.name === 'index.css') {
+				return new Response(await Deno.readFile(stylesDir + file.name), {
+					headers: {
+						'content-type': 'text/css',
+					},
+				});
+			}
 		}
 	}
 

@@ -1,4 +1,5 @@
-import { asserts } from '../deps.ts';
+// TODO: fix this, changed asserts or something idk
+import * as asserts from '@std/testing';
 import { BlogPost } from '../types/models/blogs.ts';
 const dirtyDescription =
 	`&lt;p&gt;There&amp;rsquo;s a common pattern I&amp;rsquo;ve seen when learning something new, where you can

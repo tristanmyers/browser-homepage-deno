@@ -2,3 +2,4 @@
 *.db
 cached_data/*
 deno.lock
+node_modules/
