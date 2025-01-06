@@ -42,8 +42,27 @@ main {
 
 section {
 	background-color: var(--section-bg-color);
-	padding: 20px;
+	padding: 0 20px 20px 20px;
 	height: 75vh;
+}
+
+header {
+	display: flex;
+	flex-direction: row;
+	gap: 30px;
+	margin: 40px 0 0 40vw;
+	padding: 0 0 20px 0;
+	width: 20%;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+header p:hover {
+	text-decoration-style: solid;
+	text-decoration-line: underline;
+	text-decoration-color: hsl(0, 0%, 0%);
+	text-decoration-thickness: 2px;
+	cursor: pointer;
 }
 
 /* SCROLLING BANNER */
